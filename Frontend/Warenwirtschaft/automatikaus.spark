@@ -1,0 +1,8 @@
+﻿<use master="cqrs" />
+<h2>Automatische Nachbestellungen</h2>
+<form action="" method="POST">
+
+aktiv
+
+<input type="submit" value="Deaktivieren" />
+</form>

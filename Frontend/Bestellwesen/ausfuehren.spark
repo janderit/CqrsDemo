@@ -1,0 +1,6 @@
+﻿<use master="cqrs" />
+<h2>Waren ausliefern</h2>
+<form action="" method="POST">
+
+<input type="submit" value="Ok" />
+</form>

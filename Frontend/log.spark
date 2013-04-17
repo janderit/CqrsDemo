@@ -1,0 +1,6 @@
+﻿<use master="cqrs" />
+<h2>Protokoll</h2>
+
+<table>
+<tr each="var eintrag in Model"><td>${H(eintrag.Info)}</td></tr>
+</table>

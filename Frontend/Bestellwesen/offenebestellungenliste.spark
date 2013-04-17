@@ -1,0 +1,16 @@
+﻿<use master="cqrs" />
+<h2>Offene Bestellungen</h2>
+<div>
+<table>
+  <tr each="var auftrag in Model.Bestellungen">
+	<td>${H(auftrag.Kundenname)}</td>
+    <td>${H(auftrag.Produktname)}</td>
+    <td>${auftrag.Menge}</td>
+	<td><a href="ausfuehren/${auftrag.Id}">Ausf&uuml;hren</a></td>
+  </tr>  
+</table>
+</div>
+<p>
+<div>
+<a href="erfassen">Neuen Auftrag erfassen...</a>
+</div>

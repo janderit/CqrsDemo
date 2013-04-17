@@ -1,0 +1,3 @@
+﻿<use master="cqrs" />
+<h2>Ups...</h2>
+<span style="color:red;">${H(Model)}</span>

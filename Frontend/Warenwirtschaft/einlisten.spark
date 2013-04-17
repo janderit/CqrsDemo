@@ -1,0 +1,10 @@
+﻿<use master="cqrs" />
+<h2>Produkt einlisten</h2>
+<form action="" method="POST">
+
+<div><label>Bezeichnung</label>
+<input type="text" name="bezeichnung" />
+</div>
+
+<input type="submit" value="Ok" />
+</form>

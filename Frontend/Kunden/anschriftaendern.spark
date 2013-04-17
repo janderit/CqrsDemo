@@ -1,0 +1,7 @@
+﻿<use master="cqrs" />
+<h2>Anschrift &auml;ndern</h2>
+<div>${H(Model.Name)}</div>
+<form action="" method="POST">
+<input type="text" name="neueanschrift" value="${H(Model.Anschrift)}" />
+<input type="submit" value="ausfuehren" />
+</form>

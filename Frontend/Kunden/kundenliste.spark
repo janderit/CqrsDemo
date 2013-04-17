@@ -1,0 +1,16 @@
+﻿<use master="cqrs" />
+<h2>Kundenverwaltung</h2>
+<div>
+<table>
+  <tr each="var kunde in Model.Kunden">
+    <td>${H(kunde.Name)}</td>
+    <td>${H(kunde.Anschrift)}</td>
+    <td><a href="${kunde.Id}/anschriftaendern">Anschrift &auml;ndern</a></td>
+    <td><a href="/bestellwesen/bestellung?kunde=${kunde.Id}">Bestellung aufgeben</a></td>
+  </tr>  
+</table>
+</div>
+<p>
+<div>
+<a href="erfassen">Neuen Kunden erfassen...</a>
+</div>

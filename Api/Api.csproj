@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D15758AF-061B-4C51-A008-8FA6DA1F9304}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Api</RootNamespace>
+    <AssemblyName>Api</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bestellwesen\Abfragen\OffeneBestellungenAbfrage.cs" />
+    <Compile Include="Bestellwesen\BestellwesenApi.cs" />
+    <Compile Include="CqrsApi.cs" />
+    <Compile Include="Kunden\Abfragen\KundenlisteAbfrage.cs" />
+    <Compile Include="Kunden\Aktionen\AnschriftAendern.cs" />
+    <Compile Include="Kunden\Aktionen\KundeErfassen.cs" />
+    <Compile Include="Kunden\KundenApi.cs" />
+    <Compile Include="Meta\MetaApi.cs" />
+    <Compile Include="Meta\ProtokollAbfrage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Bestellwesen\Aktionen\AuftragAusfuehren.cs" />
+    <Compile Include="Bestellwesen\Aktionen\AuftragErfassen.cs" />
+    <Compile Include="Bestellwesen\Aktionen\AuftragStornieren.cs" />
+    <Compile Include="Warenwirtschaft\Abfragen\ProduktlisteAbfrage.cs" />
+    <Compile Include="Warenwirtschaft\Aktionen\AutomatischeNachbestellungenDeaktivieren.cs" />
+    <Compile Include="Warenwirtschaft\Aktionen\MindestVerfuegbarkeitDefinieren.cs" />
+    <Compile Include="Warenwirtschaft\Aktionen\NachbestellungBeauftragen.cs" />
+    <Compile Include="Warenwirtschaft\Aktionen\ProduktEinlisten.cs" />
+    <Compile Include="Warenwirtschaft\Aktionen\WareneingangVerbuchen.cs" />
+    <Compile Include="Warenwirtschaft\WarenwirtschaftApi.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastruktur\Infrastruktur.csproj">
+      <Project>{38AAAE7C-198C-434B-8C63-CD02724F374C}</Project>
+      <Name>Infrastruktur</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Resourcen\Resourcen.csproj">
+      <Project>{8A34516F-5D6E-4A70-A821-408DEA3C44FC}</Project>
+      <Name>Resourcen</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

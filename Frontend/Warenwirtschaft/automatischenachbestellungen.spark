@@ -1,0 +1,9 @@
+﻿<use master="cqrs" />
+<h2>Automatische Nachbestellungen</h2>
+<form action="" method="POST">
+
+<div><label>Unterhalb einer Verf&uuml;gbarkeit von bestellen:</label><input type="text" name="mindestverfuegbarkeit" /></div>
+<div><label>Mindestbestellmenge:</label><input type="text" name="mindestbestellmenge" /></div>
+
+<input type="submit" value="Aktivieren" />
+</form>

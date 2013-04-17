@@ -1,0 +1,10 @@
+﻿<use master="cqrs" />
+<h2>Nachbestellung beim Lieferanten</h2>
+<form action="" method="POST">
+
+<div><label>Menge</label>
+<input type="text" name="menge" />
+</div>
+
+<input type="submit" value="Ok" />
+</form>

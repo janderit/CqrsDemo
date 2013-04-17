@@ -1,0 +1,20 @@
+﻿<use master="cqrs" />
+<h2>Auftrag erfassen</h2>
+<form action="" method="POST">
+
+<div><label>Produkt</label>
+<select name="produkt">
+	<option each="var produkt in Model.Produkte" value="${produkt.Id}">${H(produkt.Bezeichnung)}</option>
+</select></div>
+
+<div><label>Menge</label>
+<input type="text" name="menge" />
+</div>
+
+<div><label>Kunde</label>
+<select name="kunde">
+	<option each="var kunde in Model.Kunden" value="${kunde.Id}">${H(kunde.Name)}</option>
+</select></div>
+
+<input type="submit" value="Ok" />
+</form>

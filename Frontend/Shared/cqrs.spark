@@ -1,0 +1,15 @@
+﻿<viewdata model="dynamic" />
+<html>
+<body>
+<h1>CQRS GmbH &amp; Co KG</h1>
+<div>
+<use content="view" />
+</div>
+<nav>
+<a href="/bestellwesen">Bestellwesen</a>
+<a href="/kunden">Kundenverwaltung</a>
+<a href="/warenwirtschaft">Warenwirtschaft</a>
+<a href="/log">Protokoll</a>
+</nav>
+</body>
+</html>

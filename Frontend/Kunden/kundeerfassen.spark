@@ -1,0 +1,7 @@
+﻿<use master="cqrs" />
+<h2>Kunde erfassen</h2>
+<form action="" method="POST">
+<div><label>Name</label><input type="text" name="name" /></div>
+<div><label>Anschrift</label><input type="text" name="anschrift" /></div>
+<div><input type="submit" value="Ok" /></div>
+</form>
