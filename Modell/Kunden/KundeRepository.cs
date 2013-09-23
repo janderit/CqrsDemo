@@ -7,8 +7,8 @@ namespace Modell.Kunden
     public sealed class KundeRepository : EventStoreBasedRepository
     {
 
-        public KundeRepository(Guid aggregateId, EventStore store)
-            : base(aggregateId, store)
+        public KundeRepository(Guid aggregateId, UnitOfWork unitOfWork)
+            : base(aggregateId, unitOfWork)
         {
         }
 

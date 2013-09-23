@@ -7,7 +7,7 @@ namespace Modell.Bestellwesen
     public sealed class AuftragRepository : EventStoreBasedRepository
     {
 
-    public AuftragRepository(Guid aggregateId, EventStore store) : base(aggregateId, store)
+    public AuftragRepository(Guid aggregateId, UnitOfWork unitOfWork) : base(aggregateId, unitOfWork)
         {
         }
 

@@ -33,7 +33,9 @@ namespace Host
 
         public void Handle(Command command)
         {
-            Handle(command, (dynamic)command.Aktion);
+            var unitOfWork = new UnitOfWork(_eventStore);
+            Handle(command, (dynamic)command.Aktion, unitOfWork);
+            unitOfWork.Commit();
         }
 
         public Resource<T> Retrieve<T>(Query query) where T : class
@@ -61,7 +63,7 @@ namespace Host
             return new Resource<T> {Body = t};
         }
 
-        private void Handle(Command command, object aktion)
+        private void Handle(Command command, object aktion, UnitOfWork unitOfWork)
         {
             throw new NotImplementedException(string.Format("Kein Command Handler für {0} definiert", aktion.GetType().Name));
         }

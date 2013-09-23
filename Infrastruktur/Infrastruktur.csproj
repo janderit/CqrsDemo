@@ -38,6 +38,7 @@
     <Compile Include="Common\NichtGefunden.cs" />
     <Compile Include="Common\VorgangNichtAusgefuehrt.cs" />
     <Compile Include="EventSourcing\AggregateRoot.cs" />
+    <Compile Include="EventSourcing\UnitOfWork.cs" />
     <Compile Include="EventSourcing\EventStore.cs" />
     <Compile Include="EventSourcing\EventStoreBasedRepository.cs" />
     <Compile Include="EventSourcing\InMemoryEventStore.cs" />

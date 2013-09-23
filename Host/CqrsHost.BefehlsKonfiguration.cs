@@ -15,89 +15,77 @@ namespace Host
 {
 	partial class CqrsHost
 	{
-	    
-	    private void Handle(Command command, KundeErfassen aktion)
-        {
-            var repo = new KundeRepository(aktion.KundenId, _eventStore);
-            var kunde = repo.Retrieve();
-            kunde.Erfassen(aktion.Name, aktion.Anschrift);
-	        repo.Commit();
-        }
 
-        private void Handle(Command command, AnschriftAendern aktion)
-        {
-            var repo = new KundeRepository(aktion.KundenId, _eventStore);
-            var kunde = repo.Retrieve();
-            kunde.AnschriftAendern(aktion.NeueAnschrift);
-            repo.Commit();
-        }
+		private void Handle(Command command, KundeErfassen aktion, UnitOfWork unitOfWork)
+		{	        
+			var repo = new KundeRepository(aktion.KundenId, unitOfWork);
+			var kunde = repo.Retrieve();
+			kunde.Erfassen(aktion.Name, aktion.Anschrift);	        
+		}
 
-        private void Handle(Command command, AuftragErfassen aktion)
-        {
-            var repo = new AuftragRepository(aktion.AuftragsId, _eventStore);
-            var auftrag = repo.Retrieve();
+		private void Handle(Command command, AnschriftAendern aktion, UnitOfWork unitOfWork)
+		{
+			var repo = new KundeRepository(aktion.KundenId, unitOfWork);
+			var kunde = repo.Retrieve();
+			kunde.AnschriftAendern(aktion.NeueAnschrift);
+			unitOfWork.Commit();
+		}
 
-            var produktrepo = new ProduktRepository(aktion.Produkt, _eventStore);
-            var kunderepo = new KundeRepository(aktion.Kunde, _eventStore);
+		private void Handle(Command command, AuftragErfassen aktion, UnitOfWork unitOfWork)
+		{
+			var repo = new AuftragRepository(aktion.AuftragsId, unitOfWork);
+			var auftrag = repo.Retrieve();
 
-            auftrag.Erfassen(produktrepo.Retrieve(), aktion.Menge, kunderepo.Retrieve());
+			var produktrepo = new ProduktRepository(aktion.Produkt, unitOfWork);
+			var kunderepo = new KundeRepository(aktion.Kunde, unitOfWork);
 
-            produktrepo.Commit();
-            repo.Commit();
-        }
+			auftrag.Erfassen(produktrepo.Retrieve(), aktion.Menge, kunderepo.Retrieve());
+		}
 
-        private void Handle(Command command, AuftragAusfuehren aktion)
-        {
-            var repo = new AuftragRepository(aktion.AuftragId, _eventStore);
-            var auftrag = repo.Retrieve();
+		private void Handle(Command command, AuftragAusfuehren aktion, UnitOfWork unitOfWork)
+		{
+			var repo = new AuftragRepository(aktion.AuftragId, unitOfWork);
+			var auftrag = repo.Retrieve();
 
-            var produktrepo = new ProduktRepository(auftrag.Produkt, _eventStore);
-            auftrag.Ausfuehren(produktrepo.Retrieve());
-
-            produktrepo.Commit();
-            repo.Commit();
-        }
+			var produktrepo = new ProduktRepository(auftrag.Produkt, unitOfWork);
+			auftrag.Ausfuehren(produktrepo.Retrieve());
+		}
 
 
-        private void Handle(Command command, ProduktEinlisten aktion)
-        {
-            var repo = new ProduktRepository(aktion.ProduktId, _eventStore);
-            var produkt = repo.Retrieve();
-            produkt.Einlisten(aktion.Bezeichnung);
-            repo.Commit();
-        }
+		private void Handle(Command command, ProduktEinlisten aktion, UnitOfWork unitOfWork)
+		{
+			var repo = new ProduktRepository(aktion.ProduktId, unitOfWork);
+			var produkt = repo.Retrieve();
+			produkt.Einlisten(aktion.Bezeichnung);
+		}
 
-        private void Handle(Command command, NachbestellungBeauftragen aktion)
-        {
-            var repo = new ProduktRepository(aktion.ProduktId, _eventStore);
-            var produkt = repo.Retrieve();
-            produkt.Nachbestellen(aktion.BestellteMenge);
-            repo.Commit();
-        }
+		private void Handle(Command command, NachbestellungBeauftragen aktion, UnitOfWork unitOfWork)
+		{
+			var repo = new ProduktRepository(aktion.ProduktId, unitOfWork);
+			var produkt = repo.Retrieve();
+			produkt.Nachbestellen(aktion.BestellteMenge);
+		}
 
-        private void Handle(Command command, WareneingangVerbuchen aktion)
-        {
-            var repo = new ProduktRepository(aktion.ProduktId, _eventStore);
-            var produkt = repo.Retrieve();
-            produkt.Wareneingang();
-            repo.Commit();
-        }
+		private void Handle(Command command, WareneingangVerbuchen aktion, UnitOfWork unitOfWork)
+		{
+			var repo = new ProduktRepository(aktion.ProduktId, unitOfWork);
+			var produkt = repo.Retrieve();
+			produkt.Wareneingang();
+		}
 
-        private void Handle(Command command, MindestVerfuegbarkeitDefinieren aktion)
-        {
-            var repo = new ProduktRepository(aktion.ProduktId, _eventStore);
-            var produkt = repo.Retrieve();
-            produkt.MindestVerfuegbarkeitDefinieren(aktion.MindestVerfuegbarkeit, aktion.MindestBestellmenge);
-            repo.Commit();
-        }
+		private void Handle(Command command, MindestVerfuegbarkeitDefinieren aktion, UnitOfWork unitOfWork)
+		{
+			var repo = new ProduktRepository(aktion.ProduktId, unitOfWork);
+			var produkt = repo.Retrieve();
+			produkt.MindestVerfuegbarkeitDefinieren(aktion.MindestVerfuegbarkeit, aktion.MindestBestellmenge);
+		}
 
-        private void Handle(Command command, AutomatischeNachbestellungenDeaktivieren aktion)
-        {
-            var repo = new ProduktRepository(aktion.ProduktId, _eventStore);
-            var produkt = repo.Retrieve();
-            produkt.AutomatischeNachbestellungenDeaktivieren();
-            repo.Commit();
-        }
+		private void Handle(Command command, AutomatischeNachbestellungenDeaktivieren aktion, UnitOfWork unitOfWork)
+		{
+			var repo = new ProduktRepository(aktion.ProduktId, unitOfWork);
+			var produkt = repo.Retrieve();
+			produkt.AutomatischeNachbestellungenDeaktivieren();
+		}
 
 	}
 }

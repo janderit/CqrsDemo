@@ -95,11 +95,12 @@ namespace Modell.Warenwirtschaft
             AutomatischeNachbestellungenWurdenDeaktiviert();
         }
 
+        
+#region Event factory methods
         private void AutomatischeNachbestellungenWurdenDeaktiviert()
         {
             Publish(new AutomatischeNachbestellungenWurdenDeaktiviert());
         }
-
 
         private void AutomatischeNachbestellungenWurdenAktiviert()
         {
@@ -140,8 +141,8 @@ namespace Modell.Warenwirtschaft
         {
             Publish(new WarenWurdenAusgeliefert() { Menge = menge });
         }
+#endregion
 
-        
     }
 }
 

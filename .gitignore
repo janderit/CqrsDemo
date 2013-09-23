@@ -28,3 +28,7 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 packages/
+.nuget
+_UpgradeReport_Files
+Backup
+UpgradeLog.*
