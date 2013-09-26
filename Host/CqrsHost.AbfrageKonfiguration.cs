@@ -84,7 +84,8 @@ namespace Host
 
 		private Warenkorb Handle(Query query, WarenkorbAbfrage abfrage)
 		{
-		    return _warenkorb.Access(abfrage.Kunde);
+		    var aktueller_warenkorb = _kunden.Access(abfrage.Kunde).Warenkorb;
+		    return _warenkoerbe.Access(aktueller_warenkorb);
 		}
 
 	}

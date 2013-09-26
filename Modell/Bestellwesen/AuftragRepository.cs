@@ -12,6 +12,11 @@ namespace Modell.Bestellwesen
         {
         }
 
+        protected override AggregateEvents Validator
+        {
+            get { return Auftrag.AggregateEvents; }
+        }
+
         public Auftrag Retrieve(Guid aggregateId)
         {
             return new Auftrag(new AuftragProjektion(() => History(aggregateId)), e => Publish(aggregateId, e));

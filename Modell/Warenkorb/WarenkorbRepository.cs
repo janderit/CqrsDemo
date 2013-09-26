@@ -9,9 +9,12 @@ namespace Modell.Warenkorb
 
         public WarenkorbRepository(UnitOfWork unitOfWork)
             : base(unitOfWork)
+        {            
+        }
+
+        protected override AggregateEvents Validator
         {
-            AffectedBy<WarenkorbWurdeEroeffnet>(e => e.Warenkorb);
-            AffectedBy<ArtikelWurdeZuWarenkorbHinzugefuegt>(e => e.Warenkorb);
+            get { return Warenkorb.AggregateEvents; }
         }
 
         public Warenkorb Retrieve(Guid aggregateId)

@@ -7,7 +7,8 @@ namespace Modell.Warenwirtschaft
 {
     public sealed class LieferungIstEingegangen
     {
-        public int Menge { get; set; }
+        public Guid Produkt;
+        public int Menge;
 
         public override string ToString()
         {

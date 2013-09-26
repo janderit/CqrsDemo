@@ -26,7 +26,8 @@ namespace Readmodels
                        {
                            Id = kunde,
                            Name = projektor.Name,
-                           Anschrift = projektor.AktuelleAnschrift
+                           Anschrift = projektor.AktuelleAnschrift,
+                           Warenkorb=projektor.Warenkorb
                        };
         }
     }

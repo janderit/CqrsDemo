@@ -26,9 +26,10 @@ namespace Spezifikation.Akzeptanztests.Warenkorb
             api.Warenwirtschaft.Nachbestellen(produkt, 20);
             api.Warenwirtschaft.Wareneingang(produkt);
 
-            api.Warenkorb.Fuege_Artikel_hinzu(kunde, produkt, 1);
-
             var warenkorb = api.Warenkorb.FuerKunde(kunde);
+            api.Warenkorb.Fuege_Artikel_hinzu(warenkorb.Id, produkt, 1);
+
+            warenkorb = api.Warenkorb.FuerKunde(kunde);
             warenkorb.Leer.Should().BeFalse();
         }
 

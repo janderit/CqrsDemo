@@ -22,17 +22,17 @@ namespace Host
         private readonly ProduktReadmodel _produkte;
         private readonly AuftragReadmodel _auftraege;
         private readonly MetaReadmodel _meta;
-        private readonly WarenkorbReadmodel _warenkorb;
+        private readonly WarenkorbReadmodel _warenkoerbe;
 
         public CqrsHost(EventStore eventStore)
         {
             if (eventStore == null) throw new ArgumentNullException("eventStore");
             _eventStore = eventStore;
 
-            _kunden = new KundeReadmodel(new KundeRepository(null).History);
-            _auftraege = new AuftragReadmodel(new AuftragRepository(null).History);
-            _produkte = new ProduktReadmodel(new ProduktRepository(null).History);
-            _warenkorb = new WarenkorbReadmodel(new WarenkorbRepository(null).History);
+            _kunden = new KundeReadmodel(_eventStore.Stream(Kunde.AggregateEvents.Filter));
+            _auftraege = new AuftragReadmodel(_eventStore.Stream(Auftrag.AggregateEvents.Filter));
+            _produkte = new ProduktReadmodel(_eventStore.Stream(Produkt.AggregateEvents.Filter));
+            _warenkoerbe = new WarenkorbReadmodel(_eventStore.Stream(Warenkorb.AggregateEvents.Filter));
             _meta = new MetaReadmodel(_eventStore.Subscribe);
 
         }

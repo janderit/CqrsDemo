@@ -11,6 +11,10 @@ namespace Modell.Bestellwesen
     {
         private readonly AuftragProjektion _zustand;
 
+        public static AggregateEvents AggregateEvents = new AggregateEvents()
+            .AggregateIsAffectedBy<AuftragWurdeErfasst>(e => e.Auftrag)
+            .AggregateIsAffectedBy<AuftragWurdeErfuellt>(e => e.Auftrag);
+
         public Auftrag(AuftragProjektion zustand, Action<Ereignis> eventsink):base(eventsink)
         {
             _zustand = zustand;
@@ -21,8 +25,18 @@ namespace Modell.Bestellwesen
             get { return _zustand.Produkt; }
         }
 
+        public Guid Id
+        {
+            get { return _zustand.Auftrag; }
+        }
 
-        public void Erfassen(Produkt produkt, int menge, Kunde kunde)
+        public Guid Kunde
+        {
+            get { return _zustand.Kunde; }
+        }
+
+
+        public void Erfassen(Guid auftrag, Produkt produkt, int menge, Kunde kunde)
         {
             if (_zustand.Erfasst) return;
             if (menge<1) throw new VorgangNichtAusgefuehrt("Die Bestellmenge muß > 0 sein");
@@ -32,7 +46,7 @@ namespace Modell.Bestellwesen
 
             produkt.FuerAuftragReservieren(menge);
 
-            WurdeErfasst(produkt.Id, menge, kunde.Id);
+            WurdeErfasst(auftrag, produkt.Id, menge, kunde.Id);
         }
 
         public void Ausfuehren(Produkt produkt)
@@ -49,14 +63,14 @@ namespace Modell.Bestellwesen
 
 
 
-        private void WurdeErfasst(Guid produkt, int menge, Guid kunde)
+        private void WurdeErfasst(Guid auftrag, Guid produkt, int menge, Guid kunde)
         {
-            Publish(new AuftragWurdeErfasst{Kunde=kunde, Produkt=produkt, Menge=menge});
+            Publish(new AuftragWurdeErfasst { Auftrag = auftrag, Kunde = kunde, Produkt = produkt, Menge = menge });
         }
 
         private void WurdeAusgefuehrt(Guid produkt, int menge)
         {
-            Publish(new AuftragWurdeErfuellt { Produkt=produkt, Menge=menge });
+            Publish(new AuftragWurdeErfuellt {Auftrag = Id, Kunde = Kunde, Produkt = produkt, Menge = menge });
         }
 
 

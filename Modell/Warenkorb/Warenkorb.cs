@@ -12,6 +12,10 @@ namespace Modell.Warenkorb
     {
         private readonly WarenkorbProjektion _zustand;
 
+        public static readonly AggregateEvents AggregateEvents = new AggregateEvents()
+            .AggregateIsAffectedBy<WarenkorbWurdeEroeffnet>(e => e.Warenkorb)
+            .AggregateIsAffectedBy<ArtikelWurdeZuWarenkorbHinzugefuegt>(e => e.Warenkorb);
+
         public Warenkorb(WarenkorbProjektion zustand, Action<Ereignis> eventsink)
             : base(eventsink)
         {
@@ -29,9 +33,9 @@ namespace Modell.Warenkorb
         }
 
 
-        public void Eroeffnen(Guid id, Guid kunde)
+        public void Eroeffnen(Guid kunde)
         {
-            WurdeEroffnet(id, kunde);
+            WurdeEroffnet(kunde);
         }
 
         public void FuegeHinzu(Guid produkt, int menge)
@@ -41,9 +45,9 @@ namespace Modell.Warenkorb
 
 
 
-        private void WurdeEroffnet(Guid warenkorb, Guid kunde)
+        private void WurdeEroffnet(Guid kunde)
         {
-            Publish(new WarenkorbWurdeEroeffnet() {Warenkorb = warenkorb, Kunde = kunde});
+            Publish(new WarenkorbWurdeEroeffnet() {Warenkorb = Id, Kunde = kunde});
         }
 
         private void ArtikelWurdeHinzugefuegt(Guid produkt, int menge)

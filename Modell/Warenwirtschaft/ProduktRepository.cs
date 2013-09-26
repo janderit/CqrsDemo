@@ -13,6 +13,11 @@ namespace Modell.Warenwirtschaft
         {
         }
 
+        protected override AggregateEvents Validator
+        {
+            get { return Produkt.AggregateEvents; }
+        }
+
         public Produkt Retrieve(Guid aggregateId)
         {
             return new Produkt(new ProduktProjektion(aggregateId, () => History(aggregateId)), e => Publish(aggregateId, e));

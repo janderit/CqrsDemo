@@ -7,9 +7,10 @@ namespace Modell.Bestellwesen
 {
     public sealed class AuftragWurdeErfasst
     {
-        public Guid Produkt { get; set; }
-        public Guid Kunde { get; set; }
-        public int Menge { get; set; }
+        public Guid Auftrag;
+        public Guid Produkt;
+        public Guid Kunde;
+        public int Menge;
 
         public override string ToString()
         {

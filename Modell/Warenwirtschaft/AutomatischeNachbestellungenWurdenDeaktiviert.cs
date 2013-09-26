@@ -7,6 +7,8 @@ namespace Modell.Warenwirtschaft
 {
     public sealed class AutomatischeNachbestellungenWurdenDeaktiviert
     {
+        public Guid Produkt;
+
         public override string ToString()
         {
             return "Für das Produkt wurden automatische Nachbestellungen deaktiviert.";

@@ -9,9 +9,7 @@ namespace Modell.Kunden
 
         public KundeRepository(UnitOfWork unitOfWork)
             : base(unitOfWork)
-        {
-            AffectedBy<KundeWurdeErfasst>(e => e.Kunde);
-            AffectedBy<AnschriftWurdeGeaendert>(e => e.Kunde);
+        {            
         }
 
         public Kunde Retrieve(Guid aggregateId)
@@ -19,6 +17,9 @@ namespace Modell.Kunden
             return new Kunde(new KundenProjektion(aggregateId, () => History(aggregateId)), e => Publish(aggregateId, e));
         }
 
-
+        protected override AggregateEvents Validator
+        {
+            get { return Kunde.AggregateEvents; }
+        }
     }
 }

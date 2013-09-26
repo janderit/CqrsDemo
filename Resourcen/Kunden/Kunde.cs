@@ -6,8 +6,9 @@ namespace Resourcen.Kunden
 {
     public sealed class Kunde
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Anschrift { get; set; }
+        public Guid Id;
+        public string Name;
+        public string Anschrift;
+        public Guid Warenkorb;
     }
 }

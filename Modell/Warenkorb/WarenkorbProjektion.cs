@@ -30,7 +30,11 @@ namespace Modell.Warenkorb
 
         public bool Leer
         {
-            get { return !_history().OfType<Ereignis<ArtikelWurdeZuWarenkorbHinzugefuegt>>().Any(); }
+            get
+            {
+                var h = _history();
+                return !h.OfType<Ereignis<ArtikelWurdeZuWarenkorbHinzugefuegt>>().Any();
+            }
         }
 
     }

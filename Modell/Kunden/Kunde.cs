@@ -12,6 +12,11 @@ namespace Modell.Kunden
     {
         private readonly KundenProjektion _zustand;
 
+        public static AggregateEvents AggregateEvents = new AggregateEvents()
+            .AggregateIsAffectedBy<KundeWurdeErfasst>(e => e.Kunde)
+            .AggregateIsAffectedBy<AnschriftWurdeGeaendert>(e => e.Kunde)
+            .AggregateIsAffectedBy<Warenkorb.WarenkorbWurdeEroeffnet>(e => e.Kunde);
+
         public Kunde(KundenProjektion zustand, Action<Ereignis> eventsink):base(eventsink)
         {
             _zustand = zustand;
@@ -23,10 +28,11 @@ namespace Modell.Kunden
         }
 
 
-        public void Erfassen(string name, string anschrift)
+        public void Erfassen(string name, string anschrift, Warenkorb.Warenkorb warenkorb)
         {
             if (_zustand.IstErfasst) return;
             WurdeErfasst(name, anschrift);
+            warenkorb.Eroeffnen(Id);
         }
 
         public void AuftragsannahmePruefen()
@@ -43,15 +49,16 @@ namespace Modell.Kunden
 
         private void WurdeErfasst(string name, string anschrift)
         {
-            Publish(new KundeWurdeErfasst() {Name = name, Anschrift = anschrift});
+            Publish(new KundeWurdeErfasst() {Kunde = Id, Name = name, Anschrift = anschrift});
         }
 
         private void AnschriftWurdeGeaendert(string neueanschrift)
         {
             Publish(new AnschriftWurdeGeaendert()
-                        {
-                            NeueAnschrift = neueanschrift
-                        });
+                {
+                    Kunde = Id,
+                    NeueAnschrift = neueanschrift
+                });
         }
 
     }

@@ -10,6 +10,18 @@ namespace Modell.Warenwirtschaft
     {
         private readonly ProduktProjektion _zustand;
 
+        public static AggregateEvents AggregateEvents = new AggregateEvents()
+            .AggregateIsAffectedBy<ProduktWurdeEingelistet>(e => e.Produkt)
+            .AggregateIsAffectedBy<NachbestellungWurdeBeauftragt>(e => e.Produkt)
+            .AggregateIsAffectedBy<LieferungIstEingegangen>(e => e.Produkt)
+            .AggregateIsAffectedBy<WareWurdeDisponiert>(e => e.Produkt)
+            .AggregateIsAffectedBy<WarenWurdenAusgeliefert>(e => e.Produkt)
+            .AggregateIsAffectedBy<AutomatischeNachbestellungenWurdenAktiviert>(e => e.Produkt)
+            .AggregateIsAffectedBy<AutomatischeNachbestellungenWurdenDeaktiviert>(e => e.Produkt)
+            .AggregateIsAffectedBy<MindestBestellmengeWurdeDefiniert>(e => e.Produkt)
+            .AggregateIsAffectedBy<MindestVerfuegbarkeitWurdeDefiniert>(e => e.Produkt);
+        
+
         public Produkt(ProduktProjektion zustand, Action<Ereignis> eventsink) : base(eventsink)
         {
             _zustand = zustand;
@@ -99,47 +111,47 @@ namespace Modell.Warenwirtschaft
 #region Event factory methods
         private void AutomatischeNachbestellungenWurdenDeaktiviert()
         {
-            Publish(new AutomatischeNachbestellungenWurdenDeaktiviert());
+            Publish(new AutomatischeNachbestellungenWurdenDeaktiviert{Produkt = Id});
         }
 
         private void AutomatischeNachbestellungenWurdenAktiviert()
         {
-            Publish(new AutomatischeNachbestellungenWurdenAktiviert() { });
+            Publish(new AutomatischeNachbestellungenWurdenAktiviert { Produkt = Id });
         }
         
         private void MindestBestellmengeWurdeDefiniert(int menge)
         {
-            Publish(new MindestBestellmengeWurdeDefiniert() { Menge = menge });
+            Publish(new MindestBestellmengeWurdeDefiniert() { Produkt = Id,Menge = menge });
         }
 
         private void MindestVerfuegbarkeitWurdeDefiniert(int menge)
         {
-            Publish(new MindestVerfuegbarkeitWurdeDefiniert() { Menge = menge });
+            Publish(new MindestVerfuegbarkeitWurdeDefiniert() { Produkt = Id,Menge = menge });
         }
 
         private void WurdeEingelistet(string bezeichnung)
         {
-            Publish(new ProduktWurdeEingelistet(){Bezeichnung = bezeichnung});
+            Publish(new ProduktWurdeEingelistet() { Produkt = Id,Bezeichnung = bezeichnung });
         }
 
         private void NachbestellungWurdeBeauftragt(int menge)
         {
-            Publish(new NachbestellungWurdeBeauftragt() { Menge = menge });
+            Publish(new NachbestellungWurdeBeauftragt() { Produkt = Id,Menge = menge });
         }
 
         private void LieferungIstEingegangen(int menge)
         {
-            Publish(new LieferungIstEingegangen() { Menge = menge });
+            Publish(new LieferungIstEingegangen() { Produkt = Id,Menge = menge });
         }
 
         private void WareWurdeDisponiert(int menge)
         {
-            Publish(new WareWurdeDisponiert() { Menge = menge });
+            Publish(new WareWurdeDisponiert() { Produkt = Id,Menge = menge });
         }
 
         private void WarenWurdenAusgeliefert(int menge)
         {
-            Publish(new WarenWurdenAusgeliefert() { Menge = menge });
+            Publish(new WarenWurdenAusgeliefert() { Produkt = Id,Menge = menge });
         }
 #endregion
 

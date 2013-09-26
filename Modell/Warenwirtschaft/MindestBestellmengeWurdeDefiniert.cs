@@ -7,7 +7,9 @@ namespace Modell.Warenwirtschaft
 {
     public sealed class MindestVerfuegbarkeitWurdeDefiniert
     {
-        public int Menge { get; set; }
+        public Guid Produkt;
+        public int Menge;
+
         public override string ToString()
         {
             return "Für das Produkt wurde die Mindestverfügbarkeit für automatische Nachbestellungen definiert: "+Menge;

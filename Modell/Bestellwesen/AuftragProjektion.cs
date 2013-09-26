@@ -10,7 +10,7 @@ namespace Modell.Bestellwesen
 
         public static IEnumerable<Guid> AlleIDs(IEnumerable<Ereignis> history)
         {
-            return history.OfType<Ereignis<AuftragWurdeErfasst>>().Select(_ => _.Daten.Kunde).ToList();
+            return history.OfType<Ereignis<AuftragWurdeErfasst>>().Select(_ => _.Daten.Auftrag).ToList();
         }
 
         private readonly Func<IEnumerable<Ereignis>> _history;
@@ -18,6 +18,14 @@ namespace Modell.Bestellwesen
         public AuftragProjektion(Func<IEnumerable<Ereignis>> history)
         {
             _history = history;
+        }
+
+        public Guid Auftrag
+        {
+            get
+            {
+                return _history().OfType<Ereignis<AuftragWurdeErfasst>>().Single().Daten.Auftrag;
+            }
         }
 
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Infrastruktur.Common;
+using Modell.Warenkorb;
 
 namespace Modell.Kunden
 {
@@ -31,6 +32,14 @@ namespace Modell.Kunden
             get
             {
                 return _history().OfType<Ereignis<KundeWurdeErfasst>>().Single().Daten.Name;
+            }
+        }
+
+        public Guid Warenkorb
+        {
+            get
+            {
+                return _history().OfType<Ereignis<WarenkorbWurdeEroeffnet>>().Last().Daten.Warenkorb;
             }
         }
 

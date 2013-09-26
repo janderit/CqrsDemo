@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using Infrastruktur.Common;
 
 namespace Infrastruktur.EventSourcing
 {
-    public class AggregateRoot
+    public abstract class AggregateRoot
     {
         private readonly Action<Ereignis> _publish;
 

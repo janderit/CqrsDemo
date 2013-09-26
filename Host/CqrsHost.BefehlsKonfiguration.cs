@@ -21,7 +21,8 @@ namespace Host
 		private void Handle(Command command, KundeErfassen aktion, UnitOfWork unitOfWork)
 		{
             var kunde = new KundeRepository(unitOfWork).Retrieve(aktion.KundenId);
-			kunde.Erfassen(aktion.Name, aktion.Anschrift);	        
+		    var warenkorb = new WarenkorbRepository(unitOfWork).Retrieve(Guid.NewGuid());
+		    kunde.Erfassen(aktion.Name, aktion.Anschrift, warenkorb);
 		}
 
 		private void Handle(Command command, AnschriftAendern aktion, UnitOfWork unitOfWork)
@@ -37,13 +38,14 @@ namespace Host
             var produkt = new ProduktRepository(unitOfWork).Retrieve(aktion.Produkt);
             var kunde = new KundeRepository(unitOfWork).Retrieve(aktion.Kunde);
 
-			auftrag.Erfassen(produkt, aktion.Menge, kunde);
+			auftrag.Erfassen(aktion.AuftragsId, produkt, aktion.Menge, kunde);
 		}
 
 		private void Handle(Command command, AuftragAusfuehren aktion, UnitOfWork unitOfWork)
 		{
             var auftrag = new AuftragRepository(unitOfWork).Retrieve(aktion.AuftragId);
             var produkt = new ProduktRepository(unitOfWork).Retrieve(auftrag.Produkt);
+
 			auftrag.Ausfuehren(produkt);
 		}
 
