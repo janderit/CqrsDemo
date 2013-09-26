@@ -6,10 +6,13 @@ using System.Text.RegularExpressions;
 using Api.Bestellwesen.Abfragen;
 using Api.Kunden.Abfragen;
 using Api.Meta;
+using Api.Warenkorb.Abfragen;
 using Api.Warenwirtschaft.Abfragen;
+using Infrastruktur.Common;
 using Infrastruktur.Messaging;
 using Modell.Bestellwesen;
 using Modell.Kunden;
+using Modell.Warenkorb;
 using Modell.Warenwirtschaft;
 using Readmodels;
 using Resourcen.Bestellwesen;
@@ -17,6 +20,7 @@ using Resourcen.Kunden;
 using Resourcen.Meta;
 using Resourcen.Warenwirtschaft;
 using Kunde = Resourcen.Kunden.Kunde;
+using Warenkorb = Resourcen.Warenkorb.Warenkorb;
 
 namespace Host
 {
@@ -76,5 +80,21 @@ namespace Host
 	    {
 	        return new Guid(match.Value);
 	    }
+
+
+        private Warenkorb Handle(Query query, WarenkorbAbfrage abfrage)
+        {
+            var projektion = new WarenkorbProjektion(abfrage.Kunde, ()=>_eventStore.Retrieve(abfrage.Kunde));
+            return new Warenkorb()
+            {
+                Kunde=abfrage.Kunde,
+                Leer=projektion.Leer
+            };
+        }
+
 	}
+
+
+
+
 }

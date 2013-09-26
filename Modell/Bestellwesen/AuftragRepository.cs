@@ -7,15 +7,15 @@ namespace Modell.Bestellwesen
     public sealed class AuftragRepository : EventStoreBasedRepository
     {
 
-    public AuftragRepository(Guid aggregateId, UnitOfWork unitOfWork) : base(aggregateId, unitOfWork)
+        public AuftragRepository(UnitOfWork unitOfWork)
+            : base(unitOfWork)
         {
         }
 
-        public Auftrag Retrieve()
+        public Auftrag Retrieve(Guid aggregateId)
         {
-            return new Auftrag(new AuftragProjektion(History), Publish);
+            return new Auftrag(new AuftragProjektion(() => History(aggregateId)), e => Publish(aggregateId, e));
         }
-
         
     }
 }

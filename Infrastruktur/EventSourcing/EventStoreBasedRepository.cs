@@ -7,26 +7,21 @@ namespace Infrastruktur.EventSourcing
 {
     public abstract class EventStoreBasedRepository
     {
-        protected readonly Guid AggregateId;
         private readonly UnitOfWork _unitOfWork;
 
-        protected EventStoreBasedRepository(Guid aggregateId, UnitOfWork unitOfWork)
+        protected EventStoreBasedRepository(UnitOfWork unitOfWork)
         {
-            if (aggregateId == Guid.Empty)
-                throw new InvalidOperationException("Aggregat ohne ID kann nicht erzeugt werden.");
-
-            AggregateId = aggregateId;
             _unitOfWork = unitOfWork;
         }
 
-        protected IEnumerable<Ereignis> History()
+        protected IEnumerable<Ereignis> History(Guid aggregateId)
         {
-            return _unitOfWork.History(AggregateId);
+            return _unitOfWork.History(aggregateId);
         }
 
-        protected void Publish(Ereignis ereignis)
+        protected void Publish(Guid aggregate, Ereignis ereignis)
         {
-            _unitOfWork.Publish(AggregateId, ereignis);
+            _unitOfWork.Publish(aggregate, ereignis);
         }
 
     }

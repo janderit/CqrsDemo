@@ -1,22 +1,20 @@
 ﻿using System;
 using Infrastruktur.EventSourcing;
 
-namespace Modell.Kunden
+namespace Modell.Warenkorb
 {
 
-    public sealed class KundeRepository : EventStoreBasedRepository
+    public sealed class WarenkorbRepository : EventStoreBasedRepository
     {
 
-        public KundeRepository(Guid aggregateId, UnitOfWork unitOfWork)
-            : base(aggregateId, unitOfWork)
+        public WarenkorbRepository(UnitOfWork unitOfWork)
+            : base(unitOfWork)
         {
         }
 
-        public Kunde Retrieve()
+        public Warenkorb Retrieve(Guid aggregateId)
         {
-            return new Kunde(new KundenProjektion(AggregateId, History), Publish);
+            return new Warenkorb(new WarenkorbProjektion(aggregateId, () => History(aggregateId)), e => Publish(aggregateId, e));
         }
-
-
     }
 }

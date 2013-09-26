@@ -8,14 +8,14 @@ namespace Modell.Warenwirtschaft
     public sealed class ProduktRepository : EventStoreBasedRepository
     {
 
-        public ProduktRepository(Guid aggregateId, UnitOfWork unitOfWork)
-            : base(aggregateId, unitOfWork)
+        public ProduktRepository(UnitOfWork unitOfWork)
+            : base(unitOfWork)
         {
         }
 
-        public Produkt Retrieve()
+        public Produkt Retrieve(Guid aggregateId)
         {
-            return new Produkt(new ProduktProjektion(AggregateId, History), Publish);
+            return new Produkt(new ProduktProjektion(aggregateId, () => History(aggregateId)), e => Publish(aggregateId, e));
         }
 
         

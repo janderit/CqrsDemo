@@ -48,8 +48,14 @@
   <ItemGroup>
     <Compile Include="Akzeptanztest.cs" />
     <Compile Include="Akzeptanztests\Bestellwesen.cs" />
-    <Compile Include="Akzeptanztests\Warenwirtschaft.cs" />
     <Compile Include="Akzeptanztests\Kundenverwaltung.cs" />
+    <Compile Include="Akzeptanztests\Warenkorb\Shopbesuch.cs" />
+    <Compile Include="Akzeptanztests\Warenwirtschaft\Auftragsannahme.cs" />
+    <Compile Include="Akzeptanztests\Warenwirtschaft\Auftragsausfuehrung.cs" />
+    <Compile Include="Akzeptanztests\Warenwirtschaft\Automatische_Nachbestellung.cs" />
+    <Compile Include="Akzeptanztests\Warenwirtschaft\Nachbestellung.cs" />
+    <Compile Include="Akzeptanztests\Warenwirtschaft\Produkt_einlisten.cs" />
+    <Compile Include="Akzeptanztests\Warenwirtschaft\Wareneingang_verbuchen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +83,7 @@
       <Name>Resourcen</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
