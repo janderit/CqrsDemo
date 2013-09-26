@@ -17,7 +17,7 @@ namespace Infrastruktur.EventSourcing
 
         public IEnumerable<Ereignis> History(Guid aggregateId)
         {
-            return _unitOfWork.History(aggregateId);
+            return Validator.Filter(_unitOfWork.History(aggregateId), aggregateId);
         }
 
         protected abstract AggregateEvents Validator { get; }
