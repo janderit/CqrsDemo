@@ -10,11 +10,6 @@ namespace Modell.Warenkorb
     public sealed class WarenkorbProjektion
     {
 
-        public static IEnumerable<Guid> AlleIDs(IEnumerable<Ereignis> history)
-        {
-            return history.OfType<Ereignis<WarenkorbWurdeEroeffnet>>().Select(_ => _.EventSource).ToList();
-        }
-
         private readonly Func<IEnumerable<Ereignis>> _history;
 
         public WarenkorbProjektion(Guid id, Func<IEnumerable<Ereignis>> history)

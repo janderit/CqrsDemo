@@ -8,7 +8,7 @@ using Infrastruktur.EventSourcing;
 namespace Modell.Kunden
 {
 
-    public class Kunde : AggregateRoot
+    public partial class Kunde : AggregateRoot
     {
         private readonly KundenProjektion _zustand;
 

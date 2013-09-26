@@ -5,6 +5,10 @@ using System.Text;
 using Infrastruktur.Common;
 using Infrastruktur.EventSourcing;
 using Infrastruktur.Messaging;
+using Modell.Bestellwesen;
+using Modell.Kunden;
+using Modell.Warenkorb;
+using Modell.Warenwirtschaft;
 using Readmodels;
 
 namespace Host
@@ -18,15 +22,17 @@ namespace Host
         private readonly ProduktReadmodel _produkte;
         private readonly AuftragReadmodel _auftraege;
         private readonly MetaReadmodel _meta;
+        private readonly WarenkorbReadmodel _warenkorb;
 
         public CqrsHost(EventStore eventStore)
         {
             if (eventStore == null) throw new ArgumentNullException("eventStore");
             _eventStore = eventStore;
 
-            _kunden = new KundeReadmodel(_eventStore.Retrieve);
-            _auftraege = new AuftragReadmodel(_eventStore.Retrieve);
-            _produkte = new ProduktReadmodel(_eventStore.Retrieve);
+            _kunden = new KundeReadmodel(new KundeRepository(null).History);
+            _auftraege = new AuftragReadmodel(new AuftragRepository(null).History);
+            _produkte = new ProduktReadmodel(new ProduktRepository(null).History);
+            _warenkorb = new WarenkorbReadmodel(new WarenkorbRepository(null).History);
             _meta = new MetaReadmodel(_eventStore.Subscribe);
 
         }

@@ -4,7 +4,7 @@ namespace Modell.Warenkorb
 {
     public sealed class WarenkorbWurdeEroeffnet
     {
-        public Guid Id;
+        public Guid Warenkorb;
         public Guid Kunde;
     }
 }

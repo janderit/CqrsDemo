@@ -12,7 +12,7 @@ namespace Modell.Warenwirtschaft
 
         public static IEnumerable<Guid> AlleIDs(IEnumerable<Ereignis> history)
         {
-            return history.OfType<Ereignis<ProduktWurdeEingelistet>>().Select(_ => _.EventSource).ToList();
+            return history.OfType<Ereignis<ProduktWurdeEingelistet>>().Select(_ => _.Daten.Produkt).ToList();
         }
 
         private readonly Func<IEnumerable<Ereignis>> _history;

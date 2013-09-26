@@ -43,7 +43,7 @@ namespace Modell.Warenkorb
 
         private void WurdeEroffnet(Guid warenkorb, Guid kunde)
         {
-            Publish(new WarenkorbWurdeEroeffnet() {Id = warenkorb, Kunde = kunde});
+            Publish(new WarenkorbWurdeEroeffnet() {Warenkorb = warenkorb, Kunde = kunde});
         }
 
         private void ArtikelWurdeHinzugefuegt(Guid produkt, int menge)

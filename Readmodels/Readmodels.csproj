@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuftragReadmodel.cs" />
+    <Compile Include="WarenkorbReadmodel.cs" />
     <Compile Include="MetaReadmodel.cs" />
     <Compile Include="ProduktReadmodel.cs" />
     <Compile Include="KundeReadmodel.cs" />

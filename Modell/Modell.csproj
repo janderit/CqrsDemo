@@ -43,7 +43,7 @@
     <Compile Include="Warenkorb\ArtikelWurdeZuWarenkorbHinzugefuegt.cs" />
     <Compile Include="Warenkorb\Warenkorb.cs" />
     <Compile Include="Warenkorb\WarenkorbProjektion.cs" />
-    <Compile Include="Warenkorb\WarenkorbRepository.cs" />
+    <Compile Include="Kunden\KundeRepository.cs" />
     <Compile Include="Warenkorb\WarenkorbWurdeEroeffnet.cs" />
     <Compile Include="Warenwirtschaft\AutomatischeNachbestellungenWurdenAktiviert.cs" />
     <Compile Include="Warenwirtschaft\AutomatischeNachbestellungenWurdenDeaktiviert.cs" />
@@ -56,7 +56,7 @@
     <Compile Include="Bestellwesen\AuftragProjektion.cs" />
     <Compile Include="Kunden\Kunde.cs" />
     <Compile Include="Kunden\KundenProjektion.cs" />
-    <Compile Include="Kunden\KundeRepository.cs" />
+    <Compile Include="Warenkorb\WarenkorbRepository.cs" />
     <Compile Include="Kunden\KundeWurdeErfasst.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Warenwirtschaft\Produkt.cs" />

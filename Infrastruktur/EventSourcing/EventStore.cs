@@ -9,7 +9,6 @@ namespace Infrastruktur.EventSourcing
     public interface EventStore
     {
         void Store(IList<Ereignis> daten);
-        IEnumerable<Ereignis> Retrieve(Guid stream);
         IEnumerable<Ereignis> History { get; }
         void Subscribe(Action<Ereignis> observer);
     }

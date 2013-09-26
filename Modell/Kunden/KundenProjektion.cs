@@ -11,7 +11,7 @@ namespace Modell.Kunden
 
         public static IEnumerable<Guid> AlleIDs(IEnumerable<Ereignis> history)
         {
-            return history.OfType<Ereignis<KundeWurdeErfasst>>().Select(_ => _.EventSource).ToList();
+            return history.OfType<Ereignis<KundeWurdeErfasst>>().Select(_ => _.Daten.Kunde).ToList();
         }
 
         private readonly Func<IEnumerable<Ereignis>> _history;

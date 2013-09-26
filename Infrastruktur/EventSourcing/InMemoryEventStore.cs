@@ -16,11 +16,6 @@ namespace Infrastruktur.EventSourcing
             foreach (var e in daten) OnNewEvent(e);
         }
 
-        public IEnumerable<Ereignis> Retrieve(Guid stream)
-        {
-            return _worldhistory.Where(_ => _.EventSource == stream).ToList();
-        }
-
         public IEnumerable<Ereignis> History { get { return _worldhistory.ToList(); } }
 
         public void Subscribe(Action<Ereignis> observer)

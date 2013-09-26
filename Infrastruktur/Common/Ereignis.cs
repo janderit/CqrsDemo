@@ -4,11 +4,12 @@ namespace Infrastruktur.Common
 {
     public abstract class Ereignis
     {
-        public Guid EventSource { get; set; }
+        internal abstract object DatenObjekt { get; }
     }
 
-    public sealed class Ereignis<T> : Ereignis where T : class
+    public sealed class Ereignis<T> : Ereignis
     {
+        internal override object DatenObjekt { get { return Daten; } }
         public T Daten { get; set; }
         public override string ToString()
         {

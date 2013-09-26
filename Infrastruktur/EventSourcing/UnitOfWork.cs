@@ -18,13 +18,11 @@ namespace Infrastruktur.EventSourcing
 
         internal IEnumerable<Ereignis> History(Guid eventsource)
         {
-            return _store.Retrieve(eventsource)
-                         .Concat(_uncommitted.Where(e => e.EventSource == eventsource));
+            return _store.History.Concat(_uncommitted);
         }
 
-        internal void Publish(Guid eventsource, Ereignis ereignis)
+        internal void Publish(Ereignis ereignis)
         {
-            ereignis.EventSource = eventsource;
             _uncommitted.Add(ereignis);
         }
 

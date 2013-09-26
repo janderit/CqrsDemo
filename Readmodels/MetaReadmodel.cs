@@ -32,12 +32,12 @@ namespace Readmodels
 
         private void Handle(Ereignis<KundeWurdeErfasst> e)
         {
-            _bezeichnungen.Add(e.EventSource, e.Daten.Name);
+            _bezeichnungen.Add(e.Daten.Kunde, e.Daten.Name);
         }
 
         private void Handle(Ereignis<ProduktWurdeEingelistet> e)
         {
-            _bezeichnungen.Add(e.EventSource, e.Daten.Bezeichnung);
+            _bezeichnungen.Add(e.Daten.Produkt, e.Daten.Bezeichnung);
         }
 
         public string Alias(Guid id)

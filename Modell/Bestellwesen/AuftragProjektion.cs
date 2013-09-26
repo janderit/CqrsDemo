@@ -10,7 +10,7 @@ namespace Modell.Bestellwesen
 
         public static IEnumerable<Guid> AlleIDs(IEnumerable<Ereignis> history)
         {
-            return history.OfType<Ereignis<AuftragWurdeErfasst>>().Select(_ => _.EventSource).ToList();
+            return history.OfType<Ereignis<AuftragWurdeErfasst>>().Select(_ => _.Daten.Kunde).ToList();
         }
 
         private readonly Func<IEnumerable<Ereignis>> _history;

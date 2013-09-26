@@ -1,8 +1,11 @@
-﻿namespace Modell.Warenwirtschaft
+﻿using System;
+
+namespace Modell.Warenwirtschaft
 {
     public sealed class ProduktWurdeEingelistet
     {
-        public string Bezeichnung { get; set; }
+        public Guid Produkt;
+        public string Bezeichnung;
 
         public override string ToString()
         {

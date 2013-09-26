@@ -8,7 +8,8 @@ namespace Modell.Kunden
 {
     public sealed class AnschriftWurdeGeaendert
     {
-        public string NeueAnschrift { get; set; }
+        public Guid Kunde;
+        public string NeueAnschrift;
 
         public override string ToString()
         {
