@@ -42,7 +42,7 @@
     <Compile Include="Meta\Eintrag.cs" />
     <Compile Include="Meta\Protokoll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Warenkorb\Warenkorb.cs" />
+    <Compile Include="Shop\Warenkorb.cs" />
     <Compile Include="Warenwirtschaft\Produkt.cs" />
     <Compile Include="Warenwirtschaft\Produktliste.cs" />
   </ItemGroup>

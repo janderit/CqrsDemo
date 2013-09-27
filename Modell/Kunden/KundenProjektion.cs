@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Infrastruktur.Common;
-using Modell.Warenkorb;
+using Modell.Shop;
 
 namespace Modell.Kunden
 {

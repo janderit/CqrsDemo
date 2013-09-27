@@ -1,0 +1,7 @@
+﻿<use master="cqrs" />
+<use content="view"/>
+<content name="nav">
+  <a href="/bestellwesen">Bestellwesen</a>
+  <a href="/warenwirtschaft">Warenwirtschaft</a>
+  <a href="/log">Protokoll</a>
+</content>

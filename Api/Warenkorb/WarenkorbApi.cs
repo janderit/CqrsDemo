@@ -21,19 +21,27 @@ namespace Api.Warenkorb
             _port = port;
         }
 
-        public Resourcen.Warenkorb.Warenkorb FuerKunde(Guid id)
+        public Resourcen.Shop.Warenkorb FuerKunde(Guid id)
         {
-            return _port.Retrieve<Resourcen.Warenkorb.Warenkorb>(new Query()
+            return _port.Retrieve<Resourcen.Shop.Warenkorb>(new Query()
                 {
                     Abfrage = new WarenkorbAbfrage {Kunde = id}
                 }).Body;
         }
 
-        public void Fuege_Artikel_hinzu(Guid warenkorb, Guid produkt, int menge)
+        public void FuegeArtikelHinzu(Guid warenkorb, Guid produkt, int menge)
         {
             _port.Handle(new Command
                 {
                     Aktion = new ArtikelZuWarenkorbHinzufuegen {Warenkorb = warenkorb, Produkt = produkt, Menge = menge}
+                });
+        }
+
+        public void EntferneArtikel(Guid warenkorb, Guid zeile)
+        {
+            _port.Handle(new Command
+                {
+                    Aktion = new ArtikelAusWarenkorbEntfernen() {Warenkorb = warenkorb, Zeile = zeile}
                 });
         }
     }

@@ -7,7 +7,7 @@ using Infrastruktur.EventSourcing;
 using Infrastruktur.Messaging;
 using Modell.Bestellwesen;
 using Modell.Kunden;
-using Modell.Warenkorb;
+using Modell.Shop;
 using Modell.Warenwirtschaft;
 using Readmodels;
 

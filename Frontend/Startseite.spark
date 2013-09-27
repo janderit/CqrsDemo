@@ -1,2 +1,10 @@
 ﻿<use master="cqrs" />
 Willkommen bei CQRS
+<div>
+  <table>
+    <tr each="var kunde in Model.Kunden">
+      <td>${H(kunde.Name)} <a href="/shop/${kunde.Id}">Login</a>
+    </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,17 @@
+﻿<use master="cqrs" />
+<h2>Ihr Warenkorb</h2>
+<div>
+  Anzahl Artikel: ${Model.Warenkorb.Artikel.Count}
+<table>
+<tr><th>#</th><th>Artikel</th><th>Menge</th>
+</tr>
+  <tr each="var artikel in Model.Warenkorb.Artikel">
+    <td>${artikel.Zeile}</td>
+	  <td>${H(artikel.Bezeichnung)}</td>
+    <td>${artikel.Menge}</td>
+    <td>
+      <a href="/shop/${Model.Kunde}/cart/remove/${artikel.ZeileId}">Entfernen...</a>
+    </td>
+  </tr>  
+</table>
+</div>

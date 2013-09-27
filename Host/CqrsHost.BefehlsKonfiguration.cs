@@ -10,7 +10,7 @@ using Infrastruktur.EventSourcing;
 using Infrastruktur.Messaging;
 using Modell.Bestellwesen;
 using Modell.Kunden;
-using Modell.Warenkorb;
+using Modell.Shop;
 using Modell.Warenwirtschaft;
 
 namespace Host
@@ -85,6 +85,13 @@ namespace Host
             var repo = new WarenkorbRepository(unitOfWork);
             var warenkorb = repo.Retrieve(aktion.Warenkorb);
             warenkorb.FuegeHinzu(aktion.Produkt, aktion.Menge);
+        }
+
+        private void Handle(Command command, ArtikelAusWarenkorbEntfernen aktion, UnitOfWork unitOfWork)
+        {
+            var repo = new WarenkorbRepository(unitOfWork);
+            var warenkorb = repo.Retrieve(aktion.Warenkorb);
+            warenkorb.Entfernen(aktion.Zeile);
         }
 
 	}

@@ -49,7 +49,7 @@
     <Compile Include="Akzeptanztest.cs" />
     <Compile Include="Akzeptanztests\Bestellwesen.cs" />
     <Compile Include="Akzeptanztests\Kundenverwaltung.cs" />
-    <Compile Include="Akzeptanztests\Warenkorb\Shopbesuch.cs" />
+    <Compile Include="Akzeptanztests\Shop\Shopbesuch.cs" />
     <Compile Include="Akzeptanztests\Warenwirtschaft\Auftragsannahme.cs" />
     <Compile Include="Akzeptanztests\Warenwirtschaft\Auftragsausfuehrung.cs" />
     <Compile Include="Akzeptanztests\Warenwirtschaft\Automatische_Nachbestellung.cs" />

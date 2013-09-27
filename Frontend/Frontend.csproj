@@ -77,6 +77,7 @@
     <Compile Include="Kunden\Kundenmodul.cs" />
     <Compile Include="MainModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shop\Shopmodul.cs" />
     <Compile Include="Warenwirtschaft\Warenwirtschaftsmodul.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -87,12 +88,18 @@
     <None Include="Bestellwesen\auftragerfassen.spark" />
     <None Include="Bestellwesen\offenebestellungenliste.spark" />
     <None Include="Bestellwesen\ausfuehren.spark" />
+    <Content Include="Vertrieb.spark" />
+    <Content Include="Logistik.spark" />
     <None Include="log.spark" />
     <None Include="fehler.spark" />
     <None Include="Kunden\anschriftaendern.spark" />
     <None Include="Kunden\kundeerfassen.spark" />
+    <Content Include="Shared\cqrs_logistik.spark" />
+    <Content Include="Shared\cqrs_vertrieb.spark" />
     <None Include="Shared\cqrs.spark" />
     <None Include="Kunden\kundenliste.spark" />
+    <Content Include="Shop\produktliste.spark" />
+    <Content Include="Shop\warenkorb.spark" />
     <None Include="Startseite.spark" />
     <None Include="Warenwirtschaft\automatikaus.spark" />
     <None Include="Warenwirtschaft\automatischenachbestellungen.spark" />

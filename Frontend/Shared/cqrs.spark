@@ -6,10 +6,7 @@
 <use content="view" />
 </div>
 <nav>
-<a href="/bestellwesen">Bestellwesen</a>
-<a href="/kunden">Kundenverwaltung</a>
-<a href="/warenwirtschaft">Warenwirtschaft</a>
-<a href="/log">Protokoll</a>
+<use content="nav" />
 </nav>
 </body>
 </html>

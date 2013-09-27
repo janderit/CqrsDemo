@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Infrastruktur.Common;
 using Infrastruktur.EventSourcing;
+using Modell.Shop;
 
 namespace Modell.Kunden
 {
@@ -15,7 +16,7 @@ namespace Modell.Kunden
         public static AggregateEvents AggregateEvents = new AggregateEvents()
             .AggregateIsAffectedBy<KundeWurdeErfasst>(e => e.Kunde)
             .AggregateIsAffectedBy<AnschriftWurdeGeaendert>(e => e.Kunde)
-            .AggregateIsAffectedBy<Warenkorb.WarenkorbWurdeEroeffnet>(e => e.Kunde);
+            .AggregateIsAffectedBy<WarenkorbWurdeEroeffnet>(e => e.Kunde);
 
         public Kunde(KundenProjektion zustand, Action<Ereignis> eventsink):base(eventsink)
         {
@@ -28,7 +29,7 @@ namespace Modell.Kunden
         }
 
 
-        public void Erfassen(string name, string anschrift, Warenkorb.Warenkorb warenkorb)
+        public void Erfassen(string name, string anschrift, Warenkorb warenkorb)
         {
             if (_zustand.IstErfasst) return;
             WurdeErfasst(name, anschrift);

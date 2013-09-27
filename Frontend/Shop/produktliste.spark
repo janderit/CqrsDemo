@@ -1,0 +1,17 @@
+﻿<use master="cqrs" />
+<h2>Willkommen bei CQRS</h2>
+<div>
+  <div>
+    <a href="/shop/${Model.Kunde}/cart">Warenkorb...</a>
+  </div>
+<table>
+<tr><th>Bezeichnung</th><th>Verf&uuml;gbar</th></tr>
+  <tr each="var produkt in Model.Produkte">
+	<td>${H(produkt.Bezeichnung)}</td>
+    <td>${produkt.Verfuegbar}</td>
+    <td>
+      <a href="/shop/${Model.Kunde}/cart/add/${produkt.Id}">In den Warenkorb...</a>
+    </td>
+  </tr>  
+</table>
+</div>

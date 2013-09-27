@@ -49,7 +49,8 @@
     <Compile Include="Bestellwesen\Aktionen\AuftragErfassen.cs" />
     <Compile Include="Bestellwesen\Aktionen\AuftragStornieren.cs" />
     <Compile Include="Warenkorb\Abfragen\WarenkorbAbfrage.cs" />
-    <Compile Include="Warenkorb\Aktionen\Artikel_zu_Warenkorb_hinzufuegen.cs" />
+    <Compile Include="Warenkorb\Aktionen\Artikel_aus_Warenkorb_entfernen.cs" />
+    <Compile Include="Warenkorb\Aktionen\Artikel_zu_Warenkorb_hinzufuegen - Copy.cs" />
     <Compile Include="Warenkorb\WarenkorbApi.cs" />
     <Compile Include="Warenwirtschaft\Abfragen\ProduktlisteAbfrage.cs" />
     <Compile Include="Warenwirtschaft\Aktionen\AutomatischeNachbestellungenDeaktivieren.cs" />

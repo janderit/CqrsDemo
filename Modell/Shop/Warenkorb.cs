@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Infrastruktur.Common;
 using Infrastruktur.EventSourcing;
+using Resourcen.Shop;
 
-namespace Modell.Warenkorb
+namespace Modell.Shop
 {
 
     public class Warenkorb : AggregateRoot
@@ -14,7 +13,8 @@ namespace Modell.Warenkorb
 
         public static readonly AggregateEvents AggregateEvents = new AggregateEvents()
             .AggregateIsAffectedBy<WarenkorbWurdeEroeffnet>(e => e.Warenkorb)
-            .AggregateIsAffectedBy<ArtikelWurdeZuWarenkorbHinzugefuegt>(e => e.Warenkorb);
+            .AggregateIsAffectedBy<ArtikelWurdeZuWarenkorbHinzugefuegt>(e => e.Warenkorb)
+            .AggregateIsAffectedBy<ArtikelWurdeAusWarenkorbEntfernt>(e => e.Warenkorb);
 
         public Warenkorb(WarenkorbProjektion zustand, Action<Ereignis> eventsink)
             : base(eventsink)
@@ -43,6 +43,12 @@ namespace Modell.Warenkorb
             ArtikelWurdeHinzugefuegt(produkt, menge);
         }
 
+        public void Entfernen(Guid zeile)
+        {
+            var zu_entfernen = _zustand.Artikel.SingleOrDefault(_ => _.ZeileId == zeile);
+            if (zu_entfernen!=null) ArtikelWurdeEntfernt(zu_entfernen);
+        }
+
 
 
         private void WurdeEroffnet(Guid kunde)
@@ -52,8 +58,20 @@ namespace Modell.Warenkorb
 
         private void ArtikelWurdeHinzugefuegt(Guid produkt, int menge)
         {
-            Publish(new ArtikelWurdeZuWarenkorbHinzugefuegt {Warenkorb = Id, Produkt = produkt, Menge = menge});
+            Publish(new ArtikelWurdeZuWarenkorbHinzugefuegt() {Zeile = Guid.NewGuid(), Warenkorb = Id, Produkt = produkt, Menge = menge});
         }
+
+        private void ArtikelWurdeEntfernt(ArtikelImWarenkorb zeile)
+        {
+            Publish(new ArtikelWurdeAusWarenkorbEntfernt
+                {
+                    Warenkorb = Id,
+                    Produkt = zeile.Produkt,
+                    Menge = zeile.Menge,
+                    Zeile = zeile.ZeileId
+                });
+        }
+
 
         
     }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Modell.Warenkorb
+namespace Modell.Shop
 {
     public sealed class WarenkorbWurdeEroeffnet
     {

@@ -5,11 +5,12 @@ using System.Text;
 using Infrastruktur.Common;
 using Modell.Bestellwesen;
 using Modell.Kunden;
-using Modell.Warenkorb;
+using Modell.Shop;
 using Modell.Warenwirtschaft;
 using Resourcen.Bestellwesen;
 using Kunde = Resourcen.Kunden.Kunde;
 using Produkt = Resourcen.Warenwirtschaft.Produkt;
+using Warenkorb = Resourcen.Shop.Warenkorb;
 
 namespace Readmodels
 {
@@ -23,15 +24,15 @@ namespace Readmodels
             _history = history;
         }
 
-        public Resourcen.Warenkorb.Warenkorb Access(Guid warenkorb)
+        public Warenkorb Access(Guid warenkorb)
         {
             var history = _history(warenkorb).ToList();
             var projektor = new WarenkorbProjektion(warenkorb, () => history);
-            return new Resourcen.Warenkorb.Warenkorb
+            return new Warenkorb
                 {
                     Id = warenkorb,
                     Kunde = projektor.Kunde,
-                    Leer = projektor.Leer
+                    Artikel = projektor.Artikel.ToList()
                 };
         }
     }

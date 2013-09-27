@@ -12,7 +12,6 @@ using Infrastruktur.Common;
 using Infrastruktur.Messaging;
 using Modell.Bestellwesen;
 using Modell.Kunden;
-using Modell.Warenkorb;
 using Modell.Warenwirtschaft;
 using Readmodels;
 using Resourcen.Bestellwesen;
@@ -20,7 +19,7 @@ using Resourcen.Kunden;
 using Resourcen.Meta;
 using Resourcen.Warenwirtschaft;
 using Kunde = Resourcen.Kunden.Kunde;
-using Warenkorb = Resourcen.Warenkorb.Warenkorb;
+using Warenkorb = Resourcen.Shop.Warenkorb;
 
 namespace Host
 {
@@ -85,7 +84,8 @@ namespace Host
 		private Warenkorb Handle(Query query, WarenkorbAbfrage abfrage)
 		{
 		    var aktueller_warenkorb = _kunden.Access(abfrage.Kunde).Warenkorb;
-		    return _warenkoerbe.Access(aktueller_warenkorb);
+		    var wk = _warenkoerbe.Access(aktueller_warenkorb);
+		    return wk;
 		}
 
 	}
