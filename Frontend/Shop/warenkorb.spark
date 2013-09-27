@@ -2,6 +2,8 @@
 <h2>Ihr Warenkorb</h2>
 <div>
   Anzahl Artikel: ${Model.Warenkorb.Artikel.Count}
+</div>
+<div>
 <table>
 <tr><th>#</th><th>Artikel</th><th>Menge</th>
 </tr>
@@ -10,8 +12,12 @@
 	  <td>${H(artikel.Bezeichnung)}</td>
     <td>${artikel.Menge}</td>
     <td>
-      <a href="/shop/${Model.Kunde}/cart/remove/${artikel.ZeileId}">Entfernen...</a>
+      <a href="/shop/${Model.Kunde}/cart/remove/${artikel.ZeileId}">Entfernen</a>
     </td>
   </tr>  
 </table>
+</div>
+<div>
+  <a href="/shop/${Model.Kunde}/cart/order">Kostenpflichtig bestellen</a>
+  <a href="/shop/${Model.Kunde}/cart/clear">Warenkorb leeren</a>
 </div>

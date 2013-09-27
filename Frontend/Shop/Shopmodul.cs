@@ -33,6 +33,20 @@ namespace Frontend.Shop
                 return new RedirectResponse("/shop/" + parameters.knr + "/cart");
             };
 
+            Get["/{knr}/cart/order"] = parameters =>
+            {
+                var warenkorb = Api().Warenkorb.FuerKunde(parameters.knr).Id;
+                Api().Warenkorb.Bestellen(warenkorb);
+                return new RedirectResponse("/shop/" + parameters.knr);
+            };
+
+            Get["/{knr}/cart/clear"] = parameters =>
+            {
+                var warenkorb = Api().Warenkorb.FuerKunde(parameters.knr).Id;
+                Api().Warenkorb.Leeren(warenkorb);
+                return new RedirectResponse("/shop/" + parameters.knr);
+            };
+
         }
 
     }

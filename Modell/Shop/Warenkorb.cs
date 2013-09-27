@@ -49,6 +49,11 @@ namespace Modell.Shop
             if (zu_entfernen!=null) ArtikelWurdeEntfernt(zu_entfernen);
         }
 
+        public void Leeren()
+        {
+            _zustand.Artikel.Select(art => art.ZeileId).ToList().ForEach(Entfernen);
+        }
+
 
 
         private void WurdeEroffnet(Guid kunde)
@@ -73,7 +78,15 @@ namespace Modell.Shop
         }
 
 
-        
+        public void Bestellen(Action<Guid, int, Guid> auftrag_factory)
+        {
+            while (_zustand.Artikel.Any())
+            {
+                var artikel = _zustand.Artikel.First();
+                auftrag_factory(artikel.Produkt, artikel.Menge, _zustand.Kunde);
+                Entfernen(artikel.ZeileId);
+            }
+        }
     }
 }
 

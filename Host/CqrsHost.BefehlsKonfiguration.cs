@@ -82,16 +82,34 @@ namespace Host
 
         private void Handle(Command command, ArtikelZuWarenkorbHinzufuegen aktion, UnitOfWork unitOfWork)
         {
-            var repo = new WarenkorbRepository(unitOfWork);
-            var warenkorb = repo.Retrieve(aktion.Warenkorb);
+            var warenkorb = new WarenkorbRepository(unitOfWork).Retrieve(aktion.Warenkorb);
             warenkorb.FuegeHinzu(aktion.Produkt, aktion.Menge);
         }
 
         private void Handle(Command command, ArtikelAusWarenkorbEntfernen aktion, UnitOfWork unitOfWork)
         {
-            var repo = new WarenkorbRepository(unitOfWork);
-            var warenkorb = repo.Retrieve(aktion.Warenkorb);
+            var warenkorb = new WarenkorbRepository(unitOfWork).Retrieve(aktion.Warenkorb);
             warenkorb.Entfernen(aktion.Zeile);
+        }
+
+        private void Handle(Command command, WarenkorbLeeren aktion, UnitOfWork unitOfWork)
+        {
+            var warenkorb = new WarenkorbRepository(unitOfWork).Retrieve(aktion.Warenkorb);
+            warenkorb.Leeren();
+        }
+
+        private void Handle(Command command, WarenkorbBestellen aktion, UnitOfWork unitOfWork)
+        {
+            var warenkorb = new WarenkorbRepository(unitOfWork).Retrieve(aktion.Warenkorb);
+            var auftrags_repo = new AuftragRepository(unitOfWork);
+            var produkt_repo = new ProduktRepository(unitOfWork);
+            var kunde_repo = new KundeRepository(unitOfWork);
+            warenkorb.Bestellen((produkt, menge, kunde) =>
+                {
+                    var id = Guid.NewGuid();
+                    var auftrag = auftrags_repo.Retrieve(id);
+                    auftrag.Erfassen(id, produkt_repo.Retrieve(produkt), menge, kunde_repo.Retrieve(kunde));
+                });
         }
 
 	}

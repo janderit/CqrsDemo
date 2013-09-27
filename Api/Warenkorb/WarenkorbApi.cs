@@ -44,6 +44,22 @@ namespace Api.Warenkorb
                     Aktion = new ArtikelAusWarenkorbEntfernen() {Warenkorb = warenkorb, Zeile = zeile}
                 });
         }
+
+        public void Bestellen(Guid warenkorb)
+        {
+            _port.Handle(new Command
+            {
+                Aktion = new WarenkorbBestellen() { Warenkorb = warenkorb }
+            });
+        }
+
+        public void Leeren(Guid warenkorb)
+        {
+            _port.Handle(new Command
+            {
+                Aktion = new WarenkorbLeeren() { Warenkorb = warenkorb }
+            });
+        }
     }
     
 }
