@@ -18,7 +18,7 @@ namespace Frontend.Kunden
                                         {
                                             var id = Guid.NewGuid();
                                             Api().Kunden.KundeErfassen(id, Request.Form.name, Request.Form.anschrift);
-                                            return new RedirectResponse("/kunden");
+                                            return new RedirectResponse("/kunden/");
                                         }
                                         catch (VorgangNichtAusgefuehrt ex)
                                         {
@@ -34,7 +34,7 @@ namespace Frontend.Kunden
                                                          Api()
                                                              .Kunden.AnschriftAendern(parameters.id,
                                                                                       Request.Form.neueanschrift);
-                                                         return new RedirectResponse("/kunden");
+                                                         return new RedirectResponse("/kunden/");
                                                      }
                                                      catch (VorgangNichtAusgefuehrt ex)
                                                      {

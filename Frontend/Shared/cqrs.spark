@@ -1,12 +1,18 @@
 ﻿<viewdata model="dynamic" />
 <html>
 <body>
-<h1>CQRS GmbH &amp; Co KG</h1>
+<h1>CQRS GmbH</h1>
 <div>
 <use content="view" />
 </div>
 <nav>
 <use content="nav" />
 </nav>
+
+  <div>
+    <a href="/">Startseite</a>
+    &nbsp;
+    <a href="/vertrieb/">Intranet</a>
+  </div>
 </body>
 </html>

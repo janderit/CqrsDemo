@@ -58,7 +58,7 @@ namespace Host
 			return new Protokoll
 				{
 					Eintraege =
-						_eventStore.History.Select(_ => new Eintrag {Info = Alias(_.ToString())})
+						_eventStore.History.Select(_ => new Eintrag {Info = _.Zeitpunkt.ToString("dd HH:mm:ss.fff ") + Alias(_.ToString())})
 								   .Reverse().ToList()
 				};
 		}

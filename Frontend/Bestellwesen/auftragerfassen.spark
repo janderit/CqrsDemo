@@ -13,7 +13,8 @@
 
 <div><label>Kunde</label>
 <select name="kunde">
-	<option each="var kunde in Model.Kunden" value="${kunde.Id}">${H(kunde.Name)}</option>
+	<option each="var kunde in Model.Kunden" value="${kunde.Id}" if="kunde.Id==Model.Kunde" selected="selected">${H(kunde.Name)}</option>
+	<option each="var kunde in Model.Kunden" value="${kunde.Id}" if="kunde.Id!=Model.Kunde">${H(kunde.Name)}</option>
 </select></div>
 
 <input type="submit" value="Ok" />

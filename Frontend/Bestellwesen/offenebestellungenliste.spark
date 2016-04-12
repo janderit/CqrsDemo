@@ -7,7 +7,7 @@
     <td>${H(auftrag.Produktname)}</td>
     <td>${auftrag.Menge}</td>
 	<td><a href="ausfuehren/${auftrag.Id}">Ausf&uuml;hren</a></td>
-  </tr>  
+  </tr>
 </table>
 </div>
 <p>

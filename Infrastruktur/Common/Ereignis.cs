@@ -4,6 +4,7 @@ namespace Infrastruktur.Common
 {
     public abstract class Ereignis
     {
+        public DateTime Zeitpunkt { get; set; }
         internal abstract object DatenObjekt { get; }
     }
 

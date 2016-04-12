@@ -12,6 +12,6 @@
     <td>
       <a href="/shop/${Model.Kunde}/cart/add/${produkt.Id}">In den Warenkorb...</a>
     </td>
-  </tr>  
+  </tr>
 </table>
 </div>

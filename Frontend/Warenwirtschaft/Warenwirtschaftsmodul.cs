@@ -18,7 +18,7 @@ namespace Frontend.Warenwirtschaft
                                          {
                                              var produkt = Guid.NewGuid();
                                              Api().Warenwirtschaft.Einlisten(produkt, Request.Form.bezeichnung);
-                                             return new RedirectResponse("/warenwirtschaft");
+                                             return new RedirectResponse("/warenwirtschaft/");
                                          }
                                          catch (VorgangNichtAusgefuehrt ex)
                                          {
@@ -32,7 +32,7 @@ namespace Frontend.Warenwirtschaft
                 try
                 {
                     Api().Warenwirtschaft.Nachbestellen(parameters.id, Request.Form.menge);
-                    return new RedirectResponse("/warenwirtschaft");
+                    return new RedirectResponse("/warenwirtschaft/");
                 }
                 catch (VorgangNichtAusgefuehrt ex)
                 {
@@ -46,7 +46,7 @@ namespace Frontend.Warenwirtschaft
                 try
                 {
                     Api().Warenwirtschaft.WareneingangVerzeichnen(parameters.id);
-                    return new RedirectResponse("/warenwirtschaft");
+                    return new RedirectResponse("/warenwirtschaft/");
                 }
                 catch (VorgangNichtAusgefuehrt ex)
                 {
@@ -60,7 +60,7 @@ namespace Frontend.Warenwirtschaft
                 try
                 {
                     Api().Warenwirtschaft.MindestVerfuegbarkeitDefinieren(parameters.id, Request.Form.mindestverfuegbarkeit, Request.Form.mindestbestellmenge);
-                    return new RedirectResponse("/warenwirtschaft");
+                    return new RedirectResponse("/warenwirtschaft/");
                 }
                 catch (VorgangNichtAusgefuehrt ex)
                 {
@@ -74,7 +74,7 @@ namespace Frontend.Warenwirtschaft
                 try
                 {
                     Api().Warenwirtschaft.AutomatischeNachbestellungenDeaktivieren(parameters.id);
-                    return new RedirectResponse("/warenwirtschaft");
+                    return new RedirectResponse("/warenwirtschaft/");
                 }
                 catch (VorgangNichtAusgefuehrt ex)
                 {

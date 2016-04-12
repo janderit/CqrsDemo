@@ -7,11 +7,11 @@
 	<td>${H(produkt.Bezeichnung)}</td>
     <td>${produkt.LagerBestand}</td>
     <td>${produkt.Verfuegbar}</td>
-	<td if="!produkt.Nachbestellt"><a href="${produkt.Id}/bestellen">Nachbestellen</a></td>	
-	<td if="produkt.Nachbestellt"><a href="${produkt.Id}/wareneingang">Wareneingang</a></td>	
+	<td if="!produkt.Nachbestellt"><a href="${produkt.Id}/bestellen">Nachbestellen</a></td>
+	<td if="produkt.Nachbestellt"><a href="${produkt.Id}/wareneingang">Wareneingang</a></td>
 	<td if="produkt.AutomatischeNachbestellungen">automatische Nachbestellungen aktiv - <a href="${produkt.Id}/automatikaus">deaktivieren</a></td>
 	<td if="!produkt.AutomatischeNachbestellungen"><a href="${produkt.Id}/automatikan">automatische Nachbestellungen...</a></td>
-  </tr>  
+  </tr>
 </table>
 </div>
 <p>

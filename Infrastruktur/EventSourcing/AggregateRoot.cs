@@ -15,7 +15,7 @@ namespace Infrastruktur.EventSourcing
 
         protected void Publish<T>(T ereignis) where T:class
         {
-            _publish(new Ereignis<T> {Daten = ereignis});
+            _publish(new Ereignis<T> {Daten = ereignis, Zeitpunkt = DateTime.Now});
         }
     }
 }

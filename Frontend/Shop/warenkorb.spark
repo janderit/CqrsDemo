@@ -14,7 +14,7 @@
     <td>
       <a href="/shop/${Model.Kunde}/cart/remove/${artikel.ZeileId}">Entfernen</a>
     </td>
-  </tr>  
+  </tr>
 </table>
 </div>
 <div>
