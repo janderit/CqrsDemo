@@ -12,7 +12,7 @@ namespace Modell.Warenwirtschaft
 
         public override string ToString()
         {
-            return "Für das Produkt wurde die Mindestbestellmenge definiert: "+Menge;
+            return "Für das Produkt {ID:" + Produkt + "} wurde die Mindestbestellmenge definiert: " + Menge + ".";
         }
     }
 }

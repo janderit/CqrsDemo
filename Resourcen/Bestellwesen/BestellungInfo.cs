@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Resourcen.Bestellwesen
 {
-    public sealed class Bestellung
+    public sealed class BestellungInfo
     {
         public Guid Id { get; set; }
         public Guid Produkt { get; set; }

@@ -13,7 +13,7 @@ namespace Modell.Kunden
 
         public override string ToString()
         {
-            return "Die Anschrift des Kunden wurde geändert: "+NeueAnschrift;
+            return "Die Anschrift des Kunden {ID:" + Kunde + "} wurde geändert: '" + NeueAnschrift + "'.";
         }
     }
 }

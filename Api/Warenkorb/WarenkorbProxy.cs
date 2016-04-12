@@ -14,9 +14,9 @@ namespace Api.Warenkorb
             _port = port;
         }
 
-        public Resourcen.Shop.Warenkorb FuerKunde(Guid id)
+        public Resourcen.Shop.WarenkorbInfo FuerKunde(Guid id)
         {
-            return _port.Retrieve<Resourcen.Shop.Warenkorb>(new QueryEnvelope(new WarenkorbAbfrage(kunde: id))).Body;
+            return _port.Retrieve<Resourcen.Shop.WarenkorbInfo>(new QueryEnvelope(new WarenkorbAbfrage(kunde: id))).Body;
         }
 
         public void FuegeArtikelHinzu(Guid warenkorb, Guid produkt, int menge)

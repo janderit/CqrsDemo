@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Infrastruktur.Common;
-using Modell.Bestellwesen;
 using Modell.Kunden;
+using Modell.Shop;
 using Modell.Warenwirtschaft;
-using Resourcen.Bestellwesen;
 
 namespace Readmodels
 {
@@ -28,21 +25,26 @@ namespace Readmodels
             // intentionally left blank
         }
 
-        private readonly Dictionary<Guid, string> _bezeichnungen = new Dictionary<Guid, string>();
+        private readonly Dictionary<Guid, Func<string>> _bezeichnungen = new Dictionary<Guid, Func<string>>();
 
         private void Handle(Ereignis<KundeWurdeErfasst> e)
         {
-            _bezeichnungen.Add(e.Daten.Kunde, e.Daten.Name);
+            _bezeichnungen.Add(e.Daten.Kunde, ()=>e.Daten.Name);
+        }
+
+        private void Handle(Ereignis<WarenkorbWurdeEroeffnet> e)
+        {
+            _bezeichnungen.Add(e.Daten.Warenkorb, () => "für " + Alias(e.Daten.Kunde));
         }
 
         private void Handle(Ereignis<ProduktWurdeEingelistet> e)
         {
-            _bezeichnungen.Add(e.Daten.Produkt, e.Daten.Bezeichnung);
+            _bezeichnungen.Add(e.Daten.Produkt, ()=>e.Daten.Bezeichnung);
         }
 
         public string Alias(Guid id)
         {
-            return _bezeichnungen.ContainsKey(id) ? _bezeichnungen[id] : id.ToString();
+            return _bezeichnungen.ContainsKey(id) ? _bezeichnungen[id]() : id.ToString();
         }
 
     }

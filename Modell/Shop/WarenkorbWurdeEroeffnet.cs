@@ -6,5 +6,10 @@ namespace Modell.Shop
     {
         public Guid Warenkorb;
         public Guid Kunde;
+
+        public override string ToString()
+        {
+            return "Warenkorb " + Warenkorb + " für Kunde {ID:" + Kunde + "}.";
+        }
     }
 }

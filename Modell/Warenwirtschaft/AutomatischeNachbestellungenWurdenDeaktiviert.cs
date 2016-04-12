@@ -11,7 +11,7 @@ namespace Modell.Warenwirtschaft
 
         public override string ToString()
         {
-            return "Für das Produkt wurden automatische Nachbestellungen deaktiviert.";
+            return "Für das Produkt {ID:" + Produkt + "} wurden automatische Nachbestellungen deaktiviert.";
         }
     }
 }

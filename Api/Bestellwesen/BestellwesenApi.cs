@@ -5,7 +5,7 @@ namespace Api.Bestellwesen
 {
     public interface BestellwesenApi
     {
-        Bestellungsliste OffeneBestellungen();
+        Bestellungenliste OffeneBestellungen();
         void AuftragErfassen(Guid auftrag, Guid kunde, Guid produkt, int menge);
         void AuftragAusfuehren(Guid auftrag);
     }

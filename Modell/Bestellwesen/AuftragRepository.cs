@@ -21,6 +21,6 @@ namespace Modell.Bestellwesen
         {
             return new Auftrag(new AuftragProjektion(() => History(aggregateId)), e => Publish(aggregateId, e));
         }
-        
+
     }
 }

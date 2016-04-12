@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Infrastruktur.Common;
-using Modell.Bestellwesen;
-using Modell.Kunden;
 using Modell.Warenwirtschaft;
-using Resourcen.Bestellwesen;
 using Resourcen.Warenwirtschaft;
 
 namespace Readmodels
@@ -26,15 +22,15 @@ namespace Readmodels
             var history = _history(auftrag).ToList();
             var projektor = new ProduktProjektion(auftrag, () => history);
             return new ProduktInfo
-                       {
-                           Id = auftrag,
-                           Bezeichnung = projektor.Bezeichnung,
-                           LagerBestand = projektor.Lagerbestand,
-                           Verfuegbar= projektor.Verfuegbar,
-                           Nachbestellt=projektor.Nachbestellt,
-                           MengeImZulauf = projektor.MengeImZulauf,
-                           AutomatischeNachbestellungen=projektor.AutomatischeNachbestellungen
-                       };
+            {
+                Id = auftrag,
+                Bezeichnung = projektor.Bezeichnung,
+                LagerBestand = projektor.Lagerbestand,
+                Verfuegbar = projektor.Verfuegbar,
+                Nachbestellt = projektor.Nachbestellt,
+                MengeImZulauf = projektor.MengeImZulauf,
+                AutomatischeNachbestellungen = projektor.AutomatischeNachbestellungen
+            };
         }
     }
 }

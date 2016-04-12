@@ -9,7 +9,7 @@ namespace Modell.Warenwirtschaft
 
         public override string ToString()
         {
-            return "Eine Nachbestellung wurde beauftragt (Menge " + Menge + ")";
+            return "Eine Nachbestellung über " + Menge + "x {ID:" + Produkt + "} wurde beauftragt.";
         }
     }
 }

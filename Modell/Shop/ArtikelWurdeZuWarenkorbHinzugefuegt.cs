@@ -11,7 +11,7 @@ namespace Modell.Shop
 
         public override string ToString()
         {
-            return "Artikel " + Produkt + " (" + Menge + "x) zu Warenkorb " + Warenkorb + " hinzugefügt";
+            return "Artikel {ID:" + Produkt + "} (" + Menge + "x) zu Warenkorb {ID:" + Warenkorb + "} hinzugefügt";
         }
     }
 }

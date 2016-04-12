@@ -60,7 +60,7 @@ namespace Spezifikation
             testsystem.Kunden.AnschriftAendern(kundenid, neueAnschrift);
         }
 
-        protected static List<Bestellung> OffeneBestellungen(CqrsGmbH testsystem)
+        protected static List<BestellungInfo> OffeneBestellungen(CqrsGmbH testsystem)
         {
             return testsystem.Bestellwesen.OffeneBestellungen().Bestellungen;
         }
@@ -90,17 +90,17 @@ namespace Spezifikation
             testsystem.Bestellwesen.AuftragAusfuehren(auftrag);
         }
 
-        protected static Warenkorb WarenkorbAbrufen(CqrsGmbH testsystem, Guid kunde)
+        protected static WarenkorbInfo WarenkorbAbrufen(CqrsGmbH testsystem, Guid kunde)
         {
             return testsystem.Warenkorb.FuerKunde(kunde);
         }
 
-        protected static void ArtikelZuWarenkorbHinzufuegen(CqrsGmbH testsystem, Warenkorb warenkorb, Guid produkt, int menge)
+        protected static void ArtikelZuWarenkorbHinzufuegen(CqrsGmbH testsystem, WarenkorbInfo warenkorb, Guid produkt, int menge)
         {
             testsystem.Warenkorb.FuegeArtikelHinzu(warenkorb.Id, produkt, menge);
         }
 
-        protected static void ArtikelAusWarenkorbEntfernen(CqrsGmbH testsystem, Warenkorb warenkorb)
+        protected static void ArtikelAusWarenkorbEntfernen(CqrsGmbH testsystem, WarenkorbInfo warenkorb)
         {
             testsystem.Warenkorb.EntferneArtikel(warenkorb.Id, warenkorb.Artikel.First().ZeileId);
         }

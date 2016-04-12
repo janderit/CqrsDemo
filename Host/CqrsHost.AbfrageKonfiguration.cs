@@ -17,8 +17,8 @@ using Readmodels;
 using Resourcen.Bestellwesen;
 using Resourcen.Kunden;
 using Resourcen.Meta;
+using Resourcen.Shop;
 using Resourcen.Warenwirtschaft;
-using Warenkorb = Resourcen.Shop.Warenkorb;
 
 namespace Host
 {
@@ -39,9 +39,9 @@ namespace Host
 			return new Produktliste { Produkte = ProduktProjektion.AlleIDs(_eventStore.History).Select(_produkte.Access).ToList() };
 		}
 
-		private Bestellungsliste Handle(QueryEnvelope queryEnvelope, OffeneBestellungenAbfrage abfrage)
+		private Bestellungenliste Handle(QueryEnvelope queryEnvelope, OffeneBestellungenAbfrage abfrage)
 		{
-			var result = new Bestellungsliste { Bestellungen = AuftragProjektion.AlleIDs(_eventStore.History).Select(_auftraege.Access).Where(_=>!_.Erfuellt).ToList() };
+			var result = new Bestellungenliste { Bestellungen = AuftragProjektion.AlleIDs(_eventStore.History).Select(_auftraege.Access).Where(_=>!_.Erfuellt).ToList() };
 			foreach (var bestellung in result.Bestellungen)
 			{
 				bestellung.Kundenname = _kunden.Access(bestellung.Kunde).Name;
@@ -70,17 +70,17 @@ namespace Host
 
 		private string ReplaceGuidsWith(string input, Func<Guid, string> replacements)
 		{
-			const string guidPattern = @"(\{{0,1}([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}\}{0,1})";
+			const string guidPattern = @"(\{ID:([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}\})";
 			return Regex.Replace(input, guidPattern, match => replacements(MatchedGuid(match)));
 		}
 
 		private static Guid MatchedGuid(Match match)
 		{
-			return new Guid(match.Value);
+			return new Guid(match.Value.Substring(4,36));
 		}
 
 
-		private Warenkorb Handle(QueryEnvelope queryEnvelope, WarenkorbAbfrage abfrage)
+		private WarenkorbInfo Handle(QueryEnvelope queryEnvelope, WarenkorbAbfrage abfrage)
 		{
 		    var aktueller_warenkorb = _kunden.Access(abfrage.Kunde).Warenkorb;
 		    var wk = _warenkoerbe.Access(aktueller_warenkorb);

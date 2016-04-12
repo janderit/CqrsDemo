@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Resourcen.Warenwirtschaft
 {
@@ -11,6 +9,6 @@ namespace Resourcen.Warenwirtschaft
             Produkte=new List<ProduktInfo>();
         }
 
-        public List<ProduktInfo>  Produkte { get; set; }
+        public List<ProduktInfo> Produkte { get; set; }
     }
 }

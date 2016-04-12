@@ -12,7 +12,7 @@ namespace Modell.Warenwirtschaft
 
         public override string ToString()
         {
-            return "Waren wurden ausgeliefert (Menge " + Menge + ")";
+            return "Waren wurden ausgeliefert (" + Menge + "x {ID:" + Produkt + "}).";
         }
     }
 }

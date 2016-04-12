@@ -9,7 +9,7 @@ namespace Modell.Warenwirtschaft
 
         public override string ToString()
         {
-            return "Produkt wurde eingelistet";
+            return "Produkt '" + Bezeichnung + "' wurde eingelistet [" + Produkt + "]";
         }
     }
 }

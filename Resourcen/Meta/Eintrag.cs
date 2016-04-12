@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Resourcen.Meta
+﻿namespace Resourcen.Meta
 {
     public sealed class Eintrag
     {

@@ -15,9 +15,9 @@ namespace Api.Bestellwesen
             _port = port;
         }
 
-        public Bestellungsliste OffeneBestellungen()
+        public Bestellungenliste OffeneBestellungen()
         {
-            return _port.Retrieve<Bestellungsliste>(new QueryEnvelope(new OffeneBestellungenAbfrage())).Body;
+            return _port.Retrieve<Bestellungenliste>(new QueryEnvelope(new OffeneBestellungenAbfrage())).Body;
         }
 
         public void AuftragErfassen(Guid auftrag, Guid kunde, Guid produkt, int menge)

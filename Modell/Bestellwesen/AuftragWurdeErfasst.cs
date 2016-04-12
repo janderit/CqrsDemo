@@ -14,9 +14,9 @@ namespace Modell.Bestellwesen
 
         public override string ToString()
         {
-            return "Ein Auftrag über " + Menge + "x " + Produkt + " für " + Kunde + " wurde erfasst.";
+            return "Ein Auftrag über " + Menge + "x {ID:" + Produkt + "} für {ID:" + Kunde + "} wurde erfasst [" + Auftrag + "].";
         }
     }
 
-    
+
 }

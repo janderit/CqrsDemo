@@ -13,7 +13,7 @@ namespace Modell.Kunden
 
         public override string ToString()
         {
-            return "Kunde " + Name + " wurde mit Anschrift " + Anschrift + " erfasst.";
+            return "Kunde " + Name + " wurde mit Anschrift '" + Anschrift + "' erfasst [" + Kunde + "].";
         }
     }
 }

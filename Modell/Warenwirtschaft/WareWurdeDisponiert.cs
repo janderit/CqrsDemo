@@ -12,7 +12,7 @@ namespace Modell.Warenwirtschaft
 
         public override string ToString()
         {
-            return "Ware wurde für einen Auftrag disponiert (Menge "+Menge+")";
+            return "Ware wurde für einen Auftrag disponiert ("+Menge+ "x {ID:" + Produkt + "}).";
         }
     }
 }
