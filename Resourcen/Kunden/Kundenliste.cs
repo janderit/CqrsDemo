@@ -8,9 +8,9 @@ namespace Resourcen.Kunden
     {
         public Kundenliste()
         {
-            Kunden = new List<Kunde>();
+            Kunden = new List<KundeInfo>();
         }
 
-        public List<Kunde> Kunden { get; set; }
+        public List<KundeInfo> Kunden { get; set; }
     }
 }

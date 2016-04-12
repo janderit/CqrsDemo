@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Infrastruktur.Messaging;
 
 namespace Api.Bestellwesen.Abfragen
 {
-    public sealed class OffeneBestellungenAbfrage
+    public struct OffeneBestellungenAbfrage : Query
     {
     }
 }

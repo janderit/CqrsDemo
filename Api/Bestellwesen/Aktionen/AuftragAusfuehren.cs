@@ -1,10 +1,15 @@
 ﻿using System;
+using Infrastruktur.Messaging;
 
 namespace Api.Bestellwesen.Aktionen
 {
-    public sealed class AuftragAusfuehren
+    public struct AuftragAusfuehren : Command
     {
-        public Guid AuftragId { get; set; }
-        public DateTime AusfuehrungAvisiert { get; set; }
+        public AuftragAusfuehren(Guid auftragId)
+        {
+            AuftragId = auftragId;
+        }
+
+        public readonly Guid AuftragId;
     }
 }

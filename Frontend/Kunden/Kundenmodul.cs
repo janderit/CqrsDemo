@@ -1,9 +1,10 @@
-﻿using Infrastruktur.Common;
+﻿using System;
+using Infrastruktur.Common;
 using Nancy.Responses;
 
 namespace Frontend.Kunden
 {
-    public class Kundenmodul : CqrsGmbh
+    public class Kundenmodul : CqrsGmbH_Web
     {
         public Kundenmodul()
             : base("/kunden")
@@ -15,7 +16,8 @@ namespace Frontend.Kunden
                                     {
                                         try
                                         {
-                                            Api().Kunden.KundeErfassen(Request.Form.name, Request.Form.anschrift);
+                                            var id = Guid.NewGuid();
+                                            Api().Kunden.KundeErfassen(id, Request.Form.name, Request.Form.anschrift);
                                             return new RedirectResponse("/kunden");
                                         }
                                         catch (VorgangNichtAusgefuehrt ex)
@@ -23,7 +25,7 @@ namespace Frontend.Kunden
                                             return View["fehler", ex.Message];
                                         }
                                     };
-            
+
             Get["/{id}/anschriftaendern"] = parameters => View["anschriftaendern", Api().Kunden.Kunde(parameters.id)];
             Post["/{id}/anschriftaendern"] = parameters =>
                                                  {

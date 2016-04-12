@@ -1,12 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Infrastruktur.Messaging;
 
 namespace Api.Warenkorb.Abfragen
 {
-    public sealed class WarenkorbAbfrage
+    public struct WarenkorbAbfrage : Query
     {
-        public Guid Kunde;
+        public WarenkorbAbfrage(Guid kunde)
+        {
+            Kunde = kunde;
+        }
+
+        public readonly Guid Kunde;
     }
 }

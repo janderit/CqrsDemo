@@ -1,9 +1,15 @@
 ﻿using System;
+using Infrastruktur.Messaging;
 
 namespace Api.Warenkorb.Aktionen
 {
-    public sealed class WarenkorbLeeren
+    public struct WarenkorbLeeren : Command
     {
-        public Guid Warenkorb;
+        public WarenkorbLeeren(Guid warenkorb)
+        {
+            Warenkorb = warenkorb;
+        }
+
+        public readonly Guid Warenkorb;
     }
 }

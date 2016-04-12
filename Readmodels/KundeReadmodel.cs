@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Infrastruktur.Common;
 using Modell.Kunden;
-using Kunde = Resourcen.Kunden.Kunde;
+using Resourcen.Kunden;
 
 namespace Readmodels
 {
@@ -18,11 +18,11 @@ namespace Readmodels
             _history = history;
         }
 
-        public Kunde Access(Guid kunde)
+        public KundeInfo Access(Guid kunde)
         {
             var history = _history(kunde).ToList();
             var projektor = new KundenProjektion(kunde, () => history);
-            return new Kunde
+            return new KundeInfo
                        {
                            Id = kunde,
                            Name = projektor.Name,

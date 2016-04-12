@@ -1,10 +1,10 @@
-﻿using System;
+﻿ using System;
 using Infrastruktur.Common;
 using Nancy.Responses;
 
 namespace Frontend.Bestellwesen
 {
-    public class Bestellwesenmodul : CqrsGmbh
+    public class Bestellwesenmodul : CqrsGmbH_Web
     {
         public Bestellwesenmodul()
             : base("/bestellwesen")
@@ -20,14 +20,15 @@ namespace Frontend.Bestellwesen
                                     {
                                         try
                                         {
+                                            var auftrag = Guid.NewGuid();
                                             Api()
-                                                .Bestellwesen.AuftragErfassen(Request.Form.kunde, Request.Form.menge,
+                                                .Bestellwesen.AuftragErfassen(auftrag, Request.Form.kunde, Request.Form.menge,
                                                                               Request.Form.produkt);
                                             return new RedirectResponse("/bestellwesen");
                                         }
                                         catch (VorgangNichtAusgefuehrt ex)
                                         {
-                                            return View["fehler", ex.Message];                                            
+                                            return View["fehler", ex.Message];
                                         }
                                     };
 

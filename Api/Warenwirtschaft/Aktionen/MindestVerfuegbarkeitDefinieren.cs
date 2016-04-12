@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Infrastruktur.Messaging;
 
 namespace Api.Warenwirtschaft.Aktionen
 {
-    public sealed class MindestVerfuegbarkeitDefinieren
+    public struct MindestVerfuegbarkeitDefinieren : Command
     {
-        public Guid ProduktId { get; set; }
-        public int MindestVerfuegbarkeit { get; set; }
-        public int MindestBestellmenge { get; set; }
+        public MindestVerfuegbarkeitDefinieren(Guid produktId, int mindestVerfuegbarkeit, int mindestBestellmenge)
+        {
+            ProduktId = produktId;
+            MindestVerfuegbarkeit = mindestVerfuegbarkeit;
+            MindestBestellmenge = mindestBestellmenge;
+        }
+
+        public readonly Guid ProduktId;
+        public readonly int MindestVerfuegbarkeit;
+        public readonly int MindestBestellmenge;
     }
 }

@@ -1,21 +1,21 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 
 namespace Spezifikation.Akzeptanztests.Warenwirtschaft
 {
     [TestFixture]
-    public class Produkt_einlisten : Akzeptanztest
+    public class Produkt_einlisten : Spezifikation
     {
         [Test]
         public void Ein_eingelistetes_Produkt_ist_in_der_Produktliste_aufgefuehrt()
         {
-            var api = TestInstanz();
-            var id = api.Warenwirtschaft.Einlisten("Testprodukt");
+            var testsystem = Erzeuge_TestSystem();
 
-            var produkte = api.Warenwirtschaft.Produktliste().Produkte;
+            var id = Neue_ProduktId(testsystem);
+            ProduktEinlisten(testsystem, id, "Testprodukt");
+
+            var produkte = ProduktlisteAbrufen(testsystem);
             produkte.Should().NotBeNull();
             produkte.Should().HaveCount(1);
 
@@ -24,7 +24,7 @@ namespace Spezifikation.Akzeptanztests.Warenwirtschaft
             produkt.Id.Should().Be(id);
             produkt.Bezeichnung.Should().Be("Testprodukt");
 
-            produkt = api.Warenwirtschaft.Produkt(id);
+            produkt = ProduktAbrufen(testsystem, id);
             produkt.Should().NotBeNull();
             produkt.Id.Should().Be(id);
             produkt.Bezeichnung.Should().Be("Testprodukt");
@@ -33,9 +33,11 @@ namespace Spezifikation.Akzeptanztests.Warenwirtschaft
         [Test]
         public void Ein_eingelistetes_Produkt_hat_keinen_Bestand_etc()
         {
-            var api = TestInstanz();
-            var id = api.Warenwirtschaft.Einlisten("Testprodukt");
-            var produkt = api.Warenwirtschaft.Produkt(id);
+            var testsystem = Erzeuge_TestSystem();
+            var id = Neue_ProduktId(testsystem);
+            ProduktEinlisten(testsystem, id, "Testprodukt");
+
+            var produkt = ProduktAbrufen(testsystem, id);
 
             produkt.LagerBestand.Should().Be(0);
             produkt.MengeImZulauf.Should().Be(0);

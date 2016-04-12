@@ -1,11 +1,19 @@
 ﻿using System;
+using Infrastruktur.Messaging;
 
 namespace Api.Kunden.Aktionen
 {
-    public sealed class KundeErfassen
+    public struct KundeErfassen : Command
     {
-        public Guid KundenId { get; set; }
-        public string Name { get; set; }
-        public string Anschrift { get; set; }
+        public KundeErfassen(Guid kundenId, string name, string anschrift)
+        {
+            KundenId = kundenId;
+            Name = name;
+            Anschrift = anschrift;
+        }
+
+        public Guid KundenId;
+        public string Name;
+        public string Anschrift;
     }
 }

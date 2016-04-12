@@ -1,10 +1,17 @@
 ﻿using System;
+using Infrastruktur.Messaging;
 
 namespace Api.Kunden.Aktionen
 {
-    public sealed class AnschriftAendern
+    public struct AnschriftAendern : Command
     {
-        public Guid KundenId { get; set; }
-        public string NeueAnschrift { get; set; }
+        public AnschriftAendern(Guid kundenId, string neueAnschrift)
+        {
+            KundenId = kundenId;
+            NeueAnschrift = neueAnschrift;
+        }
+
+        public readonly Guid KundenId;
+        public readonly string NeueAnschrift;
     }
 }

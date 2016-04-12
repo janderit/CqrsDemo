@@ -7,8 +7,7 @@ using Modell.Bestellwesen;
 using Modell.Kunden;
 using Modell.Warenwirtschaft;
 using Resourcen.Bestellwesen;
-using Kunde = Resourcen.Kunden.Kunde;
-using Produkt = Resourcen.Warenwirtschaft.Produkt;
+using Resourcen.Warenwirtschaft;
 
 namespace Readmodels
 {
@@ -22,11 +21,11 @@ namespace Readmodels
             _history = history;
         }
 
-        public Produkt Access(Guid auftrag)
+        public ProduktInfo Access(Guid auftrag)
         {
             var history = _history(auftrag).ToList();
             var projektor = new ProduktProjektion(auftrag, () => history);
-            return new Produkt
+            return new ProduktInfo
                        {
                            Id = auftrag,
                            Bezeichnung = projektor.Bezeichnung,

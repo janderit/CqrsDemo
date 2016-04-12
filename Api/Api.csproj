@@ -37,12 +37,16 @@
   <ItemGroup>
     <Compile Include="Bestellwesen\Abfragen\OffeneBestellungenAbfrage.cs" />
     <Compile Include="Bestellwesen\BestellwesenApi.cs" />
-    <Compile Include="CqrsApi.cs" />
+    <Compile Include="Bestellwesen\BestellwesenProxy.cs" />
+    <Compile Include="CqrsGmbH.cs" />
+    <Compile Include="CqrsGmbH_CQRSAPI.cs" />
     <Compile Include="Kunden\Abfragen\KundenlisteAbfrage.cs" />
     <Compile Include="Kunden\Aktionen\AnschriftAendern.cs" />
     <Compile Include="Kunden\Aktionen\KundeErfassen.cs" />
     <Compile Include="Kunden\KundenApi.cs" />
+    <Compile Include="Kunden\KundenProxy.cs" />
     <Compile Include="Meta\MetaApi.cs" />
+    <Compile Include="Meta\MetaProxy.cs" />
     <Compile Include="Meta\ProtokollAbfrage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bestellwesen\Aktionen\AuftragAusfuehren.cs" />
@@ -54,6 +58,7 @@
     <Compile Include="Warenkorb\Aktionen\WarenkorbBestellen.cs" />
     <Compile Include="Warenkorb\Aktionen\WarenkorbLeeren.cs" />
     <Compile Include="Warenkorb\WarenkorbApi.cs" />
+    <Compile Include="Warenkorb\WarenkorbProxy.cs" />
     <Compile Include="Warenwirtschaft\Abfragen\ProduktlisteAbfrage.cs" />
     <Compile Include="Warenwirtschaft\Aktionen\AutomatischeNachbestellungenDeaktivieren.cs" />
     <Compile Include="Warenwirtschaft\Aktionen\MindestVerfuegbarkeitDefinieren.cs" />
@@ -61,6 +66,7 @@
     <Compile Include="Warenwirtschaft\Aktionen\ProduktEinlisten.cs" />
     <Compile Include="Warenwirtschaft\Aktionen\WareneingangVerbuchen.cs" />
     <Compile Include="Warenwirtschaft\WarenwirtschaftApi.cs" />
+    <Compile Include="Warenwirtschaft\WarenwirtschaftProxy.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -18,7 +18,6 @@ using Resourcen.Bestellwesen;
 using Resourcen.Kunden;
 using Resourcen.Meta;
 using Resourcen.Warenwirtschaft;
-using Kunde = Resourcen.Kunden.Kunde;
 using Warenkorb = Resourcen.Shop.Warenkorb;
 
 namespace Host
@@ -26,7 +25,7 @@ namespace Host
 	partial class CqrsHost
 	{
 
-		private Kundenliste Handle(Query query, KundenlisteAbfrage abfrage)
+		private Kundenliste Handle(QueryEnvelope queryEnvelope, KundenlisteAbfrage abfrage)
 		{
 			return new Kundenliste
 					   {
@@ -35,12 +34,12 @@ namespace Host
 					   };
 		}
 
-		private Produktliste Handle(Query query, ProduktlisteAbfrage abfrage)
+		private Produktliste Handle(QueryEnvelope queryEnvelope, ProduktlisteAbfrage abfrage)
 		{
 			return new Produktliste { Produkte = ProduktProjektion.AlleIDs(_eventStore.History).Select(_produkte.Access).ToList() };
 		}
 
-		private Bestellungsliste Handle(Query query, OffeneBestellungenAbfrage abfrage)
+		private Bestellungsliste Handle(QueryEnvelope queryEnvelope, OffeneBestellungenAbfrage abfrage)
 		{
 			var result = new Bestellungsliste { Bestellungen = AuftragProjektion.AlleIDs(_eventStore.History).Select(_auftraege.Access).Where(_=>!_.Erfuellt).ToList() };
 			foreach (var bestellung in result.Bestellungen)
@@ -54,7 +53,7 @@ namespace Host
 
 
 
-		private Protokoll Handle(Query query, ProtokollAbfrage abfrage)
+		private Protokoll Handle(QueryEnvelope queryEnvelope, ProtokollAbfrage abfrage)
 		{
 			return new Protokoll
 				{
@@ -81,7 +80,7 @@ namespace Host
 		}
 
 
-		private Warenkorb Handle(Query query, WarenkorbAbfrage abfrage)
+		private Warenkorb Handle(QueryEnvelope queryEnvelope, WarenkorbAbfrage abfrage)
 		{
 		    var aktueller_warenkorb = _kunden.Access(abfrage.Kunde).Warenkorb;
 		    var wk = _warenkoerbe.Access(aktueller_warenkorb);

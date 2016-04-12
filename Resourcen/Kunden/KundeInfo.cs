@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Resourcen.Kunden
 {
-    public sealed class Kunde
+    public sealed class KundeInfo
     {
         public Guid Id;
         public string Name;

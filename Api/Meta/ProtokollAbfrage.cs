@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Infrastruktur.Messaging;
 
 namespace Api.Meta
 {
-    public sealed class ProtokollAbfrage
+    public struct ProtokollAbfrage : Query
     {
     }
 }

@@ -1,12 +1,22 @@
 ﻿using System;
+using Infrastruktur.Messaging;
 
 namespace Api.Bestellwesen.Aktionen
 {
-    public sealed class AuftragErfassen
+
+    public struct AuftragErfassen : Command
     {
-        public Guid AuftragsId { get; set; }
-        public Guid Kunde { get; set; }
-        public Guid Produkt { get; set; }
-        public int Menge { get; set; }
+        public AuftragErfassen(Guid auftragsId, Guid kunde, Guid produkt, int menge)
+        {
+            AuftragsId = auftragsId;
+            Kunde = kunde;
+            Produkt = produkt;
+            Menge = menge;
+        }
+
+        public readonly Guid AuftragsId;
+        public readonly Guid Kunde;
+        public readonly Guid Produkt;
+        public readonly int Menge;
     }
 }

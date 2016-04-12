@@ -4,7 +4,7 @@ using Nancy.Responses;
 
 namespace Frontend.Shop
 {
-    public class Shopmodul : CqrsGmbh
+    public class Shopmodul : CqrsGmbH_Web
     {
         public Shopmodul()
             : base("/shop")

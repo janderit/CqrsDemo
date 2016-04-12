@@ -1,9 +1,16 @@
 ﻿using System;
+using Infrastruktur.Messaging;
 
 namespace Api.Bestellwesen.Aktionen
 {
-    public sealed class AuftragStornieren
+    public struct AuftragStornieren : Command
     {
-        public Guid Auftrag { get; set; }
+        public AuftragStornieren(Guid auftrag) 
+        {
+            Auftrag = auftrag;
+        }
+
+        public readonly Guid Auftrag;
+
     }
 }

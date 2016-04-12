@@ -1,5 +1,5 @@
 ﻿<use master="cqrs" />
-Willkommen bei CQRS
+Willkommen bei CQRS GmbH
 <div>
   <table>
     <tr each="var kunde in Model.Kunden">

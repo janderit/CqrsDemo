@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Infrastruktur.Messaging;
 
 namespace Api.Kunden.Abfragen
 {
-    public sealed class KundenlisteAbfrage
+    public struct KundenlisteAbfrage : Query
     {
     }
 }

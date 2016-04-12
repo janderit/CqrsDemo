@@ -8,8 +8,6 @@ using Modell.Kunden;
 using Modell.Shop;
 using Modell.Warenwirtschaft;
 using Resourcen.Bestellwesen;
-using Kunde = Resourcen.Kunden.Kunde;
-using Produkt = Resourcen.Warenwirtschaft.Produkt;
 using Warenkorb = Resourcen.Shop.Warenkorb;
 
 namespace Readmodels

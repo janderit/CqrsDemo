@@ -46,7 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Akzeptanztest.cs" />
+    <Compile Include="Spezifikation.cs" />
+    <Compile Include="Spezifikation_Eventsourcing.cs" />
     <Compile Include="Akzeptanztests\Bestellwesen.cs" />
     <Compile Include="Akzeptanztests\Kundenverwaltung.cs" />
     <Compile Include="Akzeptanztests\Shop\Shopbesuch.cs" />

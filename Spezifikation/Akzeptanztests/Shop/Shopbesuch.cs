@@ -1,19 +1,21 @@
-﻿using System.Linq;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
 
 namespace Spezifikation.Akzeptanztests.Shop
 {
     [TestFixture]
-    public class Shopbesuch : Akzeptanztest
+    public class Shopbesuch : Spezifikation
     {
-         
+
         [Test]
         public void Ein_neuer_Warenkorb_ist_leer()
         {
-            var api = TestInstanz();
-            var id = api.Kunden.KundeErfassen("TestName", "TestAnschrift");
-            var warenkorb = api.Warenkorb.FuerKunde(id);
+            var testsystem = Erzeuge_TestSystem();
+            var kunde = TestKundeEinrichten(testsystem, "Testkunde", "Anschrift");
+
+            // NO ACTION
+
+            var warenkorb = WarenkorbAbrufen(testsystem, kunde);
             warenkorb.Should().NotBeNull();
             warenkorb.Leer.Should().BeTrue();
         }
@@ -21,45 +23,37 @@ namespace Spezifikation.Akzeptanztests.Shop
         [Test]
         public void Kunde_fuegt_Produkt_zu_Warenkorb_hinzu()
         {
-            var api = TestInstanz();
-            var kunde = api.Kunden.KundeErfassen("TestName", "TestAnschrift");
-            var produkt = api.Warenwirtschaft.Einlisten("Produkt");
-            api.Warenwirtschaft.Nachbestellen(produkt, 20);
-            api.Warenwirtschaft.Wareneingang(produkt);
+            var testsystem = Erzeuge_TestSystem();
+            var kunde = TestKundeEinrichten(testsystem, "Testkunde", "Anschrift");
+            var produkt = TestproduktEinlisten_mit_Lagerbestand(testsystem, "Produkt", menge: 20);
+            var warenkorb = WarenkorbAbrufen(testsystem, kunde);
 
-            var warenkorb = api.Warenkorb.FuerKunde(kunde);
-            api.Warenkorb.FuegeArtikelHinzu(warenkorb.Id, produkt, 1);
+            ArtikelZuWarenkorbHinzufuegen(testsystem, warenkorb, produkt, menge: 1);
 
-            warenkorb = api.Warenkorb.FuerKunde(kunde);
+            warenkorb = WarenkorbAbrufen(testsystem, kunde);
             warenkorb.Leer.Should().BeFalse();
         }
 
         [Test]
         public void Kunde_entfernt_Produkt_aus_Warenkorb()
         {
-            var api = TestInstanz();
-            var kunde = api.Kunden.KundeErfassen("TestName", "TestAnschrift");
-            var produkt1 = api.Warenwirtschaft.Einlisten("Produkt");
-            api.Warenwirtschaft.Nachbestellen(produkt1, 20);
-            api.Warenwirtschaft.Wareneingang(produkt1);
+            var testsystem = Erzeuge_TestSystem();
+            var kunde = TestKundeEinrichten(testsystem, "Testkunde", "Anschrift");
+            var produkt1 = TestproduktEinlisten_mit_Lagerbestand(testsystem, "Produkt 1", menge: 20);
+            var produkt2 = TestproduktEinlisten_mit_Lagerbestand(testsystem, "Produkt 2", menge: 20);
 
-            var produkt2 = api.Warenwirtschaft.Einlisten("Produkt 2");
-            api.Warenwirtschaft.Nachbestellen(produkt2, 20);
-            api.Warenwirtschaft.Wareneingang(produkt2);
+            var warenkorb = WarenkorbAbrufen(testsystem, kunde);
+            ArtikelZuWarenkorbHinzufuegen(testsystem, warenkorb, produkt1, menge: 1);
+            ArtikelZuWarenkorbHinzufuegen(testsystem, warenkorb, produkt2, menge: 1);
 
-            var warenkorb = api.Warenkorb.FuerKunde(kunde);
-            api.Warenkorb.FuegeArtikelHinzu(warenkorb.Id, produkt1, 1);
-            api.Warenkorb.FuegeArtikelHinzu(warenkorb.Id, produkt2, 1);
-
-            warenkorb = api.Warenkorb.FuerKunde(kunde);
+            warenkorb = WarenkorbAbrufen(testsystem, kunde);
             warenkorb.Artikel.Count.Should().Be(2);
 
-            api.Warenkorb.EntferneArtikel(warenkorb.Id, warenkorb.Artikel.First().ZeileId);
+            ArtikelAusWarenkorbEntfernen(testsystem, warenkorb);
 
-            warenkorb = api.Warenkorb.FuerKunde(kunde);
+            warenkorb = WarenkorbAbrufen(testsystem, kunde);
             warenkorb.Leer.Should().BeFalse();
             warenkorb.Artikel.Count.Should().Be(1);
         }
-
     }
 }

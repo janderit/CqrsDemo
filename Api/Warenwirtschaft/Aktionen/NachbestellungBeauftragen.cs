@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Infrastruktur.Messaging;
 
 namespace Api.Warenwirtschaft.Aktionen
 {
-    public sealed class NachbestellungBeauftragen
+    public struct NachbestellungBeauftragen : Command
     {
-        public Guid ProduktId { get; set; }
-        public int BestellteMenge { get; set; }
-        public decimal VereinbarterEinkaufsPreisInEuro { get; set; }
-        public DateTime AvisiertesLieferdatum  { get; set; }
+        public NachbestellungBeauftragen(Guid produktId, int bestellteMenge)
+        {
+            ProduktId = produktId;
+            BestellteMenge = bestellteMenge;
+        }
+
+        public readonly Guid ProduktId;
+        public readonly int BestellteMenge;
     }
 }

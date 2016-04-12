@@ -6,7 +6,7 @@ using Nancy;
 
 namespace Frontend
 {
-    public class MainModul : CqrsGmbh
+    public class MainModul : CqrsGmbH_Web
     {
         public MainModul():base("")
         {
@@ -15,7 +15,7 @@ namespace Frontend
         }
     }
 
-    public class VertriebsModul : CqrsGmbh
+    public class VertriebsModul : CqrsGmbH_Web
     {
         public VertriebsModul()
             : base("/vertrieb")
@@ -24,7 +24,7 @@ namespace Frontend
         }
     }
 
-    public class LogistikModul : CqrsGmbh
+    public class LogistikModul : CqrsGmbH_Web
     {
         public LogistikModul()
             : base("/logistik")

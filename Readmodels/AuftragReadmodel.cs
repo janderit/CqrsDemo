@@ -6,7 +6,6 @@ using Infrastruktur.Common;
 using Modell.Bestellwesen;
 using Modell.Kunden;
 using Resourcen.Bestellwesen;
-using Kunde = Resourcen.Kunden.Kunde;
 
 namespace Readmodels
 {

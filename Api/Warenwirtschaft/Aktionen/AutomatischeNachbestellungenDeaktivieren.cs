@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Infrastruktur.Messaging;
 
 namespace Api.Warenwirtschaft.Aktionen
 {
-    public sealed class AutomatischeNachbestellungenDeaktivieren
+    public struct AutomatischeNachbestellungenDeaktivieren : Command
     {
-        public Guid ProduktId { get; set; }
+        public AutomatischeNachbestellungenDeaktivieren(Guid produktId)
+        {
+            ProduktId = produktId;
+        }
+
+        public readonly Guid ProduktId;
     }
 }

@@ -37,13 +37,13 @@
   <ItemGroup>
     <Compile Include="Bestellwesen\Bestellung.cs" />
     <Compile Include="Bestellwesen\Bestellungsliste.cs" />
-    <Compile Include="Kunden\Kunde.cs" />
+    <Compile Include="Kunden\KundeInfo.cs" />
     <Compile Include="Kunden\Kundenliste.cs" />
     <Compile Include="Meta\Eintrag.cs" />
     <Compile Include="Meta\Protokoll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shop\Warenkorb.cs" />
-    <Compile Include="Warenwirtschaft\Produkt.cs" />
+    <Compile Include="Warenwirtschaft\ProduktInfo.cs" />
     <Compile Include="Warenwirtschaft\Produktliste.cs" />
   </ItemGroup>
   <ItemGroup />

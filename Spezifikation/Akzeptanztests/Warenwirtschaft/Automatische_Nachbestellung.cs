@@ -4,25 +4,24 @@ using NUnit.Framework;
 namespace Spezifikation.Akzeptanztests.Warenwirtschaft
 {
     [TestFixture]
-    public class Automatische_Nachbestellung : Akzeptanztest
+    public class Automatische_Nachbestellung : Spezifikation
     {
 
         [Test]
         public void Sinkt_die_Verfuegbarkeit_unter_eine_Mindestgrenze_so_wird_eine_Nachbestellung_ausgeloest()
         {
-            var api = TestInstanz();
-            var kunde = api.Kunden.KundeErfassen("Testkunde", "Anschrift");
-            var produkt = api.Warenwirtschaft.Einlisten("Produkt");
-            api.Warenwirtschaft.Nachbestellen(produkt, 200);
-            api.Warenwirtschaft.Wareneingang(produkt);
+            var testsystem = Erzeuge_TestSystem();
+            var kunde = TestKundeEinrichten(testsystem, "Testkunde", "Anschrift");
+            var produkt = TestproduktEinlisten_mit_Lagerbestand(testsystem, "Produkt", 200);
 
-            api.Warenwirtschaft.MindestVerfuegbarkeitDefinieren(produkt, 150, 75);
+            var mindestverfuegbarkeit = 150;
+            var mindestbestellmenge = 75;
+            MindestverfuegbarkeitDefinieren(testsystem, produkt, mindestverfuegbarkeit, mindestbestellmenge);
 
-            var auftrag = api.Bestellwesen.AuftragErfassen(kunde, 100, produkt);
+            var auftrag = Neue_AuftragsId(testsystem);
+            AuftragErfassen(testsystem, auftrag, kunde, produkt, 100);
 
-            api.Warenwirtschaft.Produkt(produkt).Verfuegbar.Should().Be(175);
+            ProduktAbrufen(testsystem, produkt).Verfuegbar.Should().Be(175);
         }
-
-
     }
 }

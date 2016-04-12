@@ -18,21 +18,21 @@ namespace Host
 	partial class CqrsHost
 	{
 
-		private void Handle(Command command, KundeErfassen aktion, UnitOfWork unitOfWork)
+		private void Handle(CommandEnvelope commandEnvelope, KundeErfassen aktion, UnitOfWork unitOfWork)
 		{
             var kunde = new KundeRepository(unitOfWork).Retrieve(aktion.KundenId);
 		    var warenkorb = new WarenkorbRepository(unitOfWork).Retrieve(Guid.NewGuid());
 		    kunde.Erfassen(aktion.Name, aktion.Anschrift, warenkorb);
 		}
 
-		private void Handle(Command command, AnschriftAendern aktion, UnitOfWork unitOfWork)
+		private void Handle(CommandEnvelope commandEnvelope, AnschriftAendern aktion, UnitOfWork unitOfWork)
 		{
             var kunde = new KundeRepository(unitOfWork).Retrieve(aktion.KundenId);
 			kunde.AnschriftAendern(aktion.NeueAnschrift);
 			unitOfWork.Commit();
 		}
 
-		private void Handle(Command command, AuftragErfassen aktion, UnitOfWork unitOfWork)
+		private void Handle(CommandEnvelope commandEnvelope, AuftragErfassen aktion, UnitOfWork unitOfWork)
 		{
 		    var auftrag = new AuftragRepository(unitOfWork).Retrieve(aktion.AuftragsId);
             var produkt = new ProduktRepository(unitOfWork).Retrieve(aktion.Produkt);
@@ -41,7 +41,7 @@ namespace Host
 			auftrag.Erfassen(aktion.AuftragsId, produkt, aktion.Menge, kunde);
 		}
 
-		private void Handle(Command command, AuftragAusfuehren aktion, UnitOfWork unitOfWork)
+		private void Handle(CommandEnvelope commandEnvelope, AuftragAusfuehren aktion, UnitOfWork unitOfWork)
 		{
             var auftrag = new AuftragRepository(unitOfWork).Retrieve(aktion.AuftragId);
             var produkt = new ProduktRepository(unitOfWork).Retrieve(auftrag.Produkt);
@@ -50,55 +50,55 @@ namespace Host
 		}
 
 
-		private void Handle(Command command, ProduktEinlisten aktion, UnitOfWork unitOfWork)
+		private void Handle(CommandEnvelope commandEnvelope, ProduktEinlisten aktion, UnitOfWork unitOfWork)
 		{
             var produkt = new ProduktRepository(unitOfWork).Retrieve(aktion.ProduktId);
 			produkt.Einlisten(aktion.Bezeichnung);
 		}
 
-		private void Handle(Command command, NachbestellungBeauftragen aktion, UnitOfWork unitOfWork)
+		private void Handle(CommandEnvelope commandEnvelope, NachbestellungBeauftragen aktion, UnitOfWork unitOfWork)
 		{
             var produkt = new ProduktRepository(unitOfWork).Retrieve(aktion.ProduktId);
 			produkt.Nachbestellen(aktion.BestellteMenge);
 		}
 
-		private void Handle(Command command, WareneingangVerbuchen aktion, UnitOfWork unitOfWork)
+		private void Handle(CommandEnvelope commandEnvelope, WareneingangVerbuchen aktion, UnitOfWork unitOfWork)
 		{
             var produkt = new ProduktRepository(unitOfWork).Retrieve(aktion.ProduktId);
 			produkt.Wareneingang();
 		}
 
-		private void Handle(Command command, MindestVerfuegbarkeitDefinieren aktion, UnitOfWork unitOfWork)
+		private void Handle(CommandEnvelope commandEnvelope, MindestVerfuegbarkeitDefinieren aktion, UnitOfWork unitOfWork)
 		{
             var produkt = new ProduktRepository(unitOfWork).Retrieve(aktion.ProduktId);
 			produkt.MindestVerfuegbarkeitDefinieren(aktion.MindestVerfuegbarkeit, aktion.MindestBestellmenge);
 		}
 
-		private void Handle(Command command, AutomatischeNachbestellungenDeaktivieren aktion, UnitOfWork unitOfWork)
+		private void Handle(CommandEnvelope commandEnvelope, AutomatischeNachbestellungenDeaktivieren aktion, UnitOfWork unitOfWork)
 		{
             var produkt = new ProduktRepository(unitOfWork).Retrieve(aktion.ProduktId);
 			produkt.AutomatischeNachbestellungenDeaktivieren();
 		}
 
-        private void Handle(Command command, ArtikelZuWarenkorbHinzufuegen aktion, UnitOfWork unitOfWork)
+        private void Handle(CommandEnvelope commandEnvelope, ArtikelZuWarenkorbHinzufuegen aktion, UnitOfWork unitOfWork)
         {
             var warenkorb = new WarenkorbRepository(unitOfWork).Retrieve(aktion.Warenkorb);
             warenkorb.FuegeHinzu(aktion.Produkt, aktion.Menge);
         }
 
-        private void Handle(Command command, ArtikelAusWarenkorbEntfernen aktion, UnitOfWork unitOfWork)
+        private void Handle(CommandEnvelope commandEnvelope, ArtikelAusWarenkorbEntfernen aktion, UnitOfWork unitOfWork)
         {
             var warenkorb = new WarenkorbRepository(unitOfWork).Retrieve(aktion.Warenkorb);
             warenkorb.Entfernen(aktion.Zeile);
         }
 
-        private void Handle(Command command, WarenkorbLeeren aktion, UnitOfWork unitOfWork)
+        private void Handle(CommandEnvelope commandEnvelope, WarenkorbLeeren aktion, UnitOfWork unitOfWork)
         {
             var warenkorb = new WarenkorbRepository(unitOfWork).Retrieve(aktion.Warenkorb);
             warenkorb.Leeren();
         }
 
-        private void Handle(Command command, WarenkorbBestellen aktion, UnitOfWork unitOfWork)
+        private void Handle(CommandEnvelope commandEnvelope, WarenkorbBestellen aktion, UnitOfWork unitOfWork)
         {
             var warenkorb = new WarenkorbRepository(unitOfWork).Retrieve(aktion.Warenkorb);
             var auftrags_repo = new AuftragRepository(unitOfWork);

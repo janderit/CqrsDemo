@@ -26,6 +26,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -73,7 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bestellwesen\Bestellwesenmodul.cs" />
-    <Compile Include="CqrsGmbh.cs" />
+    <Compile Include="CqrsGmbH_Web.cs" />
     <Compile Include="Kunden\Kundenmodul.cs" />
     <Compile Include="MainModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

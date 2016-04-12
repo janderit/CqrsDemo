@@ -8,9 +8,9 @@ namespace Resourcen.Warenwirtschaft
     {
         public Produktliste()
         {
-            Produkte=new List<Produkt>();
+            Produkte=new List<ProduktInfo>();
         }
 
-        public List<Produkt>  Produkte { get; set; }
+        public List<ProduktInfo>  Produkte { get; set; }
     }
 }

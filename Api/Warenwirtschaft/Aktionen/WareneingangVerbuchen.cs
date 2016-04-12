@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Infrastruktur.Messaging;
 
 namespace Api.Warenwirtschaft.Aktionen
 {
-    public sealed class WareneingangVerbuchen
+    public struct WareneingangVerbuchen : Command
     {
-        public Guid ProduktId { get; set; }
+        public WareneingangVerbuchen(Guid produktId)
+        {
+            ProduktId = produktId;
+        }
+
+        public readonly Guid ProduktId;
     }
 }

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Infrastruktur.Messaging;
 
 namespace Api.Warenwirtschaft.Abfragen
 {
-    public sealed class ProduktlisteAbfrage
+    public struct ProduktlisteAbfrage : Query
     {
     }
 }

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Api;
 using FluentAssertions;
 using Infrastruktur.Common;
 using NUnit.Framework;
@@ -10,20 +7,19 @@ using NUnit.Framework;
 namespace Spezifikation.Akzeptanztests
 {
     [TestFixture]
-    public class Bestellwesen : Akzeptanztest
+    public class Bestellwesen : Spezifikation
     {
-
         [Test]
         public void Ein_Auftrag_wird_als_offene_Bestellung_gefuehrt()
         {
-            var api = TestInstanz();
-            var kunde = api.Kunden.KundeErfassen("Testkunde", "Anschrift");
-            var produkt = api.Warenwirtschaft.Einlisten("Produkt");
-            api.Warenwirtschaft.Nachbestellen(produkt, 20);
-            api.Warenwirtschaft.Wareneingang(produkt);
+            var testsystem = Erzeuge_TestSystem();
+            var kunde = TestKundeEinrichten(testsystem, "Testkunde", "Anschrift");
+            var produkt = TestproduktEinlisten_mit_Lagerbestand(testsystem, "Produkt", 20);
 
-            var auftrag = api.Bestellwesen.AuftragErfassen(kunde, 3, produkt);
-            var bestellungen = api.Bestellwesen.OffeneBestellungen().Bestellungen;
+            var menge = 3;
+            var auftrag = Neue_AuftragsId(testsystem);
+            AuftragErfassen(testsystem, auftrag, kunde, produkt, menge);
+            var bestellungen = OffeneBestellungen(testsystem);
             bestellungen.Should().NotBeNull();
             bestellungen.Should().HaveCount(1);
 
@@ -31,21 +27,20 @@ namespace Spezifikation.Akzeptanztests
             bestellung.Id.Should().Be(auftrag);
             bestellung.Kunde.Should().Be(kunde);
             bestellung.Produkt.Should().Be(produkt);
-            bestellung.Menge.Should().Be(3);
+            bestellung.Menge.Should().Be(menge);
             bestellung.Erfuellt.Should().Be(false);
         }
 
         [Test]
         public void Die_Bestellung_enthaelt_Kunden_und_Produktnamen_als_Text()
         {
-            var api = TestInstanz();
-            var kunde = api.Kunden.KundeErfassen("Testkunde", "Anschrift");
-            var produkt = api.Warenwirtschaft.Einlisten("Produkt");
-            api.Warenwirtschaft.Nachbestellen(produkt, 20);
-            api.Warenwirtschaft.Wareneingang(produkt);
+            var testsystem = Erzeuge_TestSystem();
+            var kunde = TestKundeEinrichten(testsystem, "Testkunde", "Anschrift");
+            var produkt = TestproduktEinlisten_mit_Lagerbestand(testsystem, "Produkt", 20);
 
-            api.Bestellwesen.AuftragErfassen(kunde, 3, produkt);
-            var bestellung = api.Bestellwesen.OffeneBestellungen().Bestellungen.Single();
+            var auftrag = Neue_AuftragsId(testsystem);
+            AuftragErfassen(testsystem, auftrag, kunde, produkt, 3);
+            var bestellung = OffeneBestellungen(testsystem).Single();
             bestellung.Kundenname.Should().Be("Testkunde");
             bestellung.Produktname.Should().Be("Produkt");
         }
@@ -53,48 +48,47 @@ namespace Spezifikation.Akzeptanztests
         [Test]
         public void Nach_der_Disposition_ist_der_Auftrag_erfuellt()
         {
-            var api = TestInstanz();
-            var kunde = api.Kunden.KundeErfassen("Testkunde", "Anschrift");
-            var produkt = api.Warenwirtschaft.Einlisten("Produkt");
-            api.Warenwirtschaft.Nachbestellen(produkt, 20);
-            api.Warenwirtschaft.Wareneingang(produkt);
-            var auftrag = api.Bestellwesen.AuftragErfassen(kunde, 3, produkt);
-            api.Bestellwesen.AuftragAusfuehren(auftrag);
-            var bestellungen = api.Bestellwesen.OffeneBestellungen().Bestellungen;
+            var testsystem = Erzeuge_TestSystem();
+            var kunde = TestKundeEinrichten(testsystem, "Testkunde", "Anschrift");
+            var produkt = TestproduktEinlisten_mit_Lagerbestand(testsystem, "Produkt", 20);
+
+            var auftrag = Neue_AuftragsId(testsystem);
+            AuftragErfassen(testsystem, auftrag, kunde, produkt, 3);
+            AuftragAusfuehren(testsystem, auftrag);
+            var bestellungen = OffeneBestellungen(testsystem);
             bestellungen.Should().BeEmpty();
         }
 
         [Test]
         public void Eine_Bestellung_erfordert_eine_positive_Mengenangabe()
         {
-            var api = TestInstanz();
-            var kunde = api.Kunden.KundeErfassen("Testkunde", "Anschrift");
-            var produkt = api.Warenwirtschaft.Einlisten("Produkt");
-            api.Warenwirtschaft.Nachbestellen(produkt, 20);
-            api.Warenwirtschaft.Wareneingang(produkt);
-            Action action = () => api.Bestellwesen.AuftragErfassen(kunde, 0, produkt);
+            var testsystem = Erzeuge_TestSystem();
+            var kunde = TestKundeEinrichten(testsystem, "Testkunde", "Anschrift");
+            var produkt = TestproduktEinlisten_mit_Lagerbestand(testsystem, "Produkt", 20);
+
+            Action action = () => AuftragErfassen(testsystem, Neue_AuftragsId(testsystem), kunde, produkt, 0);
             action.ShouldThrow<VorgangNichtAusgefuehrt>();
         }
 
         [Test]
         public void Eine_Bestellung_erfordert_die_Angabe_des_Produkts()
         {
-            var api = TestInstanz();
-            var kunde = api.Kunden.KundeErfassen("Testkunde", "Anschrift");
-            var produkt = Guid.NewGuid();
-            Action action = () => api.Bestellwesen.AuftragErfassen(kunde, 20, produkt);
+            var testsystem = Erzeuge_TestSystem();
+            var kunde = TestKundeEinrichten(testsystem, "Testkunde", "Anschrift");
+
+            var produkt = Neue_ProduktId(testsystem);
+            Action action = () => AuftragErfassen(testsystem, Neue_AuftragsId(testsystem), kunde, produkt, 20);
             action.ShouldThrow<VorgangNichtAusgefuehrt>();
         }
 
         [Test]
         public void Eine_Bestellung_erfordert_die_Angabe_des_Kunden()
         {
-            var api = TestInstanz();
-            var kunde = Guid.NewGuid();
-            var produkt = api.Warenwirtschaft.Einlisten("Produkt");
-            api.Warenwirtschaft.Nachbestellen(produkt, 20);
-            api.Warenwirtschaft.Wareneingang(produkt);
-            Action action = () => api.Bestellwesen.AuftragErfassen(kunde, 20, produkt);
+            var testsystem = Erzeuge_TestSystem();
+            var kunde = Neue_KundenId(testsystem);
+            var produkt = TestproduktEinlisten_mit_Lagerbestand(testsystem, "Produkt", 20);
+
+            Action action = () => AuftragErfassen(testsystem, Neue_AuftragsId(testsystem), kunde, produkt, 20);
             action.ShouldThrow<VorgangNichtAusgefuehrt>();
         }
 
@@ -102,12 +96,12 @@ namespace Spezifikation.Akzeptanztests
         [Test]
         public void Eine_Auftragsannahme_ist_bei_unzureichender_Verfuegbarkeit_des_Produkts_nicht_moeglich()
         {
-            var api = TestInstanz();
-            var kunde = api.Kunden.KundeErfassen("Testkunde", "Anschrift");
-            var produkt = api.Warenwirtschaft.Einlisten("Produkt");
-            api.Warenwirtschaft.Nachbestellen(produkt, 5);
-            api.Warenwirtschaft.Wareneingang(produkt);
-            Action action = () => api.Bestellwesen.AuftragErfassen(kunde, 7, produkt);
+            var testsystem = Erzeuge_TestSystem();
+            var kunde = TestKundeEinrichten(testsystem, "Testkunde", "Anschrift");
+            var lagerbestand = 5;
+            var produkt = TestproduktEinlisten_mit_Lagerbestand(testsystem, "Produkt", lagerbestand);
+
+            Action action = () => AuftragErfassen(testsystem, Neue_AuftragsId(testsystem), kunde, produkt, 1 + lagerbestand);
             action.ShouldThrow<VorgangNichtAusgefuehrt>();
         }
 
@@ -115,16 +109,17 @@ namespace Spezifikation.Akzeptanztests
         [Test]
         public void Eine_Auftragsausfuehrung_ist_bei_unzureichendem_Lagerbestand_des_Produkts_nicht_moeglich()
         {
-            var api = TestInstanz();
-            var kunde = api.Kunden.KundeErfassen("Testkunde", "Anschrift");
-            var produkt = api.Warenwirtschaft.Einlisten("Produkt");
-            api.Warenwirtschaft.Nachbestellen(produkt, 5);
-            api.Warenwirtschaft.Wareneingang(produkt);
-            api.Warenwirtschaft.Nachbestellen(produkt, 5);
-            var auftrag = api.Bestellwesen.AuftragErfassen(kunde, 7, produkt);
-            Action action = () => api.Bestellwesen.AuftragAusfuehren(auftrag);
+            var testsystem = Erzeuge_TestSystem();
+            var kunde = TestKundeEinrichten(testsystem, "Testkunde", "Anschrift");
+            var lagerbestand = 5;
+            var produkt = TestproduktEinlisten_mit_Lagerbestand(testsystem, "Produkt", lagerbestand);
+            //WareneingangVerzeichnen(testsystem, produkt);
+            WareNachbestellen(testsystem, produkt, 3);
+
+            var auftrag = Neue_AuftragsId(testsystem);
+            AuftragErfassen(testsystem, auftrag, kunde, produkt, 1 + lagerbestand);
+            Action action = () => AuftragAusfuehren(testsystem, auftrag);
             action.ShouldThrow<VorgangNichtAusgefuehrt>();
         }
-
     }
 }

@@ -4,7 +4,7 @@ using Nancy.Responses;
 
 namespace Frontend.Warenwirtschaft
 {
-    public class Warenwirtschaftsmodul : CqrsGmbh
+    public class Warenwirtschaftsmodul : CqrsGmbH_Web
     {
         public Warenwirtschaftsmodul()
             : base("/warenwirtschaft")
@@ -16,7 +16,8 @@ namespace Frontend.Warenwirtschaft
                                      {
                                          try
                                          {
-                                             Api().Warenwirtschaft.Einlisten(Request.Form.bezeichnung);
+                                             var produkt = Guid.NewGuid();
+                                             Api().Warenwirtschaft.Einlisten(produkt, Request.Form.bezeichnung);
                                              return new RedirectResponse("/warenwirtschaft");
                                          }
                                          catch (VorgangNichtAusgefuehrt ex)
@@ -44,7 +45,7 @@ namespace Frontend.Warenwirtschaft
             {
                 try
                 {
-                    Api().Warenwirtschaft.Wareneingang(parameters.id);
+                    Api().Warenwirtschaft.WareneingangVerzeichnen(parameters.id);
                     return new RedirectResponse("/warenwirtschaft");
                 }
                 catch (VorgangNichtAusgefuehrt ex)
@@ -80,7 +81,7 @@ namespace Frontend.Warenwirtschaft
                     return View["fehler", ex.Message];
                 }
             };
-            
+
         }
 
     }
