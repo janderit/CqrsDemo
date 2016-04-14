@@ -34,12 +34,38 @@ namespace Host
 					   };
 		}
 
-		private Produktliste Handle(QueryEnvelope queryEnvelope, ProduktlisteAbfrage abfrage)
-		{
-			return new Produktliste { Produkte = ProduktProjektion.AlleIDs(_eventStore.History).Select(_produkte.Access).ToList() };
-		}
+        private Produktliste Handle(QueryEnvelope queryEnvelope, ProduktlisteAbfrage abfrage)
+        {
+            return new Produktliste { Produkte = AlleProduktInfos() };
+        }
 
-		private Bestellungenliste Handle(QueryEnvelope queryEnvelope, OffeneBestellungenAbfrage abfrage)
+	    private List<ProduktInfo> AlleProduktInfos()
+	    {
+	        var alle_produkt_ids = ProduktProjektion.AlleIDs(_eventStore.History);
+	        var produkte = alle_produkt_ids.Select(_ => _produkte.Access(_)).ToList();
+	        return produkte;
+	    }
+
+	    private ProduktlisteEx Handle(QueryEnvelope queryEnvelope, ProduktlisteExAbfrage abfrage)
+	    {
+	        var produkte = AlleProduktInfos()
+	            .Select(_ => new ProduktInfoEx
+	            {
+	                Id = _.Id,
+	                Bezeichnung = _.Bezeichnung,
+	                Verfuegbar = _lagerbestand.Verfuegbar_fuer(_.Id) - _auftraege.OffeneMenge_fuer(_.Id),
+                    LagerBestand = _lagerbestand.LagerBestand_fuer(_.Id)
+                })
+	            .ToList();
+            return new ProduktlisteEx { Produkte = produkte };
+        }
+
+        private Lagerbestandsliste Handle(QueryEnvelope queryEnvelope, LagerbestandsAbfrage abfrage)
+        {
+            return new Lagerbestandsliste { Bestand = _lagerbestand.Alle(abfrage.LagerId, ProduktProjektion.AlleIDs(_eventStore.History).ToList()) };
+        }
+
+        private Bestellungenliste Handle(QueryEnvelope queryEnvelope, OffeneBestellungenAbfrage abfrage)
 		{
 			var result = new Bestellungenliste { Bestellungen = AuftragProjektion.AlleIDs(_eventStore.History).Select(_auftraege.Access).Where(_=>!_.Erfuellt).ToList() };
 			foreach (var bestellung in result.Bestellungen)

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Api.Bestellwesen.Aktionen;
 using Api.Kunden.Aktionen;
 using Api.Warenkorb.Aktionen;
@@ -35,16 +32,15 @@ namespace Host
 		private void Handle(CommandEnvelope commandEnvelope, AuftragErfassen aktion, UnitOfWork unitOfWork)
 		{
 		    var auftrag = new AuftragRepository(unitOfWork).Retrieve(aktion.AuftragsId);
-            var produkt = new ProduktRepository(unitOfWork).Retrieve(aktion.Produkt);
             var kunde = new KundeRepository(unitOfWork).Retrieve(aktion.Kunde);
 
-			auftrag.Erfassen(aktion.AuftragsId, produkt, aktion.Menge, kunde);
+			auftrag.Erfassen(aktion.AuftragsId, aktion.Produkt, aktion.Menge, kunde);
 		}
 
 		private void Handle(CommandEnvelope commandEnvelope, AuftragAusfuehren aktion, UnitOfWork unitOfWork)
 		{
             var auftrag = new AuftragRepository(unitOfWork).Retrieve(aktion.AuftragId);
-            var produkt = new ProduktRepository(unitOfWork).Retrieve(auftrag.Produkt);
+            var produkt = new LagerRepository(unitOfWork).Retrieve(aktion.LagerId, auftrag.Produkt);
 
 			auftrag.Ausfuehren(produkt);
 		}
@@ -58,25 +54,25 @@ namespace Host
 
 		private void Handle(CommandEnvelope commandEnvelope, NachbestellungBeauftragen aktion, UnitOfWork unitOfWork)
 		{
-            var produkt = new ProduktRepository(unitOfWork).Retrieve(aktion.ProduktId);
+            var produkt = new LagerRepository(unitOfWork).Retrieve(aktion.LagerId, aktion.ProduktId);
 			produkt.Nachbestellen(aktion.BestellteMenge);
 		}
 
 		private void Handle(CommandEnvelope commandEnvelope, WareneingangVerbuchen aktion, UnitOfWork unitOfWork)
 		{
-            var produkt = new ProduktRepository(unitOfWork).Retrieve(aktion.ProduktId);
+            var produkt = new LagerRepository(unitOfWork).Retrieve(aktion.LagerId, aktion.ProduktId);
 			produkt.Wareneingang();
 		}
 
 		private void Handle(CommandEnvelope commandEnvelope, MindestVerfuegbarkeitDefinieren aktion, UnitOfWork unitOfWork)
 		{
-            var produkt = new ProduktRepository(unitOfWork).Retrieve(aktion.ProduktId);
+            var produkt = new LagerRepository(unitOfWork).Retrieve(aktion.LagerId, aktion.ProduktId);
 			produkt.MindestVerfuegbarkeitDefinieren(aktion.MindestVerfuegbarkeit, aktion.MindestBestellmenge);
 		}
 
 		private void Handle(CommandEnvelope commandEnvelope, AutomatischeNachbestellungenDeaktivieren aktion, UnitOfWork unitOfWork)
 		{
-            var produkt = new ProduktRepository(unitOfWork).Retrieve(aktion.ProduktId);
+            var produkt = new LagerRepository(unitOfWork).Retrieve(aktion.LagerId, aktion.ProduktId);
 			produkt.AutomatischeNachbestellungenDeaktivieren();
 		}
 
@@ -108,7 +104,7 @@ namespace Host
                 {
                     var id = Guid.NewGuid();
                     var auftrag = auftrags_repo.Retrieve(id);
-                    auftrag.Erfassen(id, produkt_repo.Retrieve(produkt), menge, kunde_repo.Retrieve(kunde));
+                    auftrag.Erfassen(id, produkt, menge, kunde_repo.Retrieve(kunde));
                 });
         }
 

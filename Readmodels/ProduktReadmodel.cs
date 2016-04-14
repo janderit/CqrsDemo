@@ -17,19 +17,14 @@ namespace Readmodels
             _history = history;
         }
 
-        public ProduktInfo Access(Guid auftrag)
+        public ProduktInfo Access(Guid produkt)
         {
-            var history = _history(auftrag).ToList();
-            var projektor = new ProduktProjektion(auftrag, () => history);
+            var history = _history(produkt).ToList();
+            var projektor = new ProduktProjektion(produkt, () => history);
             return new ProduktInfo
             {
-                Id = auftrag,
-                Bezeichnung = projektor.Bezeichnung,
-                LagerBestand = projektor.Lagerbestand,
-                Verfuegbar = projektor.Verfuegbar,
-                Nachbestellt = projektor.Nachbestellt,
-                MengeImZulauf = projektor.MengeImZulauf,
-                AutomatischeNachbestellungen = projektor.AutomatischeNachbestellungen
+                Id = produkt,
+                Bezeichnung = projektor.Bezeichnung
             };
         }
     }

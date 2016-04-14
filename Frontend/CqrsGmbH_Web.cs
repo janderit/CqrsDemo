@@ -2,6 +2,7 @@
 using Api;
 using Host;
 using Infrastruktur.EventSourcing;
+using Modell_shared;
 using Nancy;
 
 namespace Frontend
@@ -33,8 +34,8 @@ namespace Frontend
             api.Kunden.KundeErfassen(Guid.NewGuid(), "Jens Mustermann", "Musterstrasse 10, 12345 Musterstadt");
             var honig = Guid.NewGuid();
             api.Warenwirtschaft.Einlisten(honig, "Honig");
-            api.Warenwirtschaft.Nachbestellen(honig, 100);
-            api.Warenwirtschaft.WareneingangVerzeichnen(honig);
+            api.Warenwirtschaft.Nachbestellen(Lagerliste.Hamburg.Id, honig, 100);
+            api.Warenwirtschaft.WareneingangVerzeichnen(Lagerliste.Hamburg.Id, honig);
         }
 
         protected CqrsGmbH Api()

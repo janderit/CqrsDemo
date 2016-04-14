@@ -7,12 +7,13 @@ namespace Modell.Warenwirtschaft
 {
     public class WarenWurdenAusgeliefert
     {
+        public Guid Lager;
         public Guid Produkt;
         public int Menge;
 
         public override string ToString()
         {
-            return "Waren wurden ausgeliefert (" + Menge + "x {ID:" + Produkt + "}).";
+            return "Waren wurden ab {ID:" + Lager + "} ausgeliefert (" + Menge + "x {ID:" + Produkt + "}).";
         }
     }
 }

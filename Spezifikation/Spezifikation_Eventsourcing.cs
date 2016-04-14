@@ -4,6 +4,7 @@ using System.Linq;
 using Api;
 using Host;
 using Infrastruktur.EventSourcing;
+using Modell_shared;
 using Resourcen.Bestellwesen;
 using Resourcen.Kunden;
 using Resourcen.Shop;
@@ -13,6 +14,9 @@ namespace Spezifikation
 {
     public abstract class Spezifikation_Eventsourcing
     {
+
+        protected static readonly Guid TestLager = Lagerliste.Hamburg.Id;
+
         protected CqrsGmbH Erzeuge_TestSystem(Action<EventStore> hook = null)
         {
             var store = new InMemoryEventStore();
@@ -72,12 +76,12 @@ namespace Spezifikation
 
         protected static void WareneingangVerzeichnen(CqrsGmbH testsystem, Guid produkt)
         {
-            testsystem.Warenwirtschaft.WareneingangVerzeichnen(produkt);
+            testsystem.Warenwirtschaft.WareneingangVerzeichnen(TestLager, produkt);
         }
 
         protected static void WareNachbestellen(CqrsGmbH testsystem, Guid produkt, int menge)
         {
-            testsystem.Warenwirtschaft.Nachbestellen(produkt, menge);
+            testsystem.Warenwirtschaft.Nachbestellen(TestLager, produkt, menge);
         }
 
         protected static void ProduktEinlisten(CqrsGmbH testsystem, Guid produktid, string bezeichnung)
@@ -87,7 +91,7 @@ namespace Spezifikation
 
         protected static void AuftragAusfuehren(CqrsGmbH testsystem, Guid auftrag)
         {
-            testsystem.Bestellwesen.AuftragAusfuehren(auftrag);
+            testsystem.Bestellwesen.AuftragAusfuehren(auftrag, TestLager);
         }
 
         protected static WarenkorbInfo WarenkorbAbrufen(CqrsGmbH testsystem, Guid kunde)
@@ -110,6 +114,16 @@ namespace Spezifikation
             return testsystem.Warenwirtschaft.ProduktAbrufen(id);
         }
 
+        protected static ProduktInfoEx ProduktExAbrufen(CqrsGmbH testsystem, Guid id)
+        {
+            return testsystem.Warenwirtschaft.ProduktExAbrufen(id);
+        }
+
+        protected static LagerbestandInfo LagerbestandAbrufen(CqrsGmbH testsystem, Guid produkt)
+        {
+            return testsystem.Warenwirtschaft.LagerbestandAbrufen(TestLager, produkt);
+        }
+
         protected static List<ProduktInfo> ProduktlisteAbrufen(CqrsGmbH testsystem)
         {
             return testsystem.Warenwirtschaft.Produktliste().Produkte;
@@ -118,7 +132,7 @@ namespace Spezifikation
         protected static void MindestverfuegbarkeitDefinieren(CqrsGmbH testsystem, Guid produkt, int mindestverfuegbarkeit,
             int mindestbestellmenge)
         {
-            testsystem.Warenwirtschaft.MindestVerfuegbarkeitDefinieren(produkt, mindestverfuegbarkeit, mindestbestellmenge);
+            testsystem.Warenwirtschaft.MindestVerfuegbarkeitDefinieren(TestLager, produkt, mindestverfuegbarkeit, mindestbestellmenge);
         }
     }
 }

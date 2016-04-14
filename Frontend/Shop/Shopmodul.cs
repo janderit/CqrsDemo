@@ -13,7 +13,7 @@ namespace Frontend.Shop
                 parameters =>
                 View[
                     "produktliste",
-                    new {Kunde = (Guid) parameters.knr, Produkte = Api().Warenwirtschaft.Produktliste().Produkte}];
+                    new {Kunde = (Guid) parameters.knr, Produkte = Api().Warenwirtschaft.ProduktlisteEx().Produkte}];
 
             Get["/{knr}/cart"] =
                 parameters =>

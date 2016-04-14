@@ -7,11 +7,12 @@ namespace Modell.Warenwirtschaft
 {
     public sealed class AutomatischeNachbestellungenWurdenAktiviert
     {
+        public Guid Lager;
         public Guid Produkt;
 
         public override string ToString()
         {
-            return "Für das Produkt {ID:" + Produkt + "} wurden automatische Nachbestellungen aktiviert.";
+            return "Für das Produkt {ID:" + Produkt + "} wurden automatische Nachbestellungen an {ID:" + Lager + "} aktiviert.";
         }
     }
 }

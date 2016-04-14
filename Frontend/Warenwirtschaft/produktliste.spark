@@ -3,18 +3,20 @@
 <div>
 <table>
 <tr><th>Bezeichnung</th><th>Bestand</th><th>Verf&uuml;gbar</th></tr>
-  <tr each="var produkt in Model.Produkte">
+  <tr each="var produkt in Model.Produktliste.Produkte">
 	<td>${H(produkt.Bezeichnung)}</td>
-    <td>${produkt.LagerBestand}</td>
-    <td>${produkt.Verfuegbar}</td>
-	<td if="!produkt.Nachbestellt"><a href="${produkt.Id}/bestellen">Nachbestellen</a></td>
-	<td if="produkt.Nachbestellt"><a href="${produkt.Id}/wareneingang">Wareneingang</a></td>
-	<td if="produkt.AutomatischeNachbestellungen">automatische Nachbestellungen aktiv - <a href="${produkt.Id}/automatikaus">deaktivieren</a></td>
-	<td if="!produkt.AutomatischeNachbestellungen"><a href="${produkt.Id}/automatikan">automatische Nachbestellungen...</a></td>
+  <td>${produkt.LagerBestand}</td>
+  <td>${produkt.Verfuegbar}</td>
   </tr>
 </table>
 </div>
 <p>
 <div>
 <a href="einlisten">Neues Produkt einlisten...</a>
+</div>
+<p>
+<div>
+  Lagerstandorte: <span each="var standort in Model.Lagerliste">
+    <a href="${standort.Id}/">${standort.Bezeichnung}</a>
+  </span>
 </div>

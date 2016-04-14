@@ -18,11 +18,12 @@ namespace Spezifikation.Akzeptanztests.Warenwirtschaft
 
             WareNachbestellen(testsystem, id, 20);
 
-            var produkt = ProduktAbrufen(testsystem, id);
-            produkt.LagerBestand.Should().Be(0);
-            produkt.MengeImZulauf.Should().Be(20);
-            produkt.Verfuegbar.Should().Be(20);
-            produkt.Nachbestellt.Should().Be(true);
+            var lagerbestand = LagerbestandAbrufen(testsystem, id);
+            lagerbestand.LagerBestand.Should().Be(0);
+            lagerbestand.MengeImZulauf.Should().Be(20);
+            lagerbestand.Nachbestellt.Should().Be(true);
+
+            ProduktExAbrufen(testsystem, id).Verfuegbar.Should().Be(20);
         }
 
         [Test]
@@ -35,17 +36,6 @@ namespace Spezifikation.Akzeptanztests.Warenwirtschaft
             Action action = () => WareNachbestellen(testsystem, id, 0);
 
             action.ShouldThrow<VorgangNichtAusgefuehrt>();
-        }
-
-        [Test]
-        public void Eine_Nachbestellung_ist_nur_fuer_gelistete_Produkte_moeglich()
-        {
-            var testsystem = Erzeuge_TestSystem();
-            var id = Neue_ProduktId(testsystem);
-
-            Action action = () => WareNachbestellen(testsystem, id, 20);
-
-            action.ShouldThrow<NichtGefunden>();
         }
     }
 }

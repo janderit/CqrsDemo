@@ -25,9 +25,9 @@ namespace Api.Bestellwesen
             _port.Handle(new CommandEnvelope(new AuftragErfassen(auftragsId: auftrag, kunde: kunde, menge: menge, produkt: produkt)));
         }
 
-        public void AuftragAusfuehren(Guid auftrag)
+        public void AuftragAusfuehren(Guid auftrag, Guid lagerId)
         {
-            _port.Handle(new CommandEnvelope(new AuftragAusfuehren(auftragId: auftrag)));
+            _port.Handle(new CommandEnvelope(new AuftragAusfuehren(auftragId: auftrag, lagerId: lagerId)));
         }
 
     }

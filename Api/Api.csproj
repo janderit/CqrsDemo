@@ -59,7 +59,9 @@
     <Compile Include="Warenkorb\Aktionen\WarenkorbLeeren.cs" />
     <Compile Include="Warenkorb\WarenkorbApi.cs" />
     <Compile Include="Warenkorb\WarenkorbProxy.cs" />
+    <Compile Include="Warenwirtschaft\Abfragen\Lagerbestandsabfrage.cs" />
     <Compile Include="Warenwirtschaft\Abfragen\ProduktlisteAbfrage.cs" />
+    <Compile Include="Warenwirtschaft\Abfragen\ProduktlisteExAbfrage.cs" />
     <Compile Include="Warenwirtschaft\Aktionen\AutomatischeNachbestellungenDeaktivieren.cs" />
     <Compile Include="Warenwirtschaft\Aktionen\MindestVerfuegbarkeitDefinieren.cs" />
     <Compile Include="Warenwirtschaft\Aktionen\NachbestellungBeauftragen.cs" />

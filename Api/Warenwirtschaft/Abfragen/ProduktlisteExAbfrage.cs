@@ -2,9 +2,7 @@
 
 namespace Api.Warenwirtschaft.Abfragen
 {
-    public struct ProduktlisteAbfrage : Query
+    public struct ProduktlisteExAbfrage : Query
     {
     }
 }
-
-

@@ -1,5 +1,6 @@
 ﻿using System;
 using Infrastruktur.Common;
+using Modell_shared;
 using Nancy.Responses;
 
 namespace Frontend.Warenwirtschaft
@@ -9,7 +10,7 @@ namespace Frontend.Warenwirtschaft
         public Warenwirtschaftsmodul()
             : base("/warenwirtschaft")
         {
-            Get["/"] = parameters => View["produktliste", Api().Warenwirtschaft.Produktliste()];
+            Get["/"] = parameters => View["produktliste", new {Produktliste = Api().Warenwirtschaft.ProduktlisteEx() , Lagerliste = Lagerliste.Alle}];
 
             Get["/einlisten"] = parameters => View["einlisten", new {  }];
             Post["/einlisten"] = parameters =>
@@ -26,13 +27,15 @@ namespace Frontend.Warenwirtschaft
                                          }
                                      };
 
-            Get["/{id}/bestellen"] = parameters => View["nachbestellung", new { }];
-            Post["/{id}/bestellen"] = parameters =>
+            Get["/{lager}"] = parameters => View["lagerbestand", Api().Warenwirtschaft.LagerbestandslisteAbrufen(parameters.lager)];
+
+            Get["/{lager}/{id}/bestellen"] = parameters => View["nachbestellung", new { }];
+            Post["/{lager}/{id}/bestellen"] = parameters =>
             {
                 try
                 {
-                    Api().Warenwirtschaft.Nachbestellen(parameters.id, Request.Form.menge);
-                    return new RedirectResponse("/warenwirtschaft/");
+                    Api().Warenwirtschaft.Nachbestellen(parameters.lager, parameters.id, Request.Form.menge);
+                    return new RedirectResponse("/warenwirtschaft/" + parameters.lager + "/");
                 }
                 catch (VorgangNichtAusgefuehrt ex)
                 {
@@ -40,13 +43,13 @@ namespace Frontend.Warenwirtschaft
                 }
             };
 
-            Get["/{id}/wareneingang"] = parameters => View["wareneingang", new { }];
-            Post["/{id}/wareneingang"] = parameters =>
+            Get["/{lager}/{id}/wareneingang"] = parameters => View["wareneingang", new { }];
+            Post["/{lager}/{id}/wareneingang"] = parameters =>
             {
                 try
                 {
-                    Api().Warenwirtschaft.WareneingangVerzeichnen(parameters.id);
-                    return new RedirectResponse("/warenwirtschaft/");
+                    Api().Warenwirtschaft.WareneingangVerzeichnen(parameters.lager, parameters.id);
+                    return new RedirectResponse("/warenwirtschaft/" + parameters.lager + "/");
                 }
                 catch (VorgangNichtAusgefuehrt ex)
                 {
@@ -54,13 +57,13 @@ namespace Frontend.Warenwirtschaft
                 }
             };
 
-            Get["/{id}/automatikan"] = parameters => View["automatischenachbestellungen", new { }];
-            Post["/{id}/automatikan"] = parameters =>
+            Get["/{lager}/{id}/automatikan"] = parameters => View["automatischenachbestellungen", new { }];
+            Post["/{lager}/{id}/automatikan"] = parameters =>
             {
                 try
                 {
-                    Api().Warenwirtschaft.MindestVerfuegbarkeitDefinieren(parameters.id, Request.Form.mindestverfuegbarkeit, Request.Form.mindestbestellmenge);
-                    return new RedirectResponse("/warenwirtschaft/");
+                    Api().Warenwirtschaft.MindestVerfuegbarkeitDefinieren(parameters.lager, parameters.id, Request.Form.mindestverfuegbarkeit, Request.Form.mindestbestellmenge);
+                    return new RedirectResponse("/warenwirtschaft/" + parameters.lager + "/");
                 }
                 catch (VorgangNichtAusgefuehrt ex)
                 {
@@ -68,13 +71,13 @@ namespace Frontend.Warenwirtschaft
                 }
             };
 
-            Get["/{id}/automatikaus"] = parameters => View["automatikaus", new { }];
-            Post["/{id}/automatikaus"] = parameters =>
+            Get["/{lager}/{id}/automatikaus"] = parameters => View["automatikaus", new { }];
+            Post["/{lager}/{id}/automatikaus"] = parameters =>
             {
                 try
                 {
-                    Api().Warenwirtschaft.AutomatischeNachbestellungenDeaktivieren(parameters.id);
-                    return new RedirectResponse("/warenwirtschaft/");
+                    Api().Warenwirtschaft.AutomatischeNachbestellungenDeaktivieren(parameters.lager, parameters.id);
+                    return new RedirectResponse("/warenwirtschaft/" + parameters.lager + "/");
                 }
                 catch (VorgangNichtAusgefuehrt ex)
                 {

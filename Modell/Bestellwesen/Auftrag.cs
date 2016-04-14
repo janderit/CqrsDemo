@@ -36,20 +36,16 @@ namespace Modell.Bestellwesen
         }
 
 
-        public void Erfassen(Guid auftrag, Produkt produkt, int menge, Kunde kunde)
+        public void Erfassen(Guid auftrag, Guid produkt, int menge, Kunde kunde)
         {
             if (_zustand.Erfasst) return;
             if (menge<1) throw new VorgangNichtAusgefuehrt("Die Bestellmenge muß > 0 sein");
 
             kunde.AuftragsannahmePruefen();
-            if (!produkt.AuftragsannahmePruefen(menge)) throw new VorgangNichtAusgefuehrt("Die Bestellung überschreitet den verfügbaren Bestand.");
-
-            produkt.FuerAuftragReservieren(menge);
-
-            WurdeErfasst(auftrag, produkt.Id, menge, kunde.Id);
+            WurdeErfasst(auftrag, produkt, menge, kunde.Id);
         }
 
-        public void Ausfuehren(Produkt produkt)
+        public void Ausfuehren(Lagerposten produkt)
         {
             if (!_zustand.Erfasst) throw new NichtGefunden("Auftrag");
             if (_zustand.Erfuellt) return;

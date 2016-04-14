@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spezifikation", "Spezifikation\Spezifikation.csproj", "{6DE11970-794E-4A4D-BFDD-A19F5DD31197}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{D15758AF-061B-4C51-A008-8FA6DA1F9304}"
@@ -23,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{471D2D
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modell_shared", "Modell_shared\Modell_shared.csproj", "{FADA883E-B7C1-47B5-8AC2-21FE84FC3E79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +66,10 @@ Global
 		{50D5DBB3-856F-42C9-A788-3375BF06DA5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50D5DBB3-856F-42C9-A788-3375BF06DA5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50D5DBB3-856F-42C9-A788-3375BF06DA5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FADA883E-B7C1-47B5-8AC2-21FE84FC3E79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FADA883E-B7C1-47B5-8AC2-21FE84FC3E79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FADA883E-B7C1-47B5-8AC2-21FE84FC3E79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FADA883E-B7C1-47B5-8AC2-21FE84FC3E79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

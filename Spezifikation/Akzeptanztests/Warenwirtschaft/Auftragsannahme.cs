@@ -1,5 +1,6 @@
 using FluentAssertions;
 using NUnit.Framework;
+using Resourcen.Warenwirtschaft;
 
 namespace Spezifikation.Akzeptanztests.Warenwirtschaft
 {
@@ -17,8 +18,7 @@ namespace Spezifikation.Akzeptanztests.Warenwirtschaft
             var auftrag = Neue_AuftragsId(testsystem);
             AuftragErfassen(testsystem, auftrag, kunde, produkt, 7);
 
-            var produktinfo = ProduktAbrufen(testsystem, produkt);
-            produktinfo.Verfuegbar.Should().Be(13);
+            ProduktExAbrufen(testsystem, produkt).Verfuegbar.Should().Be(13);
         }
 
         [Test]
@@ -31,8 +31,7 @@ namespace Spezifikation.Akzeptanztests.Warenwirtschaft
             var auftrag = Neue_AuftragsId(testsystem);
             AuftragErfassen(testsystem, auftrag, kunde, produkt, 7);
 
-            var produktinfo = ProduktAbrufen(testsystem, produkt);
-            produktinfo.LagerBestand.Should().Be(20);
+            LagerbestandAbrufen(testsystem, produkt).LagerBestand.Should().Be(20);
         }
 
     }

@@ -1,0 +1,15 @@
+﻿<use master="cqrs" />
+<h2>Warenwirtschaft - Lagerbestand</h2>
+<div>
+<table>
+<tr><th>Bezeichnung</th><th>Bestand</th><th>Verf&uuml;gbar</th></tr>
+  <tr each="var produkt in Model.Bestand">
+	<td>${H(produkt.Produktbezeichnung)}</td>
+  <td>${produkt.LagerBestand}</td>
+	<td if="!produkt.Nachbestellt"><a href="${produkt.Produkt}/bestellen">Nachbestellen</a></td>
+	<td if="produkt.Nachbestellt"><a href="${produkt.Produkt}/wareneingang">Wareneingang</a></td>
+	<td if="produkt.AutomatischeNachbestellungen">automatische Nachbestellungen aktiv - <a href="${produkt.Produkt}/automatikaus">deaktivieren</a></td>
+	<td if="!produkt.AutomatischeNachbestellungen"><a href="${produkt.Produkt}/automatikan">automatische Nachbestellungen...</a></td>
+  </tr>
+</table>
+</div>

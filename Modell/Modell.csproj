@@ -52,6 +52,8 @@
     <Compile Include="Warenwirtschaft\LieferungIstEingegangen.cs" />
     <Compile Include="Warenwirtschaft\MindestBestellmengeWurdeDefiniert.cs" />
     <Compile Include="Warenwirtschaft\NachbestellungWurdeBeauftragt.cs" />
+    <Compile Include="Warenwirtschaft\Lagerposten.cs" />
+    <Compile Include="Warenwirtschaft\LagerProjektion.cs" />
     <Compile Include="Warenwirtschaft\ProduktWurdeEingelistet.cs" />
     <Compile Include="Kunden\AnschriftWurdeGeaendert.cs" />
     <Compile Include="Bestellwesen\AuftragProjektion.cs" />
@@ -64,7 +66,6 @@
     <Compile Include="Warenwirtschaft\ProduktProjektion.cs" />
     <Compile Include="Warenwirtschaft\ProduktRepository.cs" />
     <Compile Include="Warenwirtschaft\WarenWurdenAusgeliefert.cs" />
-    <Compile Include="Warenwirtschaft\WareWurdeDisponiert.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

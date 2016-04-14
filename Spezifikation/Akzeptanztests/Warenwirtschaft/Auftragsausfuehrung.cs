@@ -19,8 +19,7 @@ namespace Spezifikation.Akzeptanztests.Warenwirtschaft
             AuftragAusfuehren(testsystem, auftrag);
 
 
-            var produktinfo = ProduktAbrufen(testsystem, produkt);
-            produktinfo.LagerBestand.Should().Be(13);
+            LagerbestandAbrufen(testsystem, produkt).LagerBestand.Should().Be(13);
         }
 
         [Test]
@@ -34,8 +33,7 @@ namespace Spezifikation.Akzeptanztests.Warenwirtschaft
 
             AuftragAusfuehren(testsystem, auftrag);
 
-            var produktinfo = ProduktAbrufen(testsystem, produkt);
-            produktinfo.Verfuegbar.Should().Be(13);
+            ProduktExAbrufen(testsystem, produkt).Verfuegbar.Should().Be(13);
         }
 
 

@@ -8,11 +8,13 @@ namespace Api.Warenwirtschaft.Aktionen
 {
     public struct AutomatischeNachbestellungenDeaktivieren : Command
     {
-        public AutomatischeNachbestellungenDeaktivieren(Guid produktId)
+        public AutomatischeNachbestellungenDeaktivieren(Guid lagerId, Guid produktId)
         {
+            LagerId = lagerId;
             ProduktId = produktId;
         }
 
+        public readonly Guid LagerId;
         public readonly Guid ProduktId;
     }
 }

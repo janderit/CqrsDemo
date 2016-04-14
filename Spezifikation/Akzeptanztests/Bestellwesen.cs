@@ -71,17 +71,6 @@ namespace Spezifikation.Akzeptanztests
         }
 
         [Test]
-        public void Eine_Bestellung_erfordert_die_Angabe_des_Produkts()
-        {
-            var testsystem = Erzeuge_TestSystem();
-            var kunde = TestKundeEinrichten(testsystem, "Testkunde", "Anschrift");
-
-            var produkt = Neue_ProduktId(testsystem);
-            Action action = () => AuftragErfassen(testsystem, Neue_AuftragsId(testsystem), kunde, produkt, 20);
-            action.ShouldThrow<VorgangNichtAusgefuehrt>();
-        }
-
-        [Test]
         public void Eine_Bestellung_erfordert_die_Angabe_des_Kunden()
         {
             var testsystem = Erzeuge_TestSystem();
@@ -91,20 +80,6 @@ namespace Spezifikation.Akzeptanztests
             Action action = () => AuftragErfassen(testsystem, Neue_AuftragsId(testsystem), kunde, produkt, 20);
             action.ShouldThrow<VorgangNichtAusgefuehrt>();
         }
-
-
-        [Test]
-        public void Eine_Auftragsannahme_ist_bei_unzureichender_Verfuegbarkeit_des_Produkts_nicht_moeglich()
-        {
-            var testsystem = Erzeuge_TestSystem();
-            var kunde = TestKundeEinrichten(testsystem, "Testkunde", "Anschrift");
-            var lagerbestand = 5;
-            var produkt = TestproduktEinlisten_mit_Lagerbestand(testsystem, "Produkt", lagerbestand);
-
-            Action action = () => AuftragErfassen(testsystem, Neue_AuftragsId(testsystem), kunde, produkt, 1 + lagerbestand);
-            action.ShouldThrow<VorgangNichtAusgefuehrt>();
-        }
-
 
         [Test]
         public void Eine_Auftragsausfuehrung_ist_bei_unzureichendem_Lagerbestand_des_Produkts_nicht_moeglich()

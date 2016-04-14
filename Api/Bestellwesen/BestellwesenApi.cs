@@ -7,6 +7,6 @@ namespace Api.Bestellwesen
     {
         Bestellungenliste OffeneBestellungen();
         void AuftragErfassen(Guid auftrag, Guid kunde, Guid produkt, int menge);
-        void AuftragAusfuehren(Guid auftrag);
+        void AuftragAusfuehren(Guid auftrag, Guid lagerId);
     }
 }

@@ -1,6 +1,7 @@
 ﻿ using System;
 using Infrastruktur.Common;
-using Nancy.Responses;
+ using Modell_shared;
+ using Nancy.Responses;
 
 namespace Frontend.Bestellwesen
 {
@@ -9,7 +10,7 @@ namespace Frontend.Bestellwesen
         public Bestellwesenmodul()
             : base("/bestellwesen")
         {
-            Get["/"] = parameters => View["offenebestellungenliste", Api().Bestellwesen.OffeneBestellungen()];
+            Get["/"] = parameters => View["offenebestellungenliste", new {Bestellungen = Api().Bestellwesen.OffeneBestellungen().Bestellungen, Lagerliste = Lagerliste.Alle}];
 
             Get["/erfassen"] = parameters => View["auftragerfassen", new
             {
@@ -17,6 +18,7 @@ namespace Frontend.Bestellwesen
                 Produkte = Api().Warenwirtschaft.Produktliste().Produkte,
                 Kunde = Request.Query.kunde
             }];
+
             Post["/erfassen"] = parameters =>
             {
                 try
@@ -34,12 +36,12 @@ namespace Frontend.Bestellwesen
             };
 
 
-            Get["/ausfuehren/{id}"] = parameters => View["ausfuehren"];
-            Post["/ausfuehren/{id}"] = parameters =>
+            Get["/ausfuehren/{id}/{standort}"] = parameters => View["ausfuehren"];
+            Post["/ausfuehren/{id}/{standort}"] = parameters =>
             {
                 try
                 {
-                    Api().Bestellwesen.AuftragAusfuehren(parameters.Id);
+                    Api().Bestellwesen.AuftragAusfuehren(parameters.Id, parameters.Standort);
                     return new RedirectResponse("/bestellwesen/");
                 }
                 catch (VorgangNichtAusgefuehrt ex)

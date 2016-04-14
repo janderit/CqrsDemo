@@ -65,7 +65,23 @@ namespace Infrastruktur
                 return this;
             }
 
-            public void Run(IEnumerable<T> input)
+        public TypeSwitcher<T> On<TCase>(Func<TCase, bool> predicate, Action<TCase> action, bool skipFurther = true) where TCase : class, T
+        {
+            _handle.Add(t =>
+            {
+                var c = t as TCase;
+                if (c != null)
+                {
+                    if (predicate(c)) action(c);
+                    return skipFurther;
+                }
+                return false;
+            });
+
+            return this;
+        }
+
+        public void Run(IEnumerable<T> input)
             {
                 foreach (var t in input)
                 {

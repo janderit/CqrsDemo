@@ -33,7 +33,7 @@ namespace Infrastruktur.EventSourcing
             _uncommitted.Clear();
             return result;
         }
-        
+
 
     }
 }

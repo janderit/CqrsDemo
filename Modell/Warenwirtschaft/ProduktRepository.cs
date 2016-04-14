@@ -1,6 +1,5 @@
 ﻿using System;
 using Infrastruktur.EventSourcing;
-using Modell.Bestellwesen;
 
 namespace Modell.Warenwirtschaft
 {
@@ -23,6 +22,28 @@ namespace Modell.Warenwirtschaft
             return new Produkt(new ProduktProjektion(aggregateId, () => History(aggregateId)), e => Publish(aggregateId, e));
         }
 
-        
+
+    }
+
+
+    public sealed class LagerRepository : EventStoreBasedRepository
+    {
+
+        public LagerRepository(UnitOfWork unitOfWork)
+            : base(unitOfWork)
+        {
+        }
+
+        protected override AggregateEvents Validator
+        {
+            get { return Lagerposten.AggregateEvents; }
+        }
+
+        public Lagerposten Retrieve(Guid lager, Guid produkt)
+        {
+            return new Lagerposten(lager, produkt, new LagerProjektion(() => History(lager)), e => Publish(lager, e));
+        }
+
+
     }
 }

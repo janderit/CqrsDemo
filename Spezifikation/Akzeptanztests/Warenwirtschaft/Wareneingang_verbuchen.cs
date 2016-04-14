@@ -20,9 +20,8 @@ namespace Spezifikation.Akzeptanztests.Warenwirtschaft
 
             WareneingangVerzeichnen(testsystem, produktid);
 
-            var produkt = ProduktAbrufen(testsystem, produktid);
-            produkt.LagerBestand.Should().Be(menge);
-            produkt.Verfuegbar.Should().Be(menge);
+            LagerbestandAbrufen(testsystem, produktid).LagerBestand.Should().Be(menge);
+            ProduktExAbrufen(testsystem, produktid).Verfuegbar.Should().Be(menge);
         }
 
         [Test]
@@ -36,9 +35,9 @@ namespace Spezifikation.Akzeptanztests.Warenwirtschaft
 
             WareneingangVerzeichnen(testsystem, produktid);
 
-            var produkt = ProduktAbrufen(testsystem, produktid);
-            produkt.MengeImZulauf.Should().Be(0);
-            produkt.Nachbestellt.Should().Be(false);
+            var bestand = LagerbestandAbrufen(testsystem, produktid);
+            bestand.MengeImZulauf.Should().Be(0);
+            bestand.Nachbestellt.Should().Be(false);
         }
 
         [Test]

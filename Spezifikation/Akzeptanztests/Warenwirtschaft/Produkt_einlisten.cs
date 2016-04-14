@@ -37,12 +37,12 @@ namespace Spezifikation.Akzeptanztests.Warenwirtschaft
             var id = Neue_ProduktId(testsystem);
             ProduktEinlisten(testsystem, id, "Testprodukt");
 
-            var produkt = ProduktAbrufen(testsystem, id);
+            var lagerbestand = LagerbestandAbrufen(testsystem, id);
+            lagerbestand.LagerBestand.Should().Be(0);
+            lagerbestand.MengeImZulauf.Should().Be(0);
+            lagerbestand.Nachbestellt.Should().Be(false);
 
-            produkt.LagerBestand.Should().Be(0);
-            produkt.MengeImZulauf.Should().Be(0);
-            produkt.Verfuegbar.Should().Be(0);
-            produkt.Nachbestellt.Should().Be(false);
+            ProduktExAbrufen(testsystem, id).Verfuegbar.Should().Be(0);
         }
     }
 }

@@ -20,8 +20,9 @@ namespace Spezifikation.Akzeptanztests.Warenwirtschaft
 
             var auftrag = Neue_AuftragsId(testsystem);
             AuftragErfassen(testsystem, auftrag, kunde, produkt, 100);
+            AuftragAusfuehren(testsystem, auftrag);
 
-            ProduktAbrufen(testsystem, produkt).Verfuegbar.Should().Be(175);
+            ProduktExAbrufen(testsystem, produkt).Verfuegbar.Should().Be(175);
         }
     }
 }

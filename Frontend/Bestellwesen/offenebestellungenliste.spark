@@ -6,11 +6,7 @@
 	<td>${H(auftrag.Kundenname)}</td>
     <td>${H(auftrag.Produktname)}</td>
     <td>${auftrag.Menge}</td>
-	<td><a href="ausfuehren/${auftrag.Id}">Ausf&uuml;hren</a></td>
+	<td each="var standort in Model.Lagerliste"><a href="ausfuehren/${auftrag.Id}/${standort.Id}">ab ${standort.Bezeichnung}</a></td>
   </tr>
 </table>
-</div>
-<p>
-<div>
-<a href="erfassen">Neuen Auftrag erfassen...</a>
 </div>

@@ -17,6 +17,7 @@ namespace Host
         private readonly EventStore _eventStore;
         private readonly KundeReadmodel _kunden;
         private readonly ProduktReadmodel _produkte;
+        private readonly LagerbestandReadmodel _lagerbestand;
         private readonly AuftragReadmodel _auftraege;
         private readonly MetaReadmodel _meta;
         private readonly WarenkorbReadmodel _warenkoerbe;
@@ -27,8 +28,9 @@ namespace Host
             _eventStore = eventStore;
 
             _kunden = new KundeReadmodel(_eventStore.Stream(Kunde.AggregateEvents.Filter));
-            _auftraege = new AuftragReadmodel(_eventStore.Stream(Auftrag.AggregateEvents.Filter));
+            _auftraege = new AuftragReadmodel(_eventStore.Stream(Auftrag.AggregateEvents.Filter), ()=>_eventStore.History);
             _produkte = new ProduktReadmodel(_eventStore.Stream(Produkt.AggregateEvents.Filter));
+            _lagerbestand = new LagerbestandReadmodel(_eventStore.Stream(Lagerposten.AggregateEvents.Filter), _produkte.Access);
             _warenkoerbe = new WarenkorbReadmodel(_eventStore.Stream(Warenkorb.AggregateEvents.Filter));
             _meta = new MetaReadmodel(_eventStore.Subscribe);
 
