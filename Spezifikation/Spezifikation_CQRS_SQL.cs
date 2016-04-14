@@ -41,7 +41,9 @@ namespace Spezifikation
                 {
                     db.ExecuteNonQuery(@"CREATE TABLE [kunden] ( id uniqueidentifier NOT NULL, name nvarchar(100) NOT NULL, anschrift nvarchar(200) NOT NULL)");
                     db.ExecuteNonQuery(@"CREATE TABLE [produkte] ( id uniqueidentifier NOT NULL, bezeichnung nvarchar(100) NOT NULL)");
-                    db.ExecuteNonQuery(@"CREATE TABLE [lagerposten] ( lager uniqueidentifier NOT NULL, produkt uniqueidentifier NOT NULL, bestand int, zulauf int NOT NULL, nachbestellen_ab int NOT NULL, nachbestellen_menge int NOT NULL)");
+                    db.ExecuteNonQuery(@"CREATE TABLE [lagerposten] ( lager uniqueidentifier NOT NULL, produkt uniqueidentifier NOT NULL, bestand int NOT NULL, zulauf int NOT NULL, nachbestellen_ab int NOT NULL, nachbestellen_menge int NOT NULL)");
+
+                    db.ExecuteNonQuery(@"CREATE TABLE [produkteex] ( id uniqueidentifier NOT NULL, bezeichnung nvarchar(100) NOT NULL, bestand int NOT NULL, verfuegbar int NOT NULL)");
                 }
             }
             catch

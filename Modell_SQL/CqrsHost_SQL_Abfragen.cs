@@ -38,7 +38,7 @@ namespace Modell
             }
         }
 
-        private ProduktlisteEx Handle(QueryEnvelope queryEnvelope, ProduktlisteExAbfrage abfrage)
+        /*private ProduktlisteEx Handle(QueryEnvelope queryEnvelope, ProduktlisteExAbfrage abfrage)
         {
             using (var db = ReadAccess())
             {
@@ -56,7 +56,32 @@ namespace Modell
                     }
                     ).ToList()};
             }
+        }*/
+
+
+        private ProduktlisteEx Handle(QueryEnvelope queryEnvelope, ProduktlisteExAbfrage abfrage)
+        {
+            using (var db = ReadAccess())
+            {
+                return new ProduktlisteEx
+                {
+                    Produkte =
+                        db.Query(
+                            @"SELECT [Id], [Bezeichnung], [bestand], [verfuegbar] from [produkteex]",
+                            null,
+                            dr => new ProduktInfoEx
+                            {
+                                Id = dr.GetGuid(0),
+                                Bezeichnung = dr.GetString(1),
+                                LagerBestand = dr.GetInt32(2),
+                                Verfuegbar = dr.GetInt32(3)
+                            }
+                            ).ToList()
+                };
+            }
         }
+
+
 
         private Lagerbestandsliste Handle(QueryEnvelope queryEnvelope, LagerbestandsAbfrage abfrage)
         {
@@ -67,13 +92,17 @@ namespace Modell
             }
         }
 
+
+
+
+
+
+
+
         private Bestellungenliste Handle(QueryEnvelope queryEnvelope, OffeneBestellungenAbfrage abfrage)
         {
             throw new NotImplementedException();
         }
-
-
-
 
         private Protokoll Handle(QueryEnvelope queryEnvelope, ProtokollAbfrage abfrage)
         {
