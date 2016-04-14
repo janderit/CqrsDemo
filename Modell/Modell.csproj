@@ -36,36 +36,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bestellwesen\AuftragRepository.cs" />
-    <Compile Include="Bestellwesen\Auftrag.cs" />
-    <Compile Include="Bestellwesen\AuftragWurdeErfuellt.cs" />
-    <Compile Include="Bestellwesen\AuftragWurdeErfasst.cs" />
-    <Compile Include="Shop\ArtikelWurdeAusWarenkorbEntfernt.cs" />
-    <Compile Include="Shop\ArtikelWurdeZuWarenkorbHinzugefuegt.cs" />
-    <Compile Include="Shop\Warenkorb.cs" />
-    <Compile Include="Shop\WarenkorbProjektion.cs" />
-    <Compile Include="Kunden\KundeRepository.cs" />
-    <Compile Include="Shop\WarenkorbWurdeEroeffnet.cs" />
-    <Compile Include="Warenwirtschaft\AutomatischeNachbestellungenWurdenAktiviert.cs" />
-    <Compile Include="Warenwirtschaft\AutomatischeNachbestellungenWurdenDeaktiviert.cs" />
-    <Compile Include="Warenwirtschaft\MindestVerfuegbarkeitWurdeDefiniert.cs" />
-    <Compile Include="Warenwirtschaft\LieferungIstEingegangen.cs" />
-    <Compile Include="Warenwirtschaft\MindestBestellmengeWurdeDefiniert.cs" />
-    <Compile Include="Warenwirtschaft\NachbestellungWurdeBeauftragt.cs" />
-    <Compile Include="Warenwirtschaft\Lagerposten.cs" />
-    <Compile Include="Warenwirtschaft\LagerProjektion.cs" />
-    <Compile Include="Warenwirtschaft\ProduktWurdeEingelistet.cs" />
-    <Compile Include="Kunden\AnschriftWurdeGeaendert.cs" />
-    <Compile Include="Bestellwesen\AuftragProjektion.cs" />
-    <Compile Include="Kunden\Kunde.cs" />
-    <Compile Include="Kunden\KundenProjektion.cs" />
-    <Compile Include="Shop\WarenkorbRepository.cs" />
-    <Compile Include="Kunden\KundeWurdeErfasst.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Warenwirtschaft\Produkt.cs" />
-    <Compile Include="Warenwirtschaft\ProduktProjektion.cs" />
-    <Compile Include="Warenwirtschaft\ProduktRepository.cs" />
-    <Compile Include="Warenwirtschaft\WarenWurdenAusgeliefert.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -49,9 +49,9 @@
       <Project>{38AAAE7C-198C-434B-8C63-CD02724F374C}</Project>
       <Name>Infrastruktur</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Modell\Modell.csproj">
-      <Project>{D2E00D48-0C49-440C-A5F9-2C85948625CC}</Project>
-      <Name>Modell</Name>
+    <ProjectReference Include="..\Modell_EventSourced\Modell_EventSourced.csproj">
+      <Project>{888bacac-e80a-4423-b422-6b19a13702ae}</Project>
+      <Name>Modell_EventSourced</Name>
     </ProjectReference>
     <ProjectReference Include="..\Readmodels\Readmodels.csproj">
       <Project>{50D5DBB3-856F-42C9-A788-3375BF06DA5F}</Project>
