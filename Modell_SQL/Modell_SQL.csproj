@@ -39,7 +39,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CqrsHost_SQL.cs" />
+    <Compile Include="CqrsHost_SQL_Abfragen.cs" />
+    <Compile Include="CqrsHost_SQL_Aktionen.cs" />
+    <Compile Include="Database.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Api\Api.csproj">
+      <Project>{d15758af-061b-4c51-a008-8fa6da1f9304}</Project>
+      <Name>Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastruktur\Infrastruktur.csproj">
+      <Project>{38aaae7c-198c-434b-8c63-cd02724f374c}</Project>
+      <Name>Infrastruktur</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modell_shared\Modell_shared.csproj">
+      <Project>{fada883e-b7c1-47b5-8ac2-21fe84fc3e79}</Project>
+      <Name>Modell_shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Resourcen\Resourcen.csproj">
+      <Project>{8a34516f-5d6e-4a70-a821-408dea3c44fc}</Project>
+      <Name>Resourcen</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
