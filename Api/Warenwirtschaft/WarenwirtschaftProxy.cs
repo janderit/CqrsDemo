@@ -38,7 +38,9 @@ namespace Api.Warenwirtschaft
 
         public void Nachbestellen(Guid lagerId, Guid produkt, int menge)
         {
-            _port.Handle(new CommandEnvelope(new NachbestellungBeauftragen(lagerId:lagerId, produktId: produkt, bestellteMenge: menge)));
+            _port.Handle(new CommandEnvelope(
+                new NachbestellungBeauftragen(lagerId: lagerId, produktId: produkt, bestellteMenge: menge)
+                ));
         }
 
         public void WareneingangVerzeichnen(Guid lagerId, Guid produkt)

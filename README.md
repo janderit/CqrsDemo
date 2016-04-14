@@ -7,6 +7,17 @@ c# Beispielprojekt mit einer minimalistischen CQRS-Struktur
 Ziel dieses Projekts ist eine CQRS Beispielanwendung in c# mit einem besonderen Ansatz. Um die wesentlichen Elemente von CQRS deutlich herauszustellen, verzichte ich auf viele - oft auch unreflektiert angewandte - Optimierungen und Abstraktionen.
 
 
+
+Stand
+
+Aktuell (2016-04-14) ist das Modell mit Event Sourcing gut testabgedeckt und vollständig implementiert. Ein zweites alternatives Modell mit SQL Zugriff ist 
+nur lückenhaft implementiert.
+
+Zwischen beiden Modellen können Sie für die Tests in "Spezifikation.cs" und für das echte System in CqrsGmbH_Web.cs umstellen. Für die SQL Variante sind Connection Strings notwendig! Die Tests erstellen Datenbank "cqrsdemo_test" und Tabellen automatisch. Das Echtsystem benötigt dann eine Db mit identischer Struktur.
+
+
+
+
 Vorbemerkungen
 
 Vorweg zwei Hinweise: Die Motivation dieses Codes ist es, die Konzepte einer CQRS + Event Sourcing Anwendung zu zeigen, möglichst freigelegt von allem Ballast. Das Ergebnis ist eine klar strukturierte Anwendung mit sehr starker Entkopplung. 
@@ -27,3 +38,5 @@ In der Fachdomäne des Beispielprojekts geht es um eine - recht triviale - Waren
 Die wesentlichen Begriffe der Fachdomäne sind "Kunde", "Auftrag", "Produkt", "Nachbestellung", "Wareneingang", "Lagerbestand" und "Verfügbarkeit". Dabei ist die Verfügbarkeit der Lagerbestand abzüglich bereits erfasster Aufträge zuzüglich im Zulauf befindlicher Nachbestellungen. Liefertermine werden nicht berücksichtigt.
 
 Dabei treffe ich eine Reihe etwas unrealistischer Annahmen: ein Kundenname besteht aus einer Zeichenkette, ebenso seine Adresse. Ein Auftrag enthält nur eine Position mit genau einem Produkt, allerdings mit einer variablen Menge. Preisangaben werden weder im Einkauf noch im Verkauf berücksichtigt.
+
+

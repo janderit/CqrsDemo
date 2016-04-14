@@ -42,7 +42,7 @@ namespace Host
 	    private List<ProduktInfo> AlleProduktInfos()
 	    {
 	        var alle_produkt_ids = ProduktProjektion.AlleIDs(_eventStore.History);
-	        var produkte = alle_produkt_ids.Select(_ => _produkte.Access(_)).ToList();
+	        var produkte = alle_produkt_ids.Select(_ => _produkte.ProduktInfoLesen(_)).ToList();
 	        return produkte;
 	    }
 
@@ -71,7 +71,7 @@ namespace Host
 			foreach (var bestellung in result.Bestellungen)
 			{
 				bestellung.Kundenname = _kunden.Access(bestellung.Kunde).Name;
-				bestellung.Produktname = _produkte.Access(bestellung.Produkt).Bezeichnung;
+				bestellung.Produktname = _produkte.ProduktInfoLesen(bestellung.Produkt).Bezeichnung;
 			}
 			return result;
 		}

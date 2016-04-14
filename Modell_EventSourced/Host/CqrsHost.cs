@@ -30,7 +30,7 @@ namespace Host
             _kunden = new KundeReadmodel(_eventStore.Stream(Kunde.AggregateEvents.Filter));
             _auftraege = new AuftragReadmodel(_eventStore.Stream(Auftrag.AggregateEvents.Filter), ()=>_eventStore.History);
             _produkte = new ProduktReadmodel(_eventStore.Stream(Produkt.AggregateEvents.Filter));
-            _lagerbestand = new LagerbestandReadmodel(_eventStore.Stream(Lagerposten.AggregateEvents.Filter), _produkte.Access);
+            _lagerbestand = new LagerbestandReadmodel(_eventStore.Stream(Lagerposten.AggregateEvents.Filter), _produkte.ProduktInfoLesen);
             _warenkoerbe = new WarenkorbReadmodel(_eventStore.Stream(Warenkorb.AggregateEvents.Filter));
             _meta = new MetaReadmodel(_eventStore.Subscribe);
 

@@ -60,6 +60,7 @@ namespace Spezifikation
                 db.ExecuteNonQuery(@"DELETE FROM [kunden]");
                 db.ExecuteNonQuery(@"DELETE FROM [produkte]");
                 db.ExecuteNonQuery(@"DELETE FROM [lagerposten]");
+                db.ExecuteNonQuery(@"DELETE FROM [produkteex]");
             }
         }
 

@@ -3,8 +3,9 @@ using Api;
 
 namespace Spezifikation
 {
-    // Schalterklasse, um das System zwischen LegacySQL, CQRS_SQL und CQRS_EventSourcing, umzustellen
-    public class Spezifikation : Spezifikation_CQRS_SQL
+    // Schalterklasse, um das System zwischen CQRS_SQL und CQRS_EventSourcing umzustellen
+    public class Spezifikation : Spezifikation_Eventsourcing
+    //public class Spezifikation : Spezifikation_CQRS_SQL
     {
         protected static Guid TestKundeEinrichten(CqrsGmbH testsystem, string name, string anschrift)
         {

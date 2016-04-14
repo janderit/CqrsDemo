@@ -61,6 +61,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +127,10 @@
     <ProjectReference Include="..\Modell_shared\Modell_shared.csproj">
       <Project>{fada883e-b7c1-47b5-8ac2-21fe84fc3e79}</Project>
       <Name>Modell_shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modell_SQL\Modell_SQL.csproj">
+      <Project>{C102530D-83DD-456E-A294-F51BC3E135E1}</Project>
+      <Name>Modell_SQL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Resourcen\Resourcen.csproj">
       <Project>{8A34516F-5D6E-4A70-A821-408DEA3C44FC}</Project>

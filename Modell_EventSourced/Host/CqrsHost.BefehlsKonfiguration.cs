@@ -24,9 +24,16 @@ namespace Host
 
 		private void Handle(CommandEnvelope commandEnvelope, AnschriftAendern aktion, UnitOfWork unitOfWork)
 		{
-            var kunde = new KundeRepository(unitOfWork).Retrieve(aktion.KundenId);
-			kunde.AnschriftAendern(aktion.NeueAnschrift);
-			unitOfWork.Commit();
+		    try
+		    {
+		        var kunde = new KundeRepository(unitOfWork).Retrieve(aktion.KundenId);
+		        kunde.AnschriftAendern(aktion.NeueAnschrift);
+		        unitOfWork.Commit();
+		    }
+		    catch (Exception ex)
+		    {
+		        // Protokollieren
+		    }
 		}
 
 		private void Handle(CommandEnvelope commandEnvelope, AuftragErfassen aktion, UnitOfWork unitOfWork)
@@ -54,8 +61,8 @@ namespace Host
 
 		private void Handle(CommandEnvelope commandEnvelope, NachbestellungBeauftragen aktion, UnitOfWork unitOfWork)
 		{
-            var produkt = new LagerRepository(unitOfWork).Retrieve(aktion.LagerId, aktion.ProduktId);
-			produkt.Nachbestellen(aktion.BestellteMenge);
+            var lager = new LagerRepository(unitOfWork).Retrieve(aktion.LagerId, aktion.ProduktId);
+			lager.Nachbestellen(aktion.BestellteMenge);
 		}
 
 		private void Handle(CommandEnvelope commandEnvelope, WareneingangVerbuchen aktion, UnitOfWork unitOfWork)

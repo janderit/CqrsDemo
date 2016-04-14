@@ -11,8 +11,17 @@ namespace Frontend
     {
         static CqrsGmbH_Web()
         {
+            // *************** Hier kann man zwischen Event Sourcing und SQL umstellen. Achtung: nur Event Sourcing ist voll implementiert.
+
             var store = new InMemoryEventStore();
             var port = new CqrsHost(store);
+
+            // -oder -
+
+            /*
+            var ConnectionString = "";
+            var port = new CqrsHost_SQL(() => new SqlConnection(ConnectionString));
+            */
 
             _api = new Lazy<CqrsGmbH>( // <-- statt IoC
                 () =>

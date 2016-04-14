@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Api.Bestellwesen.Abfragen;
-using Api.Bestellwesen.Aktionen;
 using Api.Kunden.Abfragen;
-using Api.Kunden.Aktionen;
 using Api.Meta;
 using Api.Warenkorb.Abfragen;
-using Api.Warenkorb.Aktionen;
 using Api.Warenwirtschaft.Abfragen;
-using Api.Warenwirtschaft.Aktionen;
 using Infrastruktur.Messaging;
 using Resourcen.Bestellwesen;
 using Resourcen.Kunden;
@@ -37,14 +33,19 @@ namespace Modell
                 return new ProduktRepository(db).Retrieve();
             }
         }
-
-        /*private ProduktlisteEx Handle(QueryEnvelope queryEnvelope, ProduktlisteExAbfrage abfrage)
+        /*
+        private ProduktlisteEx Handle(QueryEnvelope queryEnvelope, ProduktlisteExAbfrage abfrage)
         {
             using (var db = ReadAccess())
             {
                 var lagerbestand =
                     new LagerbestandRepository(db).RetrieveAlleStandorte()
-                    .Bestand.GroupBy(_=>_.Produkt).ToDictionary(_=>_.Key, _=>new { Bestand = _.Sum(x=>x.LagerBestand), Zulauf = _.Sum(x => x.MengeImZulauf) });
+                    .Bestand.GroupBy(_=>_.Produkt).ToDictionary(_=>_.Key, _=>
+                    new
+                    {
+                        Bestand = _.Sum(x=>x.LagerBestand),
+                        Zulauf = _.Sum(x => x.MengeImZulauf)
+                    });
 
                 return new ProduktlisteEx {Produkte = new ProduktRepository(db).Retrieve().Produkte.Select(
                     p => new ProduktInfoEx

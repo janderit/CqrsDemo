@@ -17,7 +17,7 @@ namespace Readmodels
             _history = history;
         }
 
-        public ProduktInfo Access(Guid produkt)
+        public ProduktInfo ProduktInfoLesen(Guid produkt)
         {
             var history = _history(produkt).ToList();
             var projektor = new ProduktProjektion(produkt, () => history);

@@ -151,7 +151,6 @@ namespace Modell
                     setpar("zulauf", zulauf);
                 }
                 );
-
             ProduktExDenormalizer.Update(_sql, produkt);
         }
 
@@ -166,7 +165,6 @@ namespace Modell
                     setpar("bestand", bestand);
                 }
                 );
-
             ProduktExDenormalizer.Update(_sql, produkt);
         }
 
