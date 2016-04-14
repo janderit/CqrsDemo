@@ -13,10 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resourcen", "Resourcen\Reso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frontend", "Frontend\Frontend.csproj", "{F315D4EE-436C-4CF2-9170-298937FEB9EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host", "Host\Host.csproj", "{F85C35F1-038B-4FA3-BA3F-C21D4564F647}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Readmodels", "Readmodels\Readmodels.csproj", "{50D5DBB3-856F-42C9-A788-3375BF06DA5F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{471D2D94-F957-4C6D-86A0-045297D6250E}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -27,6 +23,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modell_shared", "Modell_shared\Modell_shared.csproj", "{FADA883E-B7C1-47B5-8AC2-21FE84FC3E79}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modell_EventSourced", "Modell_EventSourced\Modell_EventSourced.csproj", "{888BACAC-E80A-4423-B422-6B19A13702AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modell_SQL", "Modell_SQL\Modell_SQL.csproj", "{C102530D-83DD-456E-A294-F51BC3E135E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,14 +52,6 @@ Global
 		{F315D4EE-436C-4CF2-9170-298937FEB9EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F315D4EE-436C-4CF2-9170-298937FEB9EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F315D4EE-436C-4CF2-9170-298937FEB9EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F85C35F1-038B-4FA3-BA3F-C21D4564F647}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F85C35F1-038B-4FA3-BA3F-C21D4564F647}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F85C35F1-038B-4FA3-BA3F-C21D4564F647}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F85C35F1-038B-4FA3-BA3F-C21D4564F647}.Release|Any CPU.Build.0 = Release|Any CPU
-		{50D5DBB3-856F-42C9-A788-3375BF06DA5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50D5DBB3-856F-42C9-A788-3375BF06DA5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50D5DBB3-856F-42C9-A788-3375BF06DA5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50D5DBB3-856F-42C9-A788-3375BF06DA5F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FADA883E-B7C1-47B5-8AC2-21FE84FC3E79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FADA883E-B7C1-47B5-8AC2-21FE84FC3E79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FADA883E-B7C1-47B5-8AC2-21FE84FC3E79}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -70,6 +60,10 @@ Global
 		{888BACAC-E80A-4423-B422-6B19A13702AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{888BACAC-E80A-4423-B422-6B19A13702AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{888BACAC-E80A-4423-B422-6B19A13702AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C102530D-83DD-456E-A294-F51BC3E135E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C102530D-83DD-456E-A294-F51BC3E135E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C102530D-83DD-456E-A294-F51BC3E135E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C102530D-83DD-456E-A294-F51BC3E135E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

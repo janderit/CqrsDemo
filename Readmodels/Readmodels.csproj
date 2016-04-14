@@ -36,12 +36,6 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuftragReadmodel.cs" />
-    <Compile Include="LagerbestandReadmodel.cs" />
-    <Compile Include="WarenkorbReadmodel.cs" />
-    <Compile Include="MetaReadmodel.cs" />
-    <Compile Include="ProduktReadmodel.cs" />
-    <Compile Include="KundeReadmodel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,15 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F85C35F1-038B-4FA3-BA3F-C21D4564F647}</ProjectGuid>
+    <ProjectGuid>{C102530D-83DD-456E-A294-F51BC3E135E1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Host</RootNamespace>
-    <AssemblyName>Host</AssemblyName>
+    <RootNamespace>Modell</RootNamespace>
+    <AssemblyName>Modell_SQL</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,28 +32,14 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Api\Api.csproj">
-      <Project>{D15758AF-061B-4C51-A008-8FA6DA1F9304}</Project>
-      <Name>Api</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Infrastruktur\Infrastruktur.csproj">
-      <Project>{38AAAE7C-198C-434B-8C63-CD02724F374C}</Project>
-      <Name>Infrastruktur</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Modell_EventSourced\Modell_EventSourced.csproj">
-      <Project>{888bacac-e80a-4423-b422-6b19a13702ae}</Project>
-      <Name>Modell_EventSourced</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Resourcen\Resourcen.csproj">
-      <Project>{8A34516F-5D6E-4A70-A821-408DEA3C44FC}</Project>
-      <Name>Resourcen</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

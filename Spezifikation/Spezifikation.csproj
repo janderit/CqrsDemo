@@ -67,13 +67,13 @@
       <Project>{D15758AF-061B-4C51-A008-8FA6DA1F9304}</Project>
       <Name>Api</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Host\Host.csproj">
-      <Project>{F85C35F1-038B-4FA3-BA3F-C21D4564F647}</Project>
-      <Name>Host</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Infrastruktur\Infrastruktur.csproj">
       <Project>{38AAAE7C-198C-434B-8C63-CD02724F374C}</Project>
       <Name>Infrastruktur</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modell_EventSourced\Modell_EventSourced.csproj">
+      <Project>{888bacac-e80a-4423-b422-6b19a13702ae}</Project>
+      <Name>Modell_EventSourced</Name>
     </ProjectReference>
     <ProjectReference Include="..\Modell_shared\Modell_shared.csproj">
       <Project>{fada883e-b7c1-47b5-8ac2-21fe84fc3e79}</Project>
