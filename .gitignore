@@ -32,3 +32,6 @@ packages/
 _UpgradeReport_Files
 Backup
 UpgradeLog.*
+
+# Don't commit .vs folder (see http://stackoverflow.com/a/31879242/1062607)
+.vs
